@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +40,10 @@ export function Hero() {
   const coverOpacity = clamp(0.18 + reveal * 0.82, 0.18, 1);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[88vh] flex flex-col items-center justify-center pt-16 pb-10 overflow-hidden bg-white">
+    <section
+      ref={sectionRef}
+      className="relative min-h-[88vh] flex flex-col items-center justify-center pt-16 pb-10 overflow-hidden bg-white"
+    >
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <div className="flex flex-col items-center gap-4">
           {/* Main headline */}
@@ -122,30 +125,39 @@ export function Hero() {
             </div>
 
             {/* Phone mockup */}
-            <div className="relative mx-auto -translate-y-12 w-[450px] h-[900px] overflow-hidden sm:w-[500px] sm:h-[1000px]">
-              {/* Phone frame (on top) */}
+            <div
+              className="relative mx-auto -translate-y-8 w-[min(88vw,430px)]"
+              style={{ aspectRatio: "1014 / 2048" }}
+            >
+              {/* Inner slab that sits behind the device frame */}
+              <div className="absolute left-[4.2%] right-[4.2%] top-[2.4%] bottom-[2.4%] rounded-[4rem] bg-black">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Image
+                    src="/images/readlink-logo.png"
+                    alt="Readlink"
+                    width={170}
+                    height={42}
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Device frame wraps the slab */}
               <Image
-                src="/images/iphone-mockup.png"
+                src="/iphone-mockup.png"
                 alt="iPhone mockup"
                 fill
-                className="object-contain z-10 relative pointer-events-none scale-[1.55]"
+                className="pointer-events-none object-contain"
+                sizes="(max-width: 640px) 88vw, 430px"
                 priority
               />
-              <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                <Image
-                  src="/images/readlink-logo.png"
-                  alt="Readlink"
-                  width={170}
-                  height={42}
-                  className="object-contain"
-                />
-              </div>
             </div>
           </div>
 
           {/* Subtitle */}
           <p className="-mt-4 max-w-xl text-base text-muted leading-relaxed text-balance">
-            From collections to discovery, explore every corner of the book ecosystem with ease.
+            From collections to discovery, explore every corner of the book
+            ecosystem with ease.
           </p>
 
           {/* App store badges */}
