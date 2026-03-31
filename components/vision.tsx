@@ -22,38 +22,29 @@ export function Vision() {
         {/* Comparison cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="rounded-3xl border border-dark-fg/10 bg-dark-fg/5 p-8">
-            <div className="text-sm text-dark-fg/40 uppercase tracking-widest mb-4">
-              Think of it like
-            </div>
             <h3 className="text-xl font-medium mb-3">
-              Facebook for Knowledge
+              CONNECT YOUR BOOKS
             </h3>
             <p className="text-dark-fg/60 leading-relaxed">
-              Facebook connected people through friendships. Readlink connects people through the ideas they care about.
+              Turn your library into a living network of ideas.
             </p>
           </div>
           
           <div className="rounded-3xl border border-dark-fg/10 bg-dark-fg/5 p-8">
-            <div className="text-sm text-dark-fg/40 uppercase tracking-widest mb-4">
-              Or like
-            </div>
             <h3 className="text-xl font-medium mb-3">
-              LinkedIn for Ideas
+              EXPRESS YOUR MIND
             </h3>
             <p className="text-dark-fg/60 leading-relaxed">
-              LinkedIn created professional networks. Readlink creates intellectual networks based on what you read and think.
+              Show what you read, think, and care about.
             </p>
           </div>
           
           <div className="rounded-3xl border border-dark-fg/10 bg-dark-fg/5 p-8">
-            <div className="text-sm text-dark-fg/40 uppercase tracking-widest mb-4">
-              Or like
-            </div>
             <h3 className="text-xl font-medium mb-3">
-              Spotify for Knowledge
+              DISCOVER THROUGH OTHERS
             </h3>
             <p className="text-dark-fg/60 leading-relaxed">
-              Spotify maps taste for music. Readlink maps knowledge through the books you read and the ideas you explore.
+              Explore ideas through people with taste like yours.
             </p>
           </div>
         </div>

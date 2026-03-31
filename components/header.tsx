@@ -51,6 +51,7 @@ export function Header() {
   // the bar is transparent; dark stroke on light page or when the menu panel is open.
   const mobileMenuIconOnDark =
     !mobileMenuOpen && isDarkBackground;
+  const desktopSignInOnDark = !mobileMenuOpen && isDarkBackground;
 
   return (
     <header
@@ -115,7 +116,11 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="#"
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className={`text-sm transition-colors duration-500 ease-out ${
+                desktopSignInOnDark
+                  ? "text-white/85 hover:text-white"
+                  : "text-foreground/85 hover:text-foreground"
+              }`}
             >
               Sign in
             </Link>

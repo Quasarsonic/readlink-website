@@ -55,7 +55,7 @@ export function Features() {
             <p className="text-lg text-dark-fg/60 leading-relaxed">
               From advanced tools to seamless integration, enjoy powerful features to elevate your reading experience.
             </p>
-            <a href="#" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-dark-fg hover:text-dark-fg/80 transition-colors">
+            <a href="#download" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-dark-fg hover:text-dark-fg/80 transition-colors">
               Download now
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -82,8 +82,6 @@ export function Features() {
                 </p>
                 <div className="flex items-center gap-4 text-sm text-dark-fg/40">
                   <span>Unlimited books</span>
-                  <span className="w-1 h-1 rounded-full bg-dark-fg/40" />
-                  <span>Custom tags</span>
                   <span className="w-1 h-1 rounded-full bg-dark-fg/40" />
                   <span>Reading stats</span>
                 </div>

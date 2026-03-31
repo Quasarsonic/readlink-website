@@ -3,10 +3,14 @@ import Link from "next/link";
 
 export function CTA() {
   return (
-    <section data-header-theme="dark" className="py-24 lg:py-32 bg-dark-bg text-dark-fg">
+    <section
+      id="download"
+      data-header-theme="dark"
+      className="py-24 lg:py-32 bg-dark-bg text-dark-fg"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <h2 className="text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl text-balance max-w-2xl mx-auto mb-6">
-          Experience knowledge like never before with{" "}
+          Experience reading like never before with{" "}
           <span className="inline-flex items-center align-baseline">
             <Image
               src="/images/readlink-wordmark.png"

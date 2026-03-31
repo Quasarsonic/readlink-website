@@ -37,11 +37,6 @@ export function HowItWorks() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
           {steps.map((step, index) => (
             <div key={index} className="relative h-full">
-              {/* Connector line */}
-              {index < steps.length - 1 && (
-                <div className="absolute left-20 right-[-1.5rem] top-7 hidden h-px bg-border lg:top-8 lg:block" />
-              )}
-
               <div className="flex h-full flex-col items-start">
                 <div className="mb-4 flex h-14 items-center lg:h-16">
                   <span className="text-5xl font-bold leading-none text-accent lg:text-6xl">
