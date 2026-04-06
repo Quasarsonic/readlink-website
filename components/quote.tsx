@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Quote() {
   return (
     <section className="py-24 lg:py-32 bg-white">
@@ -5,7 +7,7 @@ export function Quote() {
         <div className="relative">
           {/* Quote marks */}
           <svg
-            className="absolute -top-8 -left-4 h-16 w-16 text-border opacity-50"
+            className="absolute -top-6 -left-1 h-12 w-12 sm:-top-8 sm:-left-4 sm:h-16 sm:w-16 text-border opacity-50"
             fill="currentColor"
             viewBox="0 0 32 32"
           >
@@ -13,8 +15,18 @@ export function Quote() {
           </svg>
           
           <blockquote className="relative z-10">
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-relaxed text-balance">
-              Books helped humanity store knowledge. Printing helped it spread. Readlink helps it connect.
+            <p className="mx-auto max-w-[22ch] sm:max-w-[25ch] lg:max-w-[28ch] text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-[1.35] sm:leading-[1.3] text-balance">
+              Books helped humanity store knowledge. The printing press helped it spread.{" "}
+              <span className="inline-flex items-center align-baseline">
+                <Image
+                  src="/images/readlink-wordmark.png"
+                  alt="Readlink"
+                  width={232}
+                  height={44}
+                  className="h-[0.83em] w-auto translate-y-[0.08em] brightness-0"
+                />
+              </span>{" "}
+              connects it, turning knowledge into intelligence.
             </p>
           </blockquote>
           

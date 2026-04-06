@@ -63,3 +63,60 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted-foreground);
 }
+
+/* Vision section — subtle in-plane drift (no full spin) */
+@keyframes vision-orbit-1 {
+  0% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(-6deg);
+  }
+}
+
+@keyframes vision-orbit-2 {
+  0% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes vision-orbit-3 {
+  0% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+
+.vision-orbit-1 {
+  animation: vision-orbit-1 18s ease-in-out infinite;
+}
+
+.vision-orbit-2 {
+  animation: vision-orbit-2 14s ease-in-out infinite;
+}
+
+.vision-orbit-3 {
+  animation: vision-orbit-3 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vision-orbit-1,
+  .vision-orbit-2,
+  .vision-orbit-3 {
+    animation: none;
+  }
+}

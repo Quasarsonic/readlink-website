@@ -17,7 +17,7 @@ export function CTA() {
               alt="Readlink"
               width={232}
               height={44}
-              className="h-10 w-auto translate-y-0.5"
+              className="h-[0.83em] w-auto translate-y-[0.08em]"
             />
           </span>
         </h2>
