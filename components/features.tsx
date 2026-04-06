@@ -47,13 +47,13 @@ export function Features() {
         {/* Section header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 lg:mb-20">
           <div>
-            <h2 className="text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl text-balance leading-tight">
-              Your ultimate reading companion, packed with features to simplify your knowledge journey
+            <h2 className="text-2xl font-medium tracking-tight sm:text-3xl lg:text-4xl text-balance leading-tight">
+              Transform your library from a static collection into a living, interconnected entity that gives you powerful leverage to think deeper, connect smarter, and use for real intelligence.
             </h2>
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-lg text-dark-fg/60 leading-relaxed">
-              From advanced tools to seamless integration, enjoy powerful features to elevate your reading experience.
+              Packed with intelligent tools to organize, connect, and expand your knowledge and elevate your reading experience.
             </p>
             <a href="#download" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-dark-fg hover:text-dark-fg/80 transition-colors">
               Download now
@@ -78,12 +78,10 @@ export function Features() {
                   Build Your Personal Library
                 </h3>
                 <p className="text-dark-fg/60 leading-relaxed mb-6">
-                  Track your entire book collection. Add what you&apos;ve read, are reading, or want to read next. Organize by topics, themes, or custom categories.
+                  Transform your collection into a dynamic library that thinks with you. Add books you&apos;ve read, are reading, or plan to read, and organize them in a way that unlocks deeper insights and connections.
                 </p>
                 <div className="flex items-center gap-4 text-sm text-dark-fg/40">
                   <span>Unlimited books</span>
-                  <span className="w-1 h-1 rounded-full bg-dark-fg/40" />
-                  <span>Reading stats</span>
                 </div>
               </div>
               <div className="flex-shrink-0 relative w-full lg:w-64 h-48 rounded-2xl bg-dark-fg/10 overflow-hidden flex items-center justify-center">
@@ -136,7 +134,7 @@ export function Features() {
             </div>
             <h3 className="text-lg font-medium mb-2">AI-Powered Insights</h3>
             <p className="text-dark-fg/60 text-sm leading-relaxed mb-4">
-              Get personalized recommendations and discover patterns across your reading history.
+              Add a layer of intelligence to your reading. Transform the way you interact with your library as AI uncovers hidden connections, surfaces patterns in your ideas, and enhances your understanding; turning your reading into a smarter, more interconnected experience.
             </p>
             <div className="mt-auto rounded-2xl bg-dark-fg/10 p-4">
               <div className="flex items-center gap-3">
