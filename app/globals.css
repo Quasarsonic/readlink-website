@@ -27,7 +27,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-dark-bg: var(--dark-bg);
   --color-dark-fg: var(--dark-fg);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
 }
 

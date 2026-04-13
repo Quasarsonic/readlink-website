@@ -103,6 +103,18 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <Link
+              href="https://discord.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+     
+              <span className="sr-only">Discord</span>
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.369A19.79 19.79 0 0 0 15.559 3c-.206.37-.444.867-.608 1.257a18.27 18.27 0 0 0-5.902 0A12.38 12.38 0 0 0 8.441 3a19.736 19.736 0 0 0-4.759 1.37C.671 8.874-.156 13.267.258 17.598A19.9 19.9 0 0 0 6.115 21c.474-.65.896-1.334 1.257-2.05a12.89 12.89 0 0 1-1.98-.947c.164-.12.325-.247.482-.378 3.817 1.8 7.959 1.8 11.73 0 .16.131.321.258.482.378-.63.373-1.296.694-1.98.947.361.716.783 1.4 1.257 2.05a19.84 19.84 0 0 0 5.86-3.402c.484-5.025-.827-9.377-3.906-13.229ZM8.02 14.96c-1.143 0-2.083-1.055-2.083-2.352 0-1.296.92-2.352 2.083-2.352 1.173 0 2.103 1.066 2.083 2.352 0 1.297-.92 2.352-2.083 2.352Zm7.697 0c-1.143 0-2.083-1.055-2.083-2.352 0-1.296.92-2.352 2.083-2.352 1.173 0 2.103 1.066 2.083 2.352 0 1.297-.91 2.352-2.083 2.352Z" />
+              </svg>
+            </Link>
+            <Link
               href="https://www.linkedin.com/showcase/readlink/"
               target="_blank"
               rel="noopener noreferrer"
