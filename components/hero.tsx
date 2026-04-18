@@ -42,7 +42,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[88vh] flex flex-col items-center justify-center pt-16 pb-10 overflow-hidden bg-white"
+      className="grain relative min-h-[88vh] flex flex-col items-center justify-center pb-10 overflow-hidden bg-white"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <div className="flex flex-col items-center gap-4">

@@ -55,13 +55,15 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 ${
+      className={`site-header sticky top-0 left-0 right-0 z-50 relative ${
         mobileMenuOpen
-          ? "bg-background rounded-b-xl overflow-hidden border-b-[0.5px] border-black"
-          : ""
+          ? "site-header--menu-open bg-background rounded-b-xl overflow-hidden border-b-[0.5px] border-black"
+          : isDarkBackground
+            ? "header-dark"
+            : ""
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <nav className="relative flex items-center justify-between h-16">
           <Link
             ref={logoAnchorRef}

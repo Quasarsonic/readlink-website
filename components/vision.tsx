@@ -5,9 +5,9 @@ export function Vision() {
     <section
       id="vision"
       data-header-theme="dark"
-      className="overflow-x-hidden py-24 lg:py-32 bg-dark-bg text-dark-fg"
+      className="grain overflow-x-hidden py-24 lg:py-32 bg-dark-bg text-dark-fg"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-[2] mx-auto max-w-7xl px-6 lg:px-8">
         {/* Ellipse/gateway section */}
         <div className="relative py-24 pb-28 sm:py-20 sm:pb-24 mb-24">
           {/* Ellipse decoration — overflow visible so arcs aren’t clipped; section uses overflow-x-hidden for wide rings */}

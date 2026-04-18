@@ -1,49 +1,9 @@
-import { BookOpen, Users, Brain, Library, Network, Sparkles } from "lucide-react";
-import Image from "next/image";
-
-const features = [
-  {
-    icon: Library,
-    title: "Build Your Library",
-    description:
-      "Create a digital library of the knowledge you care about. Organize books across business, science, technology, and other fields.",
-  },
-  {
-    icon: Brain,
-    title: "Personal Knowledge Graph",
-    description:
-      "Create an intelligent personal thinking graph that represents how you think, not just what you read.",
-  },
-  {
-    icon: Users,
-    title: "Connect With Readers",
-    description:
-      "Connect with others who read similar books or explore similar ideas. Discovery happens naturally.",
-  },
-  {
-    icon: Network,
-    title: "Intelligence Network",
-    description:
-      "Transform isolated reading into an interconnected knowledge network where learning compounds.",
-  },
-  {
-    icon: BookOpen,
-    title: "Explore Libraries",
-    description:
-      "Discover libraries that represent how people think. Find new books through the connections others have made.",
-  },
-  {
-    icon: Sparkles,
-    title: "Expand Knowledge",
-    description:
-      "Patterns emerge across books and minds. Intelligence becomes collective as libraries connect.",
-  },
-];
+import { Users, Brain, Library, Network, Sparkles } from "lucide-react";
 
 export function Features() {
   return (
-    <section id="features" data-header-theme="dark" className="py-24 lg:py-32 bg-dark-bg text-dark-fg">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="features" data-header-theme="dark" className="grain py-24 lg:py-32 bg-dark-bg text-dark-fg">
+      <div className="relative z-[2] mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 lg:mb-20">
           <div>
@@ -67,7 +27,7 @@ export function Features() {
         {/* Features grid - bento style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Large feature card */}
-          <div className="md:col-span-2 lg:col-span-2 rounded-3xl bg-dark-fg/5 border border-dark-fg/10 p-8 relative overflow-hidden">
+          <div className="feature-card md:col-span-2 lg:col-span-2 p-8 relative overflow-hidden">
             <div className="flex flex-col lg:flex-row gap-8">
               <div className="flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-dark-fg/10 text-sm mb-4">
@@ -95,7 +55,7 @@ export function Features() {
           </div>
 
           {/* Small feature card */}
-          <div className="rounded-3xl bg-dark-fg/5 border border-dark-fg/10 p-6 flex flex-col">
+          <div className="feature-card p-6 flex flex-col">
             <div className="w-12 h-12 rounded-xl bg-dark-fg/10 flex items-center justify-center mb-4">
               <Brain className="h-6 w-6" />
             </div>
@@ -106,7 +66,7 @@ export function Features() {
           </div>
 
           {/* Feature with visual */}
-          <div className="rounded-3xl bg-dark-fg/5 border border-dark-fg/10 p-6">
+          <div className="feature-card p-6">
             <div className="w-12 h-12 rounded-xl bg-dark-fg/10 flex items-center justify-center mb-4">
               <Users className="h-6 w-6" />
             </div>
@@ -117,7 +77,7 @@ export function Features() {
           </div>
 
           {/* Feature card */}
-          <div className="rounded-3xl bg-dark-fg/5 border border-dark-fg/10 p-6">
+          <div className="feature-card p-6">
             <div className="w-12 h-12 rounded-xl bg-dark-fg/10 flex items-center justify-center mb-4">
               <Network className="h-6 w-6" />
             </div>
@@ -128,7 +88,7 @@ export function Features() {
           </div>
 
           {/* Large feature with image */}
-          <div className="md:col-span-2 lg:col-span-1 rounded-3xl bg-dark-fg/5 border border-dark-fg/10 p-6 flex flex-col">
+          <div className="feature-card md:col-span-2 lg:col-span-1 p-6 flex flex-col">
             <div className="w-12 h-12 rounded-xl bg-dark-fg/10 flex items-center justify-center mb-4">
               <Sparkles className="h-6 w-6" />
             </div>
