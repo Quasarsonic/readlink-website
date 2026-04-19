@@ -177,7 +177,7 @@ export default function LegalPage() {
               <br />
               Controller: Lykan Sagl, Ai Salici, 6633 Lavertezzo, Switzerland
               <br />
-              Contact email: readlinkofficial@gmail.com
+              Contact email: legal@gmail.com
             </p>
 
             <div className="space-y-4">
@@ -236,7 +236,7 @@ export default function LegalPage() {
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>Access, correction, or deletion of your data.</li>
                   <li>Withdraw consent at any time.</li>
-                  <li>Contact us at readlinkofficial@gmail.com.</li>
+                  <li>Contact us at legal@gmail.com.</li>
                 </ul>
               </div>
 
@@ -288,7 +288,7 @@ export default function LegalPage() {
                 Users must only post content they own or have rights to.
               </li>
               <li>
-                Takedown procedure: email readlinkofficial@gmail.com for
+                Takedown procedure: email legal@gmail.com for
                 copyright concerns.
               </li>
               <li>
