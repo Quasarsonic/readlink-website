@@ -147,6 +147,17 @@ export function Footer() {
               </svg>
             </Link>
             <Link
+              href="https://www.youtube.com/@ReadlinkApp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <span className="sr-only">YouTube</span>
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a2.99 2.99 0 0 0-2.106-2.117C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.392.569A2.99 2.99 0 0 0 .502 6.186C0 8.086 0 12 0 12s0 3.914.502 5.814a2.99 2.99 0 0 0 2.106 2.117C4.495 20.5 12 20.5 12 20.5s7.505 0 9.392-.569a2.99 2.99 0 0 0 2.106-2.117C24 15.914 24 12 24 12s0-3.914-.502-5.814ZM9.6 15.5v-7l6.4 3.5-6.4 3.5Z" />
+              </svg>
+            </Link>
+            <Link
               href="https://discord.gg/ER24nJxU"
               target="_blank"
               rel="noopener noreferrer"
