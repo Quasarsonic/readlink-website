@@ -95,19 +95,19 @@ export function Header() {
           <div className="absolute left-1/2 top-1/2 hidden h-10 -translate-x-1/2 -translate-y-1/2 md:flex items-center rounded-full bg-black/95 px-5 shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
             <div className="flex items-center gap-6">
               <Link
-                href="#features"
+                href="/#features"
                 className="text-sm text-white/85 hover:text-white transition-colors"
               >
                 Feature
               </Link>
               <Link
-                href="#how-it-works"
+                href="/#how-it-works"
                 className="text-sm text-white/85 hover:text-white transition-colors"
               >
                 How it works
               </Link>
               <Link
-                href="#vision"
+                href="/#vision"
                 className="text-sm text-white/85 hover:text-white transition-colors"
               >
                 Vision
@@ -172,21 +172,21 @@ export function Header() {
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
               <Link
-                href="#features"
+                href="/#features"
                 className="text-sm text-muted hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Features
               </Link>
               <Link
-                href="#how-it-works"
+                href="/#how-it-works"
                 className="text-sm text-muted hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 How it works
               </Link>
               <Link
-                href="#vision"
+                href="/#vision"
                 className="text-sm text-muted hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >

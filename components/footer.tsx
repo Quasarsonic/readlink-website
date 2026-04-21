@@ -3,12 +3,12 @@ import Link from "next/link";
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "#features" },
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Pricing", href: "#" },
+    { label: "Features", href: "/#features" },
+    { label: "How it works", href: "/#how-it-works" },
+    { label: "Pricing" },
   ],
   company: [
-    { label: "About", href: "#vision" },
+    { label: "About" },
     { label: "Contact", href: "/contact" },
   ],
   legal: [
@@ -46,12 +46,18 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.href ? (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <span className="text-sm text-muted/60 cursor-not-allowed">
+                      {link.label}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -65,12 +71,18 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.href ? (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <span className="text-sm text-muted/60 cursor-not-allowed">
+                      {link.label}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
