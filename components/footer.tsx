@@ -111,7 +111,8 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Readlink. All rights reserved.
+            &copy; 2026 Readlink. All rights reserved. Readlink is a product of
+            Lykan Sagl.
           </p>
           <div className="flex items-center gap-6">
             <Link
