@@ -112,6 +112,12 @@ export function Header() {
               >
                 Vision
               </Link>
+              <Link
+                href="/launch"
+                className="text-sm text-white/85 hover:text-white transition-colors"
+              >
+                Challange
+              </Link>
             </div>
           </div>
 
@@ -191,6 +197,13 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Vision
+              </Link>
+              <Link
+                href="/launch"
+                className="text-sm text-muted hover:text-foreground transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Challange
               </Link>
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 <Link

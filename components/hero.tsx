@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { HeroProfileTiles } from "./HeroProfileTiles";
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
@@ -36,14 +37,12 @@ export function Hero() {
     opacity: clamp(1 - reveal * 1.25, 0, 1),
     transform: `translateY(${-reveal * 46}px) scale(${1 - reveal * 0.05})`,
   };
-  const coverDrift = reveal * 180;
-  const coverOpacity = clamp(0.18 + reveal * 0.82, 0.18, 1);
-
   return (
     <section
       ref={sectionRef}
       className="grain relative min-h-[88vh] flex flex-col items-center justify-center pb-10 overflow-hidden bg-white"
     >
+      <HeroProfileTiles />
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <div className="flex flex-col items-center gap-4">
           {/* Main headline */}
@@ -60,70 +59,6 @@ export function Hero() {
 
           {/* Phone mockup with logo */}
           <div className="relative -mt-2 mb-1">
-            {/* Floating book covers - left side */}
-            <div
-              className="absolute -left-6 top-24 z-0 hidden lg:block will-change-transform"
-              style={{
-                opacity: coverOpacity,
-                transform: `translate(${70 - coverDrift}px, ${20 + coverDrift * 0.08}px) scale(${0.92 + reveal * 0.08}) rotate(-8deg)`,
-              }}
-            >
-              <Image
-                src="/images/book-covers/einstein.png"
-                alt="Einstein book cover"
-                width={220}
-                height={320}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-            <div
-              className="absolute -left-14 top-[22rem] z-0 hidden lg:block will-change-transform"
-              style={{
-                opacity: coverOpacity,
-                transform: `translate(${90 - coverDrift * 0.85}px, ${10 - coverDrift * 0.06}px) scale(${0.9 + reveal * 0.1}) rotate(5deg)`,
-              }}
-            >
-              <Image
-                src="/images/book-covers/abundance.png"
-                alt="Abundance book cover"
-                width={230}
-                height={335}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-
-            {/* Floating book covers - right side */}
-            <div
-              className="absolute -right-6 top-24 z-0 hidden lg:block will-change-transform"
-              style={{
-                opacity: coverOpacity,
-                transform: `translate(${-70 + coverDrift}px, ${20 + coverDrift * 0.08}px) scale(${0.92 + reveal * 0.08}) rotate(8deg)`,
-              }}
-            >
-              <Image
-                src="/images/book-covers/future-faster.png"
-                alt="The Future Is Faster Than You Think cover"
-                width={230}
-                height={335}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-            <div
-              className="absolute -right-14 top-[22rem] z-0 hidden lg:block will-change-transform"
-              style={{
-                opacity: coverOpacity,
-                transform: `translate(${-90 + coverDrift * 0.85}px, ${10 - coverDrift * 0.06}px) scale(${0.9 + reveal * 0.1}) rotate(-6deg)`,
-              }}
-            >
-              <Image
-                src="/images/book-covers/bold.png"
-                alt="Bold book cover"
-                width={230}
-                height={335}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-
             {/* Phone mockup */}
             <div
               className="relative mx-auto -translate-y-4 w-[min(88vw,430px)] sm:-translate-y-5"
