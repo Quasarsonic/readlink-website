@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { participants } from "./launchCampaignData";
 
 const rankColors: Record<number, string> = {
@@ -17,9 +18,33 @@ type ShelfLeaderboardProps = {
 
 export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
   const entries = expanded ? participants : participants.slice(0, 5);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [rowsVisible, setRowsVisible] = useState(false);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (items) => {
+        const first = items[0];
+        if (!first?.isIntersecting) return;
+        setRowsVisible(true);
+        observer.disconnect();
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [expanded]);
 
   return (
     <section
+      ref={sectionRef}
+      data-header-theme="dark"
       className="bg-[#0A0A0A] py-[80px] px-[clamp(16px,5vw,80px)]"
       aria-labelledby="shelf-leaderboard-title"
     >
@@ -50,14 +75,8 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
           </p>
         </div>
 
-        <div
-          className={
-            expanded
-              ? "launch-leaderboard-scroll max-h-[600px] space-y-3 overflow-y-auto pr-1"
-              : "space-y-3"
-          }
-        >
-          {entries.map((entry) => {
+        <div className={expanded ? "space-y-3 pr-1" : "space-y-3"}>
+          {entries.map((entry, index) => {
             const isTopThree = entry.rank <= 3;
             const progressWidth = `${Math.max(8, (entry.points / maxPoints) * 100)}%`;
             const rankColor = rankColors[entry.rank] ?? "#666666";
@@ -69,6 +88,12 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                 style={{
                   background: isTopThree ? "rgba(91,158,248,0.03)" : "rgba(255,255,255,0.02)",
                   borderColor: isTopThree ? "rgba(91,158,248,0.15)" : "rgba(255,255,255,0.04)",
+                  opacity: expanded && !rowsVisible ? 0 : 1,
+                  transform: expanded && !rowsVisible ? "translateY(12px)" : "translateY(0)",
+                  transition:
+                    expanded
+                      ? `opacity 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms, transform 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms`
+                      : undefined,
                 }}
               >
                 <p

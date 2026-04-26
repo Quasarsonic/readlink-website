@@ -19,8 +19,8 @@ export default function Home() {
         <ShelfLeaderboard />
         <EarnPoints />
         <RankCardPreview />
-        <Features />
         <Quote />
+        <Features />
         <HowItWorks />
         <Vision />
         <CTA />

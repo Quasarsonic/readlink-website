@@ -146,6 +146,28 @@ html {
   }
 }
 
+@media (min-width: 1024px) {
+  @keyframes floatDown {
+    from {
+      transform: translateY(-120px) rotate(-6deg);
+      opacity: 0;
+    }
+
+    8% {
+      opacity: 0.7;
+    }
+
+    92% {
+      opacity: 0.7;
+    }
+
+    to {
+      transform: translateY(118vh) rotate(6deg);
+      opacity: 0;
+    }
+  }
+}
+
 @keyframes pulse {
   0%,
   100% {
@@ -232,7 +254,11 @@ header.site-header.site-header--menu-open {
   display: none;
 }
 
-.launch-leaderboard-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: #2c2c2c transparent;
+.shuffle-icon {
+  display: inline-block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shuffle-icon.spinning {
+  transform: rotate(360deg);
 }
