@@ -11,7 +11,11 @@ export function EarnPoints({ expandable = false }: EarnPointsProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#0A0A0A] px-[clamp(16px,5vw,80px)] py-[80px]" aria-labelledby="earn-points-title">
+    <section
+      className="bg-[#111111] px-[clamp(16px,5vw,80px)] py-[80px]"
+      aria-labelledby="earn-points-title"
+      data-header-theme="dark"
+    >
       <div className="mx-auto w-full max-w-[900px]">
         <header className="mb-8">
           <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">

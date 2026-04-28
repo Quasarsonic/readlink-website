@@ -3,7 +3,7 @@ const steps = [
     number: "01",
     title: "Build Your Library",
     description:
-      "Add the books you've read, are reading, or want to read. Organize them by topics, themes, and your own custom shelves",
+      "Add the books you've read, are reading, or want to read. Organize them by topics, themes, and your own custom shelves.",
   },
   {
     number: "02",
@@ -21,7 +21,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 lg:py-32 bg-white">
+    <section id="how-it-works" className="py-24 lg:py-32 bg-white" data-header-theme="dark">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16 lg:mb-20">

@@ -7,6 +7,8 @@ function shuffleParticipants() {
   return [...participants].sort(() => Math.random() - 0.5);
 }
 
+const pointsFormatter = new Intl.NumberFormat("en-US");
+
 export default function RankCardCarousel() {
   const [shuffled, setShuffled] = useState(participants);
   const [isDragging, setIsDragging] = useState(false);
@@ -17,6 +19,7 @@ export default function RankCardCarousel() {
   const rafRef = useRef<number | null>(null);
   const dragStartXRef = useRef(0);
   const scrollStartLeftRef = useRef(0);
+  const loopedParticipants = [...shuffled, ...shuffled, ...shuffled];
 
   const onShuffle = () => {
     setIsShuffleSpinning(true);
@@ -41,6 +44,21 @@ export default function RankCardCarousel() {
     const applyLinearScale = () => {
       const activeContainer = carouselRef.current;
       if (!activeContainer) return;
+      const firstMiddleCard = cardRefs.current[shuffled.length];
+      const firstLastCard = cardRefs.current[shuffled.length * 2];
+
+      if (firstMiddleCard && firstLastCard) {
+        const loopWidth = firstLastCard.offsetLeft - firstMiddleCard.offsetLeft;
+        const leftBoundary = firstMiddleCard.offsetLeft - loopWidth * 0.5;
+        const rightBoundary = firstMiddleCard.offsetLeft + loopWidth * 0.5;
+
+        if (activeContainer.scrollLeft < leftBoundary) {
+          activeContainer.scrollLeft += loopWidth;
+        } else if (activeContainer.scrollLeft > rightBoundary) {
+          activeContainer.scrollLeft -= loopWidth;
+        }
+      }
+
       const viewportCenter = activeContainer.scrollLeft + activeContainer.clientWidth / 2;
 
       cardRefs.current.forEach((card) => {
@@ -50,7 +68,9 @@ export default function RankCardCarousel() {
         const maxDistance = activeContainer.clientWidth / 2 + card.offsetWidth / 2;
         const t = Math.min(distance / maxDistance, 1);
         const scale = 1 - t * 0.16;
+        const opacity = 1 - t * 0.75;
         card.style.transform = `scale(${scale})`;
+        card.style.opacity = `${opacity}`;
       });
     };
 
@@ -78,10 +98,11 @@ export default function RankCardCarousel() {
   useEffect(() => {
     const container = carouselRef.current;
     if (!container) return;
-    const firstCard = cardRefs.current[0];
-    if (!firstCard) return;
+    const centerIndex = shuffled.length + Math.floor(shuffled.length / 2);
+    const centeredCard = cardRefs.current[centerIndex];
+    if (!centeredCard) return;
 
-    const offset = firstCard.offsetLeft - container.offsetWidth / 2 + firstCard.offsetWidth / 2;
+    const offset = centeredCard.offsetLeft - container.offsetWidth / 2 + centeredCard.offsetWidth / 2;
     container.scrollLeft = offset;
   }, [shuffled]);
 
@@ -152,18 +173,20 @@ export default function RankCardCarousel() {
               transition: "opacity 200ms ease",
               perspective: "1000px",
               scrollSnapType: "x mandatory",
-              scrollBehavior: "smooth",
+              maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
             }}
             onMouseDown={onMouseDown}
             onMouseMove={onMouseMove}
             onMouseUp={stopDragging}
             onMouseLeave={stopDragging}
           >
-            {shuffled.map((participant, index) => {
+            {loopedParticipants.map((participant, index) => {
               const progress = Math.min(100, (participant.points / 5000) * 100);
               return (
                 <a
-                  key={participant.handle}
+                  key={`${participant.handle}-${index}`}
                   href={`https://readlink.app/@${participant.handle}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -173,18 +196,35 @@ export default function RankCardCarousel() {
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="relative min-h-[380px] w-[300px] overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.08)] bg-[#0A0A0A] p-7 will-change-transform transition-transform duration-150 ease-linear"
+                    className="relative min-h-[380px] w-[300px] overflow-hidden rounded-[20px] border border-[rgba(91,158,248,0.2)] bg-[#0A0A0A] p-7 will-change-transform transition-transform duration-150 ease-linear"
                     style={{ scrollSnapAlign: "center" }}
                   >
                     <div
-                      className="pointer-events-none absolute -right-10 -top-10 h-[140px] w-[140px]"
-                      style={{ background: "radial-gradient(circle, rgba(91,158,248,0.04) 0%, transparent 60%)" }}
+                      className="pointer-events-none absolute rounded-full"
+                      style={{
+                        top: "-50px",
+                        right: "-50px",
+                        width: "180px",
+                        height: "180px",
+                        background:
+                          "radial-gradient(circle, rgba(91,158,248,0.12) 0%, rgba(91,158,248,0.04) 40%, transparent 70%)",
+                      }}
+                    />
+                    <div
+                      className="pointer-events-none absolute rounded-full"
+                      style={{
+                        bottom: "-40px",
+                        left: "-40px",
+                        width: "140px",
+                        height: "140px",
+                        background: "radial-gradient(circle, rgba(91,158,248,0.05) 0%, transparent 60%)",
+                      }}
                     />
 
                     <div className="relative mb-4 flex items-center gap-3">
                       <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]">
                         <img
-                          src={`https://i.pravatar.cc/100?img=${index + 1}`}
+                          src={`https://i.pravatar.cc/100?img=${participant.rank}`}
                           alt={`${participant.name} avatar`}
                           className="h-full w-full object-cover grayscale"
                           loading="lazy"
@@ -202,7 +242,8 @@ export default function RankCardCarousel() {
                     </div>
 
                     <p className="relative mb-4 font-mono text-[11px] text-[#999999]">
-                      {participant.points} pts · {participant.referrals} referrals
+                      {pointsFormatter.format(participant.points)} pts · {participant.referrals} referrals ·{" "}
+                      {participant.books} books
                     </p>
 
                     <div className="relative mb-4 h-[2px] w-full overflow-hidden rounded-[2px] bg-[rgba(255,255,255,0.06)]">

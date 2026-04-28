@@ -1,6 +1,10 @@
 export function RankCardPreview() {
   return (
-    <section className="bg-[#111111] px-[clamp(16px,5vw,80px)] py-[80px]" aria-labelledby="rank-card-preview-title">
+    <section
+      className="bg-[#0D0D0D] px-[clamp(16px,5vw,80px)] py-[80px]"
+      aria-labelledby="rank-card-preview-title"
+      data-header-theme="dark"
+    >
       <div className="mx-auto w-full max-w-4xl text-center">
         <header className="mx-auto max-w-[480px]">
           <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">
