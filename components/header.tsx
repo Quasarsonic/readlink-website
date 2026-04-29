@@ -7,13 +7,18 @@ import { useEffect, useRef, useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
+  const forceDarkHeader = pathname === "/launch";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const logoAnchorRef = useRef<HTMLAnchorElement | null>(null);
+  const isDarkBackgroundRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const checkHeaderTheme = () => {
-      const darkSections = document.querySelectorAll<HTMLElement>('[data-header-theme="dark"]');
+      const darkSections = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-header-theme="dark"]')
+      );
       const logoRect = logoAnchorRef.current?.getBoundingClientRect();
       if (!logoRect) return;
       const x = logoRect.left + logoRect.width / 2;
@@ -30,35 +35,47 @@ export function Header() {
         if (isOverThisSection) onDark = true;
       });
 
+      if (onDark === isDarkBackgroundRef.current) return;
+      isDarkBackgroundRef.current = onDark;
       setIsDarkBackground(onDark);
     };
-
-    requestAnimationFrame(checkHeaderTheme);
-    window.addEventListener("scroll", checkHeaderTheme, { passive: true });
-    window.addEventListener("resize", checkHeaderTheme);
-    return () => {
-      window.removeEventListener("scroll", checkHeaderTheme);
-      window.removeEventListener("resize", checkHeaderTheme);
+    const scheduleHeaderThemeCheck = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        checkHeaderTheme();
+      });
     };
-  }, []);
+
+    scheduleHeaderThemeCheck();
+    window.addEventListener("scroll", scheduleHeaderThemeCheck, { passive: true });
+    window.addEventListener("resize", scheduleHeaderThemeCheck);
+    return () => {
+      window.removeEventListener("scroll", scheduleHeaderThemeCheck);
+      window.removeEventListener("resize", scheduleHeaderThemeCheck);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [pathname]);
 
   // Logo reads dark with invert(1) and light with invert(0). Dark page sections use
   // invert(0); light sections use invert(1). The mobile menu bar is always light, so
   // when it is open we keep the same treatment as over light content (invert(1)).
   const logoFilter =
-    !mobileMenuOpen && isDarkBackground ? "invert(0)" : "invert(1)";
+    !mobileMenuOpen && (isDarkBackground || forceDarkHeader) ? "invert(0)" : "invert(1)";
   // Mobile menu icon (hamburger / close): same rule — light stroke on dark page when
   // the bar is transparent; dark stroke on light page or when the menu panel is open.
   const mobileMenuIconOnDark =
-    !mobileMenuOpen && isDarkBackground;
-  const desktopSignInOnDark = !mobileMenuOpen && isDarkBackground;
+    !mobileMenuOpen && (isDarkBackground || forceDarkHeader);
+  const desktopSignInOnDark = !mobileMenuOpen && (isDarkBackground || forceDarkHeader);
 
   return (
     <header
       className={`site-header sticky top-0 left-0 right-0 z-50 relative ${
         mobileMenuOpen
           ? "site-header--menu-open bg-background rounded-b-xl overflow-hidden border-b-[0.5px] border-black"
-          : isDarkBackground
+          : isDarkBackground || forceDarkHeader
             ? "header-dark"
             : ""
       }`}
@@ -85,8 +102,8 @@ export function Header() {
               className="h-8 w-auto transition-[filter,transform,opacity] duration-500 ease-out will-change-transform"
               style={{
                 filter: logoFilter,
-                transform: isDarkBackground ? "scale(1.03)" : "scale(1)",
-                opacity: isDarkBackground ? 1 : 0.98,
+                transform: isDarkBackground || forceDarkHeader ? "scale(1.03)" : "scale(1)",
+                opacity: isDarkBackground || forceDarkHeader ? 1 : 0.98,
               }}
             />
           </Link>
@@ -116,7 +133,7 @@ export function Header() {
                 href="/launch"
                 className="text-sm text-white/85 hover:text-white transition-colors"
               >
-                Challange
+                Challenge
               </Link>
             </div>
           </div>
@@ -203,7 +220,7 @@ export function Header() {
                 className="text-sm text-muted hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Challange
+                Challenge
               </Link>
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 <Link

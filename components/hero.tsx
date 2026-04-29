@@ -12,6 +12,8 @@ function clamp(value: number, min: number, max: number) {
 export function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
+  const rafRef = useRef<number | null>(null);
+  const progressRef = useRef(0);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -20,15 +22,30 @@ export function Hero() {
       const sectionTop = node.offsetTop;
       const scrolledPastSectionTop = window.scrollY - sectionTop;
       const raw = scrolledPastSectionTop / (window.innerHeight * 0.9);
-      setProgress(clamp(raw, 0, 1));
+      const nextProgress = clamp(raw, 0, 1);
+      // Quantize tiny deltas so scrolling doesn't trigger a render per pixel.
+      const rounded = Math.round(nextProgress * 100) / 100;
+      if (rounded === progressRef.current) return;
+      progressRef.current = rounded;
+      setProgress(rounded);
+    };
+    const scheduleProgressUpdate = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        updateProgress();
+      });
     };
 
     updateProgress();
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress);
+    window.addEventListener("scroll", scheduleProgressUpdate, { passive: true });
+    window.addEventListener("resize", scheduleProgressUpdate);
     return () => {
-      window.removeEventListener("scroll", updateProgress);
-      window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("scroll", scheduleProgressUpdate);
+      window.removeEventListener("resize", scheduleProgressUpdate);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 

@@ -162,7 +162,7 @@ html {
     }
 
     to {
-      transform: translateY(118vh) rotate(6deg);
+      transform: translateY(140vh) rotate(6deg);
       opacity: 0;
     }
   }

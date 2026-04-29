@@ -129,7 +129,7 @@ export default function RankCardCarousel() {
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start px-[clamp(16px,5vw,80px)] lg:flex-row lg:items-start">
         <div className="w-full lg:w-[40%] lg:pr-12">
           <p className="inline-flex items-center text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">
-            Readlink Launch Campaign
+            The 200 Founders Edition
             <span
               className="ml-[10px] inline-block h-2 w-2 rounded-full bg-[#5B9EF8]"
               style={{ animation: "pulse 2s infinite" }}
@@ -137,7 +137,7 @@ export default function RankCardCarousel() {
             />
           </p>
           <h2 className="mt-3 text-[clamp(40px,6vw,64px)] font-bold leading-[1.05] tracking-[-0.02em] text-white">
-            The Shelf
+            The 200 Founders Edition
           </h2>
           <p className="mt-3 max-w-[420px] text-[16px] text-[#999999]">
             200 readers shaping the launch of Readlink.

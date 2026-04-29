@@ -58,7 +58,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
               id="shelf-leaderboard-title"
               className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              The Shelf
+              The 200 Founders Edition
             </h2>
             <div className="inline-flex items-center gap-1.5">
               <span
@@ -71,7 +71,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
           <p className="mt-4 max-w-2xl text-[14px] leading-[1.6] text-[#999999]">
             {expanded
               ? "Rankings update in real time. Top 200 earn a permanent spot on the homepage."
-              : "Top 200 readers shaping Readlink&apos;s launch earn a permanent animated spot on the homepage."}
+              : "The top 200 most influential Readlink readers."}
           </p>
         </div>
 

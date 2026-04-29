@@ -5,14 +5,17 @@ import { earnPointsCards } from "./launchCampaignData";
 
 type EarnPointsProps = {
   expandable?: boolean;
+  extraBottomPadding?: boolean;
 };
 
-export function EarnPoints({ expandable = false }: EarnPointsProps) {
+export function EarnPoints({ expandable = false, extraBottomPadding = false }: EarnPointsProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
     <section
-      className="bg-[#111111] px-[clamp(16px,5vw,80px)] py-[80px]"
+      className={`bg-[#111111] px-[clamp(16px,5vw,80px)] pt-[80px] ${
+        extraBottomPadding ? "pb-[160px]" : "pb-[80px]"
+      }`}
       aria-labelledby="earn-points-title"
       data-header-theme="dark"
     >
