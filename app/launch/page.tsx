@@ -8,7 +8,7 @@ import { ShelfLeaderboard } from "@/components/ShelfLeaderboard";
 
 export default function LaunchPage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white" data-header-theme="dark">
+    <div className="min-h-screen bg-[#0A0A0A] font-sans text-white" data-header-theme="dark">
       <Header />
       <main>
         <RankCardCarousel />

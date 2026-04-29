@@ -75,7 +75,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
           </p>
         </div>
 
-        <div className={expanded ? "space-y-3 pr-1" : "space-y-3"}>
+        <div className="space-y-3">
           {entries.map((entry, index) => {
             const isTopThree = entry.rank <= 3;
             const progressWidth = `${Math.max(8, (entry.points / maxPoints) * 100)}%`;

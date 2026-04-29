@@ -10,49 +10,60 @@ export function Header() {
   const forceDarkHeader = pathname === "/launch";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
   const logoAnchorRef = useRef<HTMLAnchorElement | null>(null);
   const isDarkBackgroundRef = useRef(false);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const checkHeaderTheme = () => {
-      const darkSections = Array.from(
-        document.querySelectorAll<HTMLElement>('[data-header-theme="dark"]')
-      );
-      const logoRect = logoAnchorRef.current?.getBoundingClientRect();
-      if (!logoRect) return;
-      const x = logoRect.left + logoRect.width / 2;
-      const y = logoRect.top + logoRect.height / 2;
-      let onDark = false;
-
-      darkSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const isOverThisSection =
-          x >= rect.left &&
-          x <= rect.right &&
-          y >= rect.top &&
-          y <= rect.bottom;
-        if (isOverThisSection) onDark = true;
-      });
+    const resolveHeaderTheme = () => {
+      const headerRect = headerRef.current?.getBoundingClientRect();
+      const headerNode = headerRef.current;
+      if (!headerRect || !headerNode) return;
+      const x = Math.round(window.innerWidth / 2);
+      const y = Math.round(Math.min(window.innerHeight - 1, headerRect.bottom + 2));
+      const stack = document.elementsFromPoint(x, y);
+      const contentElement = stack.find((element) => !headerNode.contains(element)) ?? null;
+      const themedAncestor = contentElement?.closest<HTMLElement>("[data-header-theme]");
+      const onDark = themedAncestor?.dataset.headerTheme === "dark";
 
       if (onDark === isDarkBackgroundRef.current) return;
       isDarkBackgroundRef.current = onDark;
       setIsDarkBackground(onDark);
     };
-    const scheduleHeaderThemeCheck = () => {
+    const scheduleHeaderThemeResolve = () => {
       if (rafRef.current !== null) return;
       rafRef.current = window.requestAnimationFrame(() => {
         rafRef.current = null;
-        checkHeaderTheme();
+        resolveHeaderTheme();
       });
     };
 
-    scheduleHeaderThemeCheck();
-    window.addEventListener("scroll", scheduleHeaderThemeCheck, { passive: true });
-    window.addEventListener("resize", scheduleHeaderThemeCheck);
+    // Reset immediately on route transitions, then resolve repeatedly while layout/hash settle.
+    isDarkBackgroundRef.current = forceDarkHeader;
+    setIsDarkBackground(forceDarkHeader);
+
+    scheduleHeaderThemeResolve();
+    const delayedResolveOne = window.setTimeout(scheduleHeaderThemeResolve, 0);
+    const delayedResolveTwo = window.setTimeout(scheduleHeaderThemeResolve, 120);
+    const delayedResolveThree = window.setTimeout(scheduleHeaderThemeResolve, 280);
+    const delayedResolveFour = window.setTimeout(scheduleHeaderThemeResolve, 520);
+    const delayedResolveFive = window.setTimeout(scheduleHeaderThemeResolve, 900);
+
+    window.addEventListener("scroll", scheduleHeaderThemeResolve, { passive: true });
+    window.addEventListener("resize", scheduleHeaderThemeResolve);
+    window.addEventListener("hashchange", scheduleHeaderThemeResolve);
+    window.addEventListener("popstate", scheduleHeaderThemeResolve);
     return () => {
-      window.removeEventListener("scroll", scheduleHeaderThemeCheck);
-      window.removeEventListener("resize", scheduleHeaderThemeCheck);
+      window.clearTimeout(delayedResolveOne);
+      window.clearTimeout(delayedResolveTwo);
+      window.clearTimeout(delayedResolveThree);
+      window.clearTimeout(delayedResolveFour);
+      window.clearTimeout(delayedResolveFive);
+      window.removeEventListener("scroll", scheduleHeaderThemeResolve);
+      window.removeEventListener("resize", scheduleHeaderThemeResolve);
+      window.removeEventListener("hashchange", scheduleHeaderThemeResolve);
+      window.removeEventListener("popstate", scheduleHeaderThemeResolve);
       if (rafRef.current !== null) {
         window.cancelAnimationFrame(rafRef.current);
       }
@@ -72,6 +83,7 @@ export function Header() {
 
   return (
     <header
+      ref={headerRef}
       className={`site-header sticky top-0 left-0 right-0 z-50 relative ${
         mobileMenuOpen
           ? "site-header--menu-open bg-background rounded-b-xl overflow-hidden border-b-[0.5px] border-black"

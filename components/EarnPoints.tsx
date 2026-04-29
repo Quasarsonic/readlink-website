@@ -28,10 +28,10 @@ export function EarnPoints({ expandable = false, extraBottomPadding = false }: E
             id="earn-points-title"
             className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Earn your shelf
+            Earn your Spot
           </h2>
           <p className="mt-4 max-w-2xl text-[14px] leading-[1.6] text-[#999999]">
-            Every action that grows Readlink earns points toward a permanent spot on the homepage.
+            Complete Actions to earn your place among Readlink&apos;s top readers.
           </p>
         </header>
 
