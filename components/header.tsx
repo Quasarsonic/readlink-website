@@ -165,7 +165,7 @@ export function Header() {
               href="#"
               className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
             >
-              Join waitlist
+              Join the Challenge
             </Link>
           </div>
 
