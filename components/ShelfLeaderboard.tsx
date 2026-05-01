@@ -159,7 +159,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
               type="button"
               className="inline-flex items-center justify-center rounded-[12px] border border-white bg-transparent px-6 py-3 text-[15px] font-medium text-white transition-colors duration-150 ease-in-out hover:bg-white/10"
             >
-              Join the challenge →
+              Join the Challenge →
             </button>
           </div>
         ) : null}
