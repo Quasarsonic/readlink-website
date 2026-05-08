@@ -163,9 +163,9 @@ export function Header() {
             </Link>
             <Link
               href="#"
-              className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+              className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
             >
-              Join the Challenge
+              Join Challenge
             </Link>
           </div>
 
@@ -237,15 +237,15 @@ export function Header() {
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 <Link
                   href="#"
-                  className="text-sm text-muted hover:text-foreground transition-colors"
+                  className="block w-full text-center text-sm text-muted hover:text-foreground transition-colors"
                 >
-                  Sign in
+                  Sign In
                 </Link>
                 <Link
                   href="#"
-                  className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
                 >
-                  Join waitlist
+                  Join Challenge
                 </Link>
               </div>
             </div>

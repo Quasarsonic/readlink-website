@@ -208,20 +208,13 @@ header.site-header.site-header--menu-open {
 
 /* Features section — benefit cards (container only) */
 .feature-card {
-  background: linear-gradient(145deg, #f0f0ee 0%, #ffffff 60%);
-  border: 1px solid #e5e5e2;
+  background: linear-gradient(145deg, #1a1a1a 0%, #111111 60%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
-}
-
-@media (prefers-color-scheme: dark) {
-  .feature-card {
-    background: linear-gradient(145deg, #1a1a1a 0%, #111111 60%);
-    border-color: rgba(255, 255, 255, 0.14);
-  }
 }
 
 .feature-card:hover {

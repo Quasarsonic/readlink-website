@@ -48,9 +48,8 @@ export function Vision() {
               <h3 className="text-xl font-medium">Meaningful Reading</h3>
             </div>
             <p className="text-dark-fg/60 leading-relaxed">
-              Stop Chasing Streaks.
-              <br />
-              Those who read with purpose don&apos;t look for motivation; they
+              Stop chasing streaks. Those who read with purpose don&apos;t look
+              for motivation; they
               seek to elevate their ideas and apply their knowledge to shape
               the world.
               <br />
