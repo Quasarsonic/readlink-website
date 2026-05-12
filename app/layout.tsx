@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -33,10 +34,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${plusJakartaSans.variable} font-sans antialiased`}>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      signInFallbackRedirectUrl="/premium"
+      signUpFallbackRedirectUrl="/premium"
+      afterSignOutUrl="/"
+    >
+      <html lang="en">
+        <body className={`${plusJakartaSans.variable} font-sans antialiased`}>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
+  const { isSignedIn } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const logoAnchorRef = useRef<HTMLAnchorElement | null>(null);
@@ -116,22 +118,40 @@ export function Header() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="#"
-              className={`text-sm transition-colors duration-500 ease-out ${
-                desktopSignInOnDark
-                  ? "text-white/85 hover:text-white"
-                  : "text-foreground/85 hover:text-foreground"
-              }`}
-            >
-              Sign in
-            </Link>
-            <Link
-              href="#"
-              className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
-            >
-              Join waitlist
-            </Link>
+            {isSignedIn ? (
+              <>
+                <Link
+                  href="/premium"
+                  className={`text-sm transition-colors duration-500 ease-out ${
+                    desktopSignInOnDark
+                      ? "text-white/85 hover:text-white"
+                      : "text-foreground/85 hover:text-foreground"
+                  }`}
+                >
+                  Premium
+                </Link>
+                <UserButton />
+              </>
+            ) : (
+              <>
+                <SignInButton mode="modal" forceRedirectUrl="/premium">
+                  <button
+                    className={`text-sm transition-colors duration-500 ease-out ${
+                      desktopSignInOnDark
+                        ? "text-white/85 hover:text-white"
+                        : "text-foreground/85 hover:text-foreground"
+                    }`}
+                  >
+                    Sign in
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal" forceRedirectUrl="/premium">
+                  <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
+                    Get Premium
+                  </button>
+                </SignUpButton>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -193,18 +213,28 @@ export function Header() {
                 Vision
               </Link>
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                <Link
-                  href="#"
-                  className="text-sm text-muted hover:text-foreground transition-colors"
-                >
-                  Sign in
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
-                >
-                  Join waitlist
-                </Link>
+                {isSignedIn ? (
+                  <Link
+                    href="/premium"
+                    className="text-sm text-muted hover:text-foreground transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Premium
+                  </Link>
+                ) : (
+                  <>
+                    <SignInButton mode="modal" forceRedirectUrl="/premium">
+                      <button className="text-left text-sm text-muted hover:text-foreground transition-colors">
+                        Sign in
+                      </button>
+                    </SignInButton>
+                    <SignUpButton mode="modal" forceRedirectUrl="/premium">
+                      <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
+                        Get Premium
+                      </button>
+                    </SignUpButton>
+                  </>
+                )}
               </div>
             </div>
           </div>
