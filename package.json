@@ -10,9 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.3.3",
-    "@revenuecat/purchases-js": "^1.39.1",
     "lucide-react": "^0.468.0",
-    "next": "16.1.6",
+    "next": "^16.2.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "resend": "^6.12.2"
@@ -24,8 +23,11 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "^16.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
   }
 }

@@ -1,21 +1,17 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import {
-  ErrorCode,
-  Purchases,
-  PurchasesError,
-  type Package,
-} from "@revenuecat/purchases-js";
 import Image from "next/image";
 import Link from "next/link";
 import { Check, ExternalLink, Loader2, RefreshCw, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+type PremiumSource = "none" | "stripe" | "revenuecat" | "both";
+
 type BillingPlan = {
   id: "monthly" | "yearly";
   interval: "monthly" | "yearly";
-  rcPackage: Package;
+  priceId: string;
   displayPrice: string;
   productName: string;
   productDescription: string | null;
@@ -23,74 +19,56 @@ type BillingPlan = {
 
 type BillingStatus = {
   isPremium: boolean;
+  premiumSource: PremiumSource;
   premiumUpdatedAt: string | null;
+  revenueCat: {
+    active: boolean;
+    expiresAt: string | null;
+  };
+  stripe: {
+    active: boolean;
+    status: string | null;
+    currentPeriodEnd: string | null;
+    cancelAtPeriodEnd: boolean;
+    priceId: string | null;
+  };
 };
 
-type CheckoutState = "idle" | "monthly" | "yearly";
-
-let purchasesInstance: Purchases | null = null;
-
-function premiumEntitlementId() {
-  return process.env.NEXT_PUBLIC_REVENUECAT_PREMIUM_ENTITLEMENT_ID || "premium";
-}
-
-async function purchasesForUser(userId: string) {
-  const apiKey = process.env.NEXT_PUBLIC_REVENUECAT_WEB_API_KEY;
-  if (!apiKey) throw new Error("RevenueCat Web API key is not configured");
-
-  if (!Purchases.isConfigured()) {
-    purchasesInstance = Purchases.configure({ apiKey, appUserId: userId });
-    return purchasesInstance;
-  }
-
-  const instance = purchasesInstance ?? Purchases.getSharedInstance();
-  purchasesInstance = instance;
-
-  if (instance.getAppUserId() !== userId) {
-    await instance.changeUser(userId);
-  }
-
-  return instance;
-}
-
-function plansFromPackages(packages: {
-  monthly: Package | null;
-  annual: Package | null;
-}) {
-  return [
-    packages.monthly ? planFromPackage("monthly", packages.monthly) : null,
-    packages.annual ? planFromPackage("yearly", packages.annual) : null,
-  ].filter((plan): plan is BillingPlan => Boolean(plan));
-}
-
-function planFromPackage(interval: BillingPlan["interval"], rcPackage: Package) {
-  const product = rcPackage.webBillingProduct;
-  return {
-    id: interval,
-    interval,
-    rcPackage,
-    displayPrice: product.price.formattedPrice,
-    productName: product.title,
-    productDescription: product.description,
-  } satisfies BillingPlan;
-}
+type CheckoutState = "idle" | "monthly" | "yearly" | "portal";
 
 function planLabel(interval: BillingPlan["interval"]) {
   return interval === "monthly" ? "Monthly" : "Yearly";
 }
 
+async function fetchJson<T>(path: string, init?: RequestInit) {
+  const response = await fetch(path, { ...init, cache: "no-store" });
+  const payload = (await response.json().catch(() => ({}))) as T & {
+    error?: string;
+    message?: string;
+  };
+
+  if (!response.ok) {
+    throw new Error(payload.error || payload.message || "Request failed");
+  }
+
+  return payload as T;
+}
+
 async function loadStatus() {
-  const response = await fetch("/api/readlink/billing/status", { cache: "no-store" });
-  const payload = await response.json();
-  if (!response.ok) throw new Error(payload.error || "Unable to load billing status");
-  return payload as BillingStatus;
+  return fetchJson<BillingStatus>("/api/readlink/billing/status");
+}
+
+async function loadPlans() {
+  const payload = await fetchJson<{ plans: BillingPlan[] }>(
+    "/api/readlink/billing/plans",
+  );
+  return payload.plans;
 }
 
 export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) {
   const { isLoaded, user } = useUser();
   const [status, setStatus] = useState<BillingStatus | null>(null);
   const [plans, setPlans] = useState<BillingPlan[]>([]);
-  const [managementUrl, setManagementUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [checkoutState, setCheckoutState] = useState<CheckoutState>("idle");
 
@@ -104,103 +82,68 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
   async function refresh() {
     setError(null);
     try {
-      const nextStatus = await loadStatus();
-
-      if (user?.id) {
-        const purchases = await purchasesForUser(user.id);
-        const customerInfo = await purchases.getCustomerInfo();
-        setStatus({
-          ...nextStatus,
-          isPremium:
-            nextStatus.isPremium ||
-            Boolean(customerInfo.entitlements.active[premiumEntitlementId()]),
-        });
-        setManagementUrl(customerInfo.managementURL);
-      } else {
-        setStatus(nextStatus);
-      }
+      const [nextStatus, nextPlans] = await Promise.all([
+        loadStatus(),
+        loadPlans(),
+      ]);
+      setStatus(nextStatus);
+      setPlans(nextPlans);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Unable to load billing status");
+      setError(err instanceof Error ? err.message : "Unable to load billing");
     }
   }
 
   useEffect(() => {
-    let mounted = true;
-
     if (!isLoaded || !user?.id) return;
 
-    const email = user.primaryEmailAddress?.emailAddress;
-
-    Promise.all([loadStatus(), purchasesForUser(user.id)])
-      .then(async ([nextStatus, purchases]) => {
-        const [offerings, customerInfo] = await Promise.all([
-          purchases.getOfferings(),
-          purchases.getCustomerInfo(),
-        ]);
+    let mounted = true;
+    Promise.all([loadStatus(), loadPlans()])
+      .then(([nextStatus, nextPlans]) => {
         if (!mounted) return;
-
-        const offering = offerings.current;
-        setStatus({
-          ...nextStatus,
-          isPremium:
-            nextStatus.isPremium ||
-            Boolean(customerInfo.entitlements.active[premiumEntitlementId()]),
-        });
-        setManagementUrl(customerInfo.managementURL);
-
-        if (offering) {
-          setPlans(plansFromPackages({
-            monthly: offering.monthly,
-            annual: offering.annual,
-          }));
-        } else {
-          setError("No current RevenueCat offering is configured");
-        }
-
-        if (email) {
-          void purchases.setAttributes({ email });
-        }
+        setError(null);
+        setStatus(nextStatus);
+        setPlans(nextPlans);
       })
       .catch((err) => {
-        if (mounted) {
-          setError(err instanceof Error ? err.message : "Unable to load billing status");
-        }
+        if (!mounted) return;
+        setError(err instanceof Error ? err.message : "Unable to load billing");
       });
 
     return () => {
       mounted = false;
     };
-  }, [isLoaded, user]);
+  }, [isLoaded, user?.id]);
 
   async function checkout(plan: BillingPlan) {
-    if (!user?.id) return;
-
     setCheckoutState(plan.interval);
     setError(null);
     try {
-      const purchases = await purchasesForUser(user.id);
-      const purchaseResult = await purchases.purchase({
-        rcPackage: plan.rcPackage,
-        customerEmail: user.primaryEmailAddress?.emailAddress,
-        metadata: { clerk_user_id: user.id },
-        skipSuccessPage: true,
-      });
-      const customerInfo = purchaseResult.customerInfo;
-      setStatus((currentStatus) => ({
-        isPremium:
-          Boolean(customerInfo.entitlements.active[premiumEntitlementId()]) ||
-          Boolean(currentStatus?.isPremium),
-        premiumUpdatedAt: currentStatus?.premiumUpdatedAt ?? null,
-      }));
-      setManagementUrl(customerInfo.managementURL);
-      await refresh();
+      const payload = await fetchJson<{ url: string }>(
+        "/api/readlink/billing/checkout",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ interval: plan.interval }),
+        },
+      );
+      window.location.assign(payload.url);
     } catch (err) {
-      if (err instanceof PurchasesError && err.errorCode === ErrorCode.UserCancelledError) {
-        setError(null);
-      } else {
-        setError(err instanceof Error ? err.message : "Unable to start checkout");
-      }
-    } finally {
+      setError(err instanceof Error ? err.message : "Unable to start checkout");
+      setCheckoutState("idle");
+    }
+  }
+
+  async function openPortal() {
+    setCheckoutState("portal");
+    setError(null);
+    try {
+      const payload = await fetchJson<{ url: string }>(
+        "/api/readlink/billing/portal",
+        { method: "POST" },
+      );
+      window.location.assign(payload.url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to open billing portal");
       setCheckoutState("idle");
     }
   }
@@ -212,6 +155,9 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
       </div>
     );
   }
+
+  const hasStripeAccess = status?.premiumSource === "stripe" || status?.premiumSource === "both";
+  const hasMobileAccess = status?.premiumSource === "revenuecat" || status?.premiumSource === "both";
 
   if (status?.isPremium) {
     return (
@@ -240,22 +186,27 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
             </div>
             <div className="w-full max-w-sm rounded-lg bg-dark-bg p-6 text-dark-fg">
               <p className="text-sm text-white/60">Subscription</p>
-              <p className="mt-2 text-2xl font-semibold capitalize">
-                Premium
+              <p className="mt-2 text-2xl font-semibold">Premium</p>
+              <p className="mt-2 text-sm capitalize text-white/60">
+                {status.premiumSource === "stripe" && "Web billing"}
+                {status.premiumSource === "revenuecat" && "Mobile app store"}
+                {status.premiumSource === "both" && "Web and mobile billing"}
               </p>
-              {managementUrl ? (
-                <Link
-                  href={managementUrl}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
+              {hasStripeAccess ? (
+                <button
+                  onClick={() => void openPortal()}
+                  disabled={checkoutState !== "idle"}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90 disabled:opacity-70"
                 >
-                  <ExternalLink className="h-4 w-4" />
-                  Manage billing
-                </Link>
-              ) : (
+                  {checkoutState === "portal" ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
+                  Manage web billing
+                </button>
+              ) : null}
+              {hasMobileAccess ? (
                 <p className="mt-6 rounded-lg bg-white/10 p-4 text-sm leading-6 text-white/70">
-                  Billing is managed from the subscription email for web purchases, or from the app store used for mobile purchases.
+                  This subscription is managed by the app store account used in the mobile app.
                 </p>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
@@ -308,7 +259,7 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
 
           {plans.length === 0 && !error && (
             <div className="mb-5 rounded-lg border border-border bg-background p-4 text-sm text-muted">
-              Loading RevenueCat plans...
+              Loading plans...
             </div>
           )}
 
@@ -334,7 +285,7 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
                   <p className="mt-4 min-h-12 text-sm leading-6 text-muted">{plan.productDescription}</p>
                 )}
                 <button
-                  onClick={() => checkout(plan)}
+                  onClick={() => void checkout(plan)}
                   disabled={checkoutState !== "idle"}
                   className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-muted disabled:opacity-70"
                 >
@@ -346,7 +297,7 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
           </div>
 
           <button
-            onClick={refresh}
+            onClick={() => void refresh()}
             className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
           >
             <RefreshCw className="h-4 w-4" />
