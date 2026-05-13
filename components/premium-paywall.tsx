@@ -173,16 +173,16 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
                 You are ready to continue in the mobile app.
               </h1>
               <p className="mt-4 text-base leading-7 text-muted">
-                Sign in with this same account on Readlink for iOS or Android and your Premium access will be waiting there.
+                Sign in with this same account on the Readlink mobile app and your Premium access will be waiting there.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              {/* <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link href="#" className="transition-transform hover:scale-[1.02]">
                   <Image src="/images/appstore.svg" alt="Download on App Store" width={150} height={50} />
                 </Link>
                 <Link href="#" className="transition-transform hover:scale-[1.02]">
                   <Image src="/images/playstore.svg" alt="Get it on Google Play" width={150} height={50} />
                 </Link>
-              </div>
+              </div> */}
             </div>
             <div className="w-full max-w-sm rounded-lg bg-dark-bg p-6 text-dark-fg">
               <p className="text-sm text-white/60">Subscription</p>
