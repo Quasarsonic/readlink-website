@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { earnPointsCards } from "./launchCampaignData";
 
+const hiddenEarnPointCardTitles = new Set(["Drive traffic", "Profile page visits"]);
+
 type EarnPointsProps = {
   expandable?: boolean;
   extraBottomPadding?: boolean;
@@ -10,6 +12,7 @@ type EarnPointsProps = {
 
 export function EarnPoints({ expandable = false, extraBottomPadding = false }: EarnPointsProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const visibleCards = earnPointsCards.filter((card) => !hiddenEarnPointCardTitles.has(card.title));
 
   return (
     <section
@@ -36,8 +39,8 @@ export function EarnPoints({ expandable = false, extraBottomPadding = false }: E
         </header>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {earnPointsCards.map((card, index) => {
-            const isPremium = index === 5;
+          {visibleCards.map((card, index) => {
+            const isPremium = card.title === "Go Premium";
             const isExpanded = expandable && expandedIndex === index;
 
             const onCardClick = () => {

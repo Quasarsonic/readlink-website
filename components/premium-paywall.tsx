@@ -1,8 +1,6 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
-import Link from "next/link";
 import { Check, ExternalLink, Loader2, RefreshCw, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -150,9 +148,47 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
 
   if (!status && !error) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <Loader2 className="h-6 w-6 animate-spin text-muted" />
-      </div>
+      <section className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-24" aria-busy="true" aria-live="polite">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <div className="skeleton-shimmer mb-5 h-7 w-40 rounded-full" />
+            <div className="skeleton-shimmer h-12 w-full max-w-md rounded-lg" />
+            <div className="skeleton-shimmer mt-3 h-12 w-10/12 max-w-sm rounded-lg" />
+            <div className="skeleton-shimmer mt-6 h-5 w-full max-w-lg rounded-md" />
+            <div className="skeleton-shimmer mt-2 h-5 w-4/5 max-w-md rounded-md" />
+            <div className="mt-8 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="skeleton-shimmer h-6 w-6 rounded-full" />
+                <div className="skeleton-shimmer h-4 w-56 rounded-md" />
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="skeleton-shimmer h-6 w-6 rounded-full" />
+                <div className="skeleton-shimmer h-4 w-52 rounded-md" />
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="skeleton-shimmer h-6 w-6 rounded-full" />
+                <div className="skeleton-shimmer h-4 w-60 rounded-md" />
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-5 shadow-sm sm:p-6">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[0, 1].map((index) => (
+                <div key={index} className="rounded-lg border border-border bg-background p-5">
+                  <div className="skeleton-shimmer h-6 w-24 rounded-md" />
+                  <div className="skeleton-shimmer mt-2 h-4 w-32 rounded-md" />
+                  <div className="skeleton-shimmer mt-6 h-10 w-36 rounded-md" />
+                  <div className="skeleton-shimmer mt-4 h-4 w-full rounded-md" />
+                  <div className="skeleton-shimmer mt-2 h-4 w-3/4 rounded-md" />
+                  <div className="skeleton-shimmer mt-6 h-11 w-full rounded-full" />
+                </div>
+              ))}
+            </div>
+            <div className="skeleton-shimmer mt-5 h-4 w-48 rounded-md" />
+          </div>
+        </div>
+      </section>
     );
   }
 
@@ -170,10 +206,10 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
                 Readlink Premium is active
               </div>
               <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                You are ready to continue in the mobile app.
+                Your Premium access is ready.
               </h1>
               <p className="mt-4 text-base leading-7 text-muted">
-                Sign in with this same account on the Readlink mobile app and your Premium access will be waiting there.
+                The Readlink app will be available soon. When it launches, sign in with this same account and your Premium access will be waiting there.
               </p>
               {/* <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link href="#" className="transition-transform hover:scale-[1.02]">
@@ -184,23 +220,38 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
                 </Link>
               </div> */}
             </div>
-            <div className="w-full max-w-sm rounded-lg bg-dark-bg p-6 text-dark-fg">
-              <p className="text-sm text-white/60">Subscription</p>
-              <p className="mt-2 text-2xl font-semibold">Premium</p>
-              <p className="mt-2 text-sm capitalize text-white/60">
-                {status.premiumSource === "stripe" && "Web billing"}
-                {status.premiumSource === "revenuecat" && "Mobile app store"}
-                {status.premiumSource === "both" && "Web and mobile billing"}
-              </p>
+            <div className="flex w-full max-w-sm flex-col rounded-lg bg-dark-bg p-6 text-dark-fg">
+              <div>
+                <p className="text-sm text-white/60">Subscription</p>
+                <div className="mt-2 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-2xl font-semibold">Premium</p>
+                    <p className="mt-2 text-sm capitalize text-white/60">
+                      {status.premiumSource === "stripe" && "Web billing"}
+                      {status.premiumSource === "revenuecat" && "Mobile app store"}
+                      {status.premiumSource === "both" && "Web and mobile billing"}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/75">
+                    Active
+                  </span>
+                </div>
+              </div>
+
               {hasStripeAccess ? (
-                <button
-                  onClick={() => void openPortal()}
-                  disabled={checkoutState !== "idle"}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90 disabled:opacity-70"
-                >
-                  {checkoutState === "portal" ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
-                  Manage web billing
-                </button>
+                <div className="mt-7 border-t border-white/10 pt-5">
+                  <p className="mb-3 text-sm leading-6 text-white/60">
+                    Manage your Stripe subscription, invoices, and billing details.
+                  </p>
+                  <button
+                    onClick={() => void openPortal()}
+                    disabled={checkoutState !== "idle"}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90 disabled:opacity-70"
+                  >
+                    {checkoutState === "portal" ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
+                    Manage subscription
+                  </button>
+                </div>
               ) : null}
               {hasMobileAccess ? (
                 <p className="mt-6 rounded-lg bg-white/10 p-4 text-sm leading-6 text-white/70">
@@ -257,14 +308,19 @@ export function PremiumPaywall({ checkoutResult }: { checkoutResult?: string }) 
             </div>
           )}
 
-          {plans.length === 0 && !error && (
-            <div className="mb-5 rounded-lg border border-border bg-background p-4 text-sm text-muted">
-              Loading plans...
-            </div>
-          )}
-
           <div className="grid gap-4 sm:grid-cols-2">
-            {plans.map((plan) => (
+            {plans.length === 0 && !error
+              ? [0, 1].map((index) => (
+                <div key={`plan-skeleton-${index}`} className="rounded-lg border border-border bg-background p-5" aria-hidden="true">
+                  <div className="skeleton-shimmer h-6 w-24 rounded-md" />
+                  <div className="skeleton-shimmer mt-2 h-4 w-28 rounded-md" />
+                  <div className="skeleton-shimmer mt-6 h-10 w-36 rounded-md" />
+                  <div className="skeleton-shimmer mt-4 h-4 w-full rounded-md" />
+                  <div className="skeleton-shimmer mt-2 h-4 w-3/4 rounded-md" />
+                  <div className="skeleton-shimmer mt-6 h-11 w-full rounded-full" />
+                </div>
+              ))
+              : plans.map((plan) => (
               <div key={plan.id} className="rounded-lg border border-border bg-background p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>

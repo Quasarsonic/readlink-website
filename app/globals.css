@@ -41,6 +41,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html.nav-jump-instant {
+  scroll-behavior: auto;
+}
+
 /* Background helper (kept for backwards-compat) */
 .bg-texture {
   background-color: var(--background);
@@ -124,6 +128,10 @@ html {
     animation: none !important;
     opacity: 0.06;
   }
+
+  .skeleton-shimmer {
+    animation: none;
+  }
 }
 
 @keyframes floatDown {
@@ -178,6 +186,27 @@ html {
     opacity: 0.4;
     transform: scale(0.7);
   }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background-color: #ece9e3;
+  background: linear-gradient(
+    90deg,
+    #ece9e3 0%,
+    #f8f6f3 45%,
+    #ece9e3 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
 }
 
 /* Site header — glass matches section under logo (toggled with .header-dark in Header) */

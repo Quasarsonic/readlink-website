@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { participants } from "./launchCampaignData";
 
@@ -43,6 +45,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
 
   return (
     <section
+      id="challenge"
       ref={sectionRef}
       data-header-theme="dark"
       className="bg-[#0A0A0A] py-[80px] px-[clamp(16px,5vw,80px)]"
@@ -105,11 +108,14 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                 </p>
 
                 <div className="h-[52px] w-[52px] overflow-hidden rounded-[12px] border border-[rgba(255,255,255,0.06)]">
-                  <img
+                  <Image
                     src={`https://i.pravatar.cc/100?img=${entry.rank}`}
                     alt={`${entry.name} avatar`}
+                    width={52}
+                    height={52}
                     className="h-full w-full object-cover grayscale"
                     loading="lazy"
+                    unoptimized
                   />
                 </div>
 
@@ -155,12 +161,12 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
 
         {!expanded ? (
           <div className="mt-8 text-center">
-            <button
-              type="button"
+            <Link
+              href="/launch"
               className="inline-flex items-center justify-center rounded-[12px] border border-white bg-transparent px-6 py-3 text-[15px] font-medium text-white transition-colors duration-150 ease-in-out hover:bg-white/10"
             >
               Join the Challenge →
-            </button>
+            </Link>
           </div>
         ) : null}
       </div>

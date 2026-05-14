@@ -3,11 +3,12 @@
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const forceDarkHeader = pathname === "/launch";
   const { isSignedIn } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ export function Header() {
   const logoAnchorRef = useRef<HTMLAnchorElement | null>(null);
   const isDarkBackgroundRef = useRef(false);
   const rafRef = useRef<number | null>(null);
+  const instantJumpResetTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const resolveHeaderTheme = () => {
@@ -86,6 +88,52 @@ export function Header() {
     !mobileMenuOpen && (isDarkBackground || forceDarkHeader);
   const desktopSignInOnDark = !mobileMenuOpen && (isDarkBackground || forceDarkHeader);
 
+  const navigateHomeSection = (sectionId: string) =>
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      setMobileMenuOpen(false);
+
+      if (pathname === "/") {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
+
+      const rootNode = document.documentElement;
+      rootNode.classList.add("nav-jump-instant");
+
+      if (instantJumpResetTimeoutRef.current !== null) {
+        window.clearTimeout(instantJumpResetTimeoutRef.current);
+      }
+      instantJumpResetTimeoutRef.current = window.setTimeout(() => {
+        rootNode.classList.remove("nav-jump-instant");
+        instantJumpResetTimeoutRef.current = null;
+      }, 700);
+
+      router.push(`/#${sectionId}`);
+    };
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      void router.prefetch("/");
+    }
+  }, [pathname, router]);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      document.documentElement.classList.remove("nav-jump-instant");
+    }
+
+    return () => {
+      if (instantJumpResetTimeoutRef.current !== null) {
+        window.clearTimeout(instantJumpResetTimeoutRef.current);
+      }
+      document.documentElement.classList.remove("nav-jump-instant");
+    };
+  }, [pathname]);
+
   return (
     <header
       ref={headerRef}
@@ -116,7 +164,7 @@ export function Header() {
               alt="Readlink"
               width={140}
               height={32}
-              className="h-8 w-auto transition-[filter,transform,opacity] duration-500 ease-out will-change-transform"
+              className="transition-[filter,transform,opacity] duration-500 ease-out will-change-transform"
               style={{
                 filter: logoFilter,
                 transform: isDarkBackground || forceDarkHeader ? "scale(1.03)" : "scale(1)",
@@ -131,24 +179,28 @@ export function Header() {
               <Link
                 href="/#features"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("features")}
               >
                 Feature
               </Link>
               <Link
                 href="/#how-it-works"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("how-it-works")}
               >
                 How it works
               </Link>
               <Link
                 href="/#vision"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("vision")}
               >
                 Vision
               </Link>
               <Link
-                href="/launch"
+                href="/#challenge"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("challenge")}
               >
                 Challenge
               </Link>
@@ -156,30 +208,20 @@ export function Header() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="#"
-              className={`text-sm transition-colors duration-500 ease-out ${
-                desktopSignInOnDark
-                  ? "text-white/85 hover:text-white"
-                  : "text-foreground/85 hover:text-foreground"
-              }`}
-            >
-              Sign in
-            </Link>
-            <Link
-              href="#"
-              className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
-            >
-              Join Challenge
-            </Link>
             {isSignedIn ? (
               <>
                 <Link
+                  href="/launch"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                >
+                  Join Challenge
+                </Link>
+                <Link
                   href="/premium"
-                  className={`text-sm transition-colors duration-500 ease-out ${
+                  className={`inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-sm font-medium transition-colors duration-500 ease-out ${
                     desktopSignInOnDark
-                      ? "text-white/85 hover:text-white"
-                      : "text-foreground/85 hover:text-foreground"
+                      ? "border-white/30 text-white/85 hover:bg-white/10 hover:text-white"
+                      : "border-foreground/20 text-foreground/85 hover:bg-foreground/5 hover:text-foreground"
                   }`}
                 >
                   Premium
@@ -199,6 +241,12 @@ export function Header() {
                     Sign in
                   </button>
                 </SignInButton>
+                <Link
+                  href="/launch"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                >
+                  Join Challenge
+                </Link>
                 <SignUpButton mode="modal" forceRedirectUrl="/premium">
                   <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
                     Get Premium
@@ -248,52 +296,52 @@ export function Header() {
               <Link
                 href="/#features"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("features")}
               >
                 Features
               </Link>
               <Link
                 href="/#how-it-works"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("how-it-works")}
               >
                 How it works
               </Link>
               <Link
                 href="/#vision"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("vision")}
               >
                 Vision
               </Link>
               <Link
-                href="/launch"
+                href="/#challenge"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("challenge")}
               >
                 Challenge
               </Link>
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                <Link
-                  href="#"
-                  className="block w-full text-center text-sm text-muted hover:text-foreground transition-colors"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
-                >
-                  Join Challenge
-                </Link>
                 {isSignedIn ? (
-                  <Link
-                    href="/premium"
-                    className="text-sm text-muted hover:text-foreground transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Premium
-                  </Link>
+                  <>
+                    <Link
+                      href="/launch"
+                      className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Join Challenge
+                    </Link>
+                    <Link
+                      href="/premium"
+                      className="inline-flex items-center justify-center rounded-full border border-foreground/20 px-5 py-2.5 text-sm font-medium text-foreground/85 hover:text-foreground hover:bg-foreground/5 transition-colors duration-500 ease-out"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Premium
+                    </Link>
+                    <div className="pt-1">
+                      <UserButton />
+                    </div>
+                  </>
                 ) : (
                   <>
                     <SignInButton mode="modal" forceRedirectUrl="/premium">
@@ -301,6 +349,13 @@ export function Header() {
                         Sign in
                       </button>
                     </SignInButton>
+                    <Link
+                      href="/launch"
+                      className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Join Challenge
+                    </Link>
                     <SignUpButton mode="modal" forceRedirectUrl="/premium">
                       <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
                         Get Premium

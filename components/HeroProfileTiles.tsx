@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type TileConfig = {
   id: number;
   left: string;
@@ -54,11 +56,14 @@ export function HeroProfileTiles() {
             animationIterationCount: "infinite",
           }}
         >
-          <img
+          <Image
             src={`https://i.pravatar.cc/100?img=${tile.id}`}
             alt=""
+            width={tile.width}
+            height={tile.height}
             className="h-full w-full object-cover grayscale"
             loading="lazy"
+            unoptimized
           />
         </div>
       ))}

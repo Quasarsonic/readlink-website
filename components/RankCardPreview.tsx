@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function RankCardPreview() {
   return (
     <section
@@ -31,11 +33,14 @@ export function RankCardPreview() {
 
             <div className="relative mb-5 flex items-center gap-[14px]">
               <div className="h-[52px] w-[52px] overflow-hidden rounded-[12px] border border-[rgba(255,255,255,0.06)]">
-                <img
+                <Image
                   src="https://i.pravatar.cc/100?img=20"
                   alt="Alex Müller avatar"
+                  width={52}
+                  height={52}
                   className="h-full w-full object-cover grayscale"
                   loading="lazy"
+                  unoptimized
                 />
               </div>
               <div className="min-w-0 text-left">

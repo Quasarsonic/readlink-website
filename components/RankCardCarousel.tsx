@@ -1,40 +1,74 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { participants } from "./launchCampaignData";
 
-function shuffleParticipants() {
-  return [...participants].sort(() => Math.random() - 0.5);
+function makeSeededRandom(seed: number) {
+  let value = seed >>> 0;
+  return () => {
+    value = (value * 1664525 + 1013904223) >>> 0;
+    return value / 4294967296;
+  };
+}
+
+function shuffleParticipants(randomFn: () => number = Math.random) {
+  const next = [...participants];
+  for (let index = next.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(randomFn() * (index + 1));
+    [next[index], next[swapIndex]] = [next[swapIndex], next[index]];
+  }
+  return next;
 }
 
 const pointsFormatter = new Intl.NumberFormat("en-US");
 
 export default function RankCardCarousel() {
-  const [shuffled, setShuffled] = useState(participants);
+  const [shuffled, setShuffled] = useState(() => shuffleParticipants(makeSeededRandom(1337)));
   const [isDragging, setIsDragging] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [isShuffleSpinning, setIsShuffleSpinning] = useState(false);
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number | null>(null);
+  const shuffleSpinTimeoutRef = useRef<number | null>(null);
+  const shuffleFadeTimeoutRef = useRef<number | null>(null);
   const dragStartXRef = useRef(0);
   const scrollStartLeftRef = useRef(0);
-  const loopedParticipants = [...shuffled, ...shuffled, ...shuffled];
+  const loopedParticipants = useMemo(
+    () => [...shuffled, ...shuffled, ...shuffled],
+    [shuffled],
+  );
 
   const onShuffle = () => {
+    if (shuffleSpinTimeoutRef.current !== null) {
+      window.clearTimeout(shuffleSpinTimeoutRef.current);
+    }
+    if (shuffleFadeTimeoutRef.current !== null) {
+      window.clearTimeout(shuffleFadeTimeoutRef.current);
+    }
+
     setIsShuffleSpinning(true);
-    window.setTimeout(() => {
+    shuffleSpinTimeoutRef.current = window.setTimeout(() => {
       setIsShuffleSpinning(false);
     }, 600);
+
     setIsFading(true);
-    window.setTimeout(() => {
+    shuffleFadeTimeoutRef.current = window.setTimeout(() => {
       setShuffled(shuffleParticipants());
       setIsFading(false);
     }, 200);
   };
 
   useEffect(() => {
-    setShuffled(shuffleParticipants());
+    return () => {
+      if (shuffleSpinTimeoutRef.current !== null) {
+        window.clearTimeout(shuffleSpinTimeoutRef.current);
+      }
+      if (shuffleFadeTimeoutRef.current !== null) {
+        window.clearTimeout(shuffleFadeTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -223,11 +257,14 @@ export default function RankCardCarousel() {
 
                     <div className="relative mb-4 flex items-center gap-3">
                       <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]">
-                        <img
+                        <Image
                           src={`https://i.pravatar.cc/100?img=${participant.rank}`}
                           alt={`${participant.name} avatar`}
+                          width={44}
+                          height={44}
                           className="h-full w-full object-cover grayscale"
                           loading="lazy"
+                          unoptimized
                         />
                       </div>
                       <div className="min-w-0">
