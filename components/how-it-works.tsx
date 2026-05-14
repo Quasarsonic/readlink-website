@@ -3,7 +3,7 @@ const steps = [
     number: "01",
     title: "Build Your Library",
     description:
-      "Add the books you've read, are reading, or want to read. Organize them by topics, themes, and your own custom shelves",
+      "Add the books you've read, are reading, or want to read. Organize them by topics, themes, and your own custom shelves.",
   },
   {
     number: "02",

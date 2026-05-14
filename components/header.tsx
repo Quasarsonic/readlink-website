@@ -3,64 +3,144 @@
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
+  const forceDarkHeader = pathname === "/launch";
   const { isSignedIn } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
   const logoAnchorRef = useRef<HTMLAnchorElement | null>(null);
+  const isDarkBackgroundRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
+  const instantJumpResetTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const checkHeaderTheme = () => {
-      const darkSections = document.querySelectorAll<HTMLElement>('[data-header-theme="dark"]');
-      const logoRect = logoAnchorRef.current?.getBoundingClientRect();
-      if (!logoRect) return;
-      const x = logoRect.left + logoRect.width / 2;
-      const y = logoRect.top + logoRect.height / 2;
-      let onDark = false;
+    const resolveHeaderTheme = () => {
+      const headerRect = headerRef.current?.getBoundingClientRect();
+      const headerNode = headerRef.current;
+      if (!headerRect || !headerNode) return;
+      const x = Math.round(window.innerWidth / 2);
+      const y = Math.round(Math.min(window.innerHeight - 1, headerRect.bottom + 2));
+      const stack = document.elementsFromPoint(x, y);
+      const contentElement = stack.find((element) => !headerNode.contains(element)) ?? null;
+      const themedAncestor = contentElement?.closest<HTMLElement>("[data-header-theme]");
+      const onDark = themedAncestor?.dataset.headerTheme === "dark";
 
-      darkSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const isOverThisSection =
-          x >= rect.left &&
-          x <= rect.right &&
-          y >= rect.top &&
-          y <= rect.bottom;
-        if (isOverThisSection) onDark = true;
-      });
-
+      if (onDark === isDarkBackgroundRef.current) return;
+      isDarkBackgroundRef.current = onDark;
       setIsDarkBackground(onDark);
     };
-
-    requestAnimationFrame(checkHeaderTheme);
-    window.addEventListener("scroll", checkHeaderTheme, { passive: true });
-    window.addEventListener("resize", checkHeaderTheme);
-    return () => {
-      window.removeEventListener("scroll", checkHeaderTheme);
-      window.removeEventListener("resize", checkHeaderTheme);
+    const scheduleHeaderThemeResolve = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        resolveHeaderTheme();
+      });
     };
-  }, []);
+
+    // Reset on route transitions, then resolve repeatedly while layout/hash settle.
+    isDarkBackgroundRef.current = forceDarkHeader;
+    const resetThemeState = window.setTimeout(() => {
+      setIsDarkBackground(forceDarkHeader);
+    }, 0);
+
+    scheduleHeaderThemeResolve();
+    const delayedResolveOne = window.setTimeout(scheduleHeaderThemeResolve, 0);
+    const delayedResolveTwo = window.setTimeout(scheduleHeaderThemeResolve, 120);
+    const delayedResolveThree = window.setTimeout(scheduleHeaderThemeResolve, 280);
+    const delayedResolveFour = window.setTimeout(scheduleHeaderThemeResolve, 520);
+    const delayedResolveFive = window.setTimeout(scheduleHeaderThemeResolve, 900);
+
+    window.addEventListener("scroll", scheduleHeaderThemeResolve, { passive: true });
+    window.addEventListener("resize", scheduleHeaderThemeResolve);
+    window.addEventListener("hashchange", scheduleHeaderThemeResolve);
+    window.addEventListener("popstate", scheduleHeaderThemeResolve);
+    return () => {
+      window.clearTimeout(resetThemeState);
+      window.clearTimeout(delayedResolveOne);
+      window.clearTimeout(delayedResolveTwo);
+      window.clearTimeout(delayedResolveThree);
+      window.clearTimeout(delayedResolveFour);
+      window.clearTimeout(delayedResolveFive);
+      window.removeEventListener("scroll", scheduleHeaderThemeResolve);
+      window.removeEventListener("resize", scheduleHeaderThemeResolve);
+      window.removeEventListener("hashchange", scheduleHeaderThemeResolve);
+      window.removeEventListener("popstate", scheduleHeaderThemeResolve);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [forceDarkHeader, pathname]);
 
   // Logo reads dark with invert(1) and light with invert(0). Dark page sections use
   // invert(0); light sections use invert(1). The mobile menu bar is always light, so
   // when it is open we keep the same treatment as over light content (invert(1)).
   const logoFilter =
-    !mobileMenuOpen && isDarkBackground ? "invert(0)" : "invert(1)";
+    !mobileMenuOpen && (isDarkBackground || forceDarkHeader) ? "invert(0)" : "invert(1)";
   // Mobile menu icon (hamburger / close): same rule — light stroke on dark page when
   // the bar is transparent; dark stroke on light page or when the menu panel is open.
   const mobileMenuIconOnDark =
-    !mobileMenuOpen && isDarkBackground;
-  const desktopSignInOnDark = !mobileMenuOpen && isDarkBackground;
+    !mobileMenuOpen && (isDarkBackground || forceDarkHeader);
+  const desktopSignInOnDark = !mobileMenuOpen && (isDarkBackground || forceDarkHeader);
+
+  const navigateHomeSection = (sectionId: string) =>
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      setMobileMenuOpen(false);
+
+      if (pathname === "/") {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
+
+      const rootNode = document.documentElement;
+      rootNode.classList.add("nav-jump-instant");
+
+      if (instantJumpResetTimeoutRef.current !== null) {
+        window.clearTimeout(instantJumpResetTimeoutRef.current);
+      }
+      instantJumpResetTimeoutRef.current = window.setTimeout(() => {
+        rootNode.classList.remove("nav-jump-instant");
+        instantJumpResetTimeoutRef.current = null;
+      }, 700);
+
+      router.push(`/#${sectionId}`);
+    };
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      void router.prefetch("/");
+    }
+  }, [pathname, router]);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      document.documentElement.classList.remove("nav-jump-instant");
+    }
+
+    return () => {
+      if (instantJumpResetTimeoutRef.current !== null) {
+        window.clearTimeout(instantJumpResetTimeoutRef.current);
+      }
+      document.documentElement.classList.remove("nav-jump-instant");
+    };
+  }, [pathname]);
 
   return (
     <header
+      ref={headerRef}
       className={`site-header sticky top-0 left-0 right-0 z-50 relative ${
         mobileMenuOpen
           ? "site-header--menu-open bg-background rounded-b-xl overflow-hidden border-b-[0.5px] border-black"
-          : isDarkBackground
+          : isDarkBackground || forceDarkHeader
             ? "header-dark"
             : ""
       }`}
@@ -84,11 +164,11 @@ export function Header() {
               alt="Readlink"
               width={140}
               height={32}
-              className="h-8 w-auto transition-[filter,transform,opacity] duration-500 ease-out will-change-transform"
+              className="transition-[filter,transform,opacity] duration-500 ease-out will-change-transform"
               style={{
                 filter: logoFilter,
-                transform: isDarkBackground ? "scale(1.03)" : "scale(1)",
-                opacity: isDarkBackground ? 1 : 0.98,
+                transform: isDarkBackground || forceDarkHeader ? "scale(1.03)" : "scale(1)",
+                opacity: isDarkBackground || forceDarkHeader ? 1 : 0.98,
               }}
             />
           </Link>
@@ -99,20 +179,30 @@ export function Header() {
               <Link
                 href="/#features"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("features")}
               >
                 Feature
               </Link>
               <Link
                 href="/#how-it-works"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("how-it-works")}
               >
                 How it works
               </Link>
               <Link
                 href="/#vision"
                 className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("vision")}
               >
                 Vision
+              </Link>
+              <Link
+                href="/#challenge"
+                className="text-sm text-white/85 hover:text-white transition-colors"
+                onClick={navigateHomeSection("challenge")}
+              >
+                Challenge
               </Link>
             </div>
           </div>
@@ -121,11 +211,17 @@ export function Header() {
             {isSignedIn ? (
               <>
                 <Link
+                  href="/launch"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                >
+                  Join Challenge
+                </Link>
+                <Link
                   href="/premium"
-                  className={`text-sm transition-colors duration-500 ease-out ${
+                  className={`inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-sm font-medium transition-colors duration-500 ease-out ${
                     desktopSignInOnDark
-                      ? "text-white/85 hover:text-white"
-                      : "text-foreground/85 hover:text-foreground"
+                      ? "border-white/30 text-white/85 hover:bg-white/10 hover:text-white"
+                      : "border-foreground/20 text-foreground/85 hover:bg-foreground/5 hover:text-foreground"
                   }`}
                 >
                   Premium
@@ -145,6 +241,12 @@ export function Header() {
                     Sign in
                   </button>
                 </SignInButton>
+                <Link
+                  href="/launch"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                >
+                  Join Challenge
+                </Link>
                 <SignUpButton mode="modal" forceRedirectUrl="/premium">
                   <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
                     Get Premium
@@ -194,33 +296,52 @@ export function Header() {
               <Link
                 href="/#features"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("features")}
               >
                 Features
               </Link>
               <Link
                 href="/#how-it-works"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("how-it-works")}
               >
                 How it works
               </Link>
               <Link
                 href="/#vision"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={navigateHomeSection("vision")}
               >
                 Vision
               </Link>
+              <Link
+                href="/#challenge"
+                className="text-sm text-muted hover:text-foreground transition-colors"
+                onClick={navigateHomeSection("challenge")}
+              >
+                Challenge
+              </Link>
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
                 {isSignedIn ? (
-                  <Link
-                    href="/premium"
-                    className="text-sm text-muted hover:text-foreground transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Premium
-                  </Link>
+                  <>
+                    <Link
+                      href="/launch"
+                      className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Join Challenge
+                    </Link>
+                    <Link
+                      href="/premium"
+                      className="inline-flex items-center justify-center rounded-full border border-foreground/20 px-5 py-2.5 text-sm font-medium text-foreground/85 hover:text-foreground hover:bg-foreground/5 transition-colors duration-500 ease-out"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Premium
+                    </Link>
+                    <div className="pt-1">
+                      <UserButton />
+                    </div>
+                  </>
                 ) : (
                   <>
                     <SignInButton mode="modal" forceRedirectUrl="/premium">
@@ -228,6 +349,13 @@ export function Header() {
                         Sign in
                       </button>
                     </SignInButton>
+                    <Link
+                      href="/launch"
+                      className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Join Challenge
+                    </Link>
                     <SignUpButton mode="modal" forceRedirectUrl="/premium">
                       <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
                         Get Premium

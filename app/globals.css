@@ -41,6 +41,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html.nav-jump-instant {
+  scroll-behavior: auto;
+}
+
 /* Background helper (kept for backwards-compat) */
 .bg-texture {
   background-color: var(--background);
@@ -119,6 +123,90 @@ html {
   .vision-orbit-3 {
     animation: none;
   }
+
+  .profile-tile {
+    animation: none !important;
+    opacity: 0.06;
+  }
+
+  .skeleton-shimmer {
+    animation: none;
+  }
+}
+
+@keyframes floatDown {
+  from {
+    transform: translateY(-120px) rotate(-6deg);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.7;
+  }
+
+  92% {
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateY(110vh) rotate(6deg);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  @keyframes floatDown {
+    from {
+      transform: translateY(-120px) rotate(-6deg);
+      opacity: 0;
+    }
+
+    8% {
+      opacity: 0.7;
+    }
+
+    92% {
+      opacity: 0.7;
+    }
+
+    to {
+      transform: translateY(140vh) rotate(6deg);
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background-color: #ece9e3;
+  background: linear-gradient(
+    90deg,
+    #ece9e3 0%,
+    #f8f6f3 45%,
+    #ece9e3 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
 }
 
 /* Site header — glass matches section under logo (toggled with .header-dark in Header) */
@@ -149,20 +237,13 @@ header.site-header.site-header--menu-open {
 
 /* Features section — benefit cards (container only) */
 .feature-card {
-  background: linear-gradient(145deg, #f0f0ee 0%, #ffffff 60%);
-  border: 1px solid #e5e5e2;
+  background: linear-gradient(145deg, #1a1a1a 0%, #111111 60%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
-}
-
-@media (prefers-color-scheme: dark) {
-  .feature-card {
-    background: linear-gradient(145deg, #1a1a1a 0%, #111111 60%);
-    border-color: rgba(255, 255, 255, 0.14);
-  }
 }
 
 .feature-card:hover {
@@ -185,4 +266,21 @@ header.site-header.site-header--menu-open {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 128px 128px;
+}
+
+.launch-carousel-scroll {
+  scrollbar-width: none;
+}
+
+.launch-carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.shuffle-icon {
+  display: inline-block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shuffle-icon.spinning {
+  transform: rotate(360deg);
 }
