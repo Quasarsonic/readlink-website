@@ -18,22 +18,20 @@ export default function LegalPage() {
             Terms of Service, Privacy Policy, Cookie Policy, and Content &
             Copyright Policy for Readlink.
           </p>
-          <p className="mt-4 text-muted">
-            Readlink is a product of Lykan Sagl, Ai Salici, 6633 Lavertezzo,
-            Switzerland. References to &quot;Readlink,&quot; &quot;we,&quot;
-            &quot;us,&quot; and &quot;our&quot; in the documents below mean
-            Lykan Sagl operating the Readlink service, except where the legal
-            entity is named explicitly.
-          </p>
         </div>
 
         <div className="space-y-12">
-          <section id="terms" className="space-y-4">
-            <h2 className="text-2xl font-semibold">Terms of Service</h2>
+          <section className="space-y-4">
+            <h2
+              id="terms"
+              className="scroll-mt-24 text-2xl font-semibold tracking-tight"
+            >
+              Terms of Service
+            </h2>
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 8, 2026
+              Last updated: May 13, 2026
             </p>
             <p>
               Welcome to Readlink. Readlink is operated by Lykan Sagl, Ai
@@ -47,15 +45,23 @@ export default function LegalPage() {
               <div>
                 <h3 className="font-semibold">1. Eligibility</h3>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
-                  <li>You must be at least 13 years old to use Readlink.</li>
+                  <li>You must be at least 16 years old to use Readlink.</li>
                   <li>
                     By signing up, you confirm that you meet this age
                     requirement.
                   </li>
                   <li>
-                    If you are between 13 and the age of majority in your
-                    jurisdiction, you confirm that a parent or legal guardian
-                    has reviewed these Terms.
+                    In jurisdictions where the age of majority is higher than
+                    16, your continued use of the Service confirms that a parent
+                    or legal guardian has reviewed and accepts these Terms on
+                    your behalf where required by local law.
+                  </li>
+                  <li>
+                    We do not knowingly permit anyone under 16 to create an
+                    account. If we become aware that an account has been created
+                    by someone under 16, we will close the account and delete
+                    associated personal data in accordance with our Privacy
+                    Policy.
                   </li>
                 </ul>
               </div>
@@ -68,10 +74,13 @@ export default function LegalPage() {
                     features.
                   </li>
                   <li>
-                    You are responsible for keeping your login credentials
-                    secure and for all activity on your account.
+                    You are responsible for keeping your login credentials secure
+                    and for all activity on your account.
                   </li>
-                  <li>One person, one account. Automated account creation is prohibited.</li>
+                  <li>
+                    One person, one account. Automated account creation is
+                    prohibited.
+                  </li>
                 </ul>
               </div>
 
@@ -88,28 +97,30 @@ export default function LegalPage() {
 
               <div>
                 <h3 className="font-semibold">3.1 What you upload, in plain terms</h3>
+                <p className="mt-2 text-muted">
+                  When you use Readlink, you may contribute four broad kinds of
+                  content:
+                </p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
-                    <strong>(a) Creative content</strong> — your reviews, posts,
-                    comments, photos you take yourself, and notes you choose to
-                    publish.
+                    (a) Creative content — your reviews, posts, comments, photos
+                    you take yourself, and notes you choose to publish.
                   </li>
                   <li>
-                    <strong>(b) Private notes and annotations</strong> — notes
-                    you mark as private, intended only for yourself.
+                    (b) Private notes and annotations — notes you mark as
+                    private, intended only for yourself.
                   </li>
                   <li>
-                    <strong>(c) Functional book metadata</strong> — corrections
-                    or additions to factual book information (titles, authors,
-                    ISBNs, page counts, publication dates, edition data, table
-                    of contents structure, and similar structural information).
+                    (c) Functional book metadata — corrections or additions to
+                    factual book information (titles, authors, ISBNs, page
+                    counts, publication dates, edition data, table of contents
+                    structure, and similar structural information).
                   </li>
                   <li>
-                    <strong>(d) OCR text fragments</strong> — short text excerpts
-                    you capture from physical books using our OCR feature, where
-                    you select a region of a page and Readlink extracts the
-                    text. Source photos are discarded; only the text you select
-                    is retained.
+                    (d) OCR text fragments — short text excerpts you capture from
+                    physical books using our OCR feature, where you select a
+                    region of a page and Readlink extracts the text. Source
+                    photos are discarded; only the text you select is retained.
                   </li>
                 </ul>
               </div>
@@ -165,20 +176,18 @@ export default function LegalPage() {
                   3.5 License to Readlink — Functional Book Metadata (Category c)
                 </h3>
                 <p className="mt-2 text-muted">
-                  Functional book metadata is, by its nature, factual
-                  information that benefits every reader on the platform. To
-                  maintain a clean, accurate, shared book catalog, you grant
-                  Readlink a worldwide, perpetual, irrevocable, royalty-free,
-                  sublicensable, and transferable license to use, modify,
-                  combine, distribute, and incorporate your metadata
-                  contributions into the Readlink Dataset, including for use
-                  after you delete your account.
+                  Functional book metadata is, by its nature, factual information
+                  that benefits every reader on the platform. To maintain a
+                  clean, accurate, shared book catalog, you grant Readlink a
+                  worldwide, perpetual, irrevocable, royalty-free, sublicensable,
+                  and transferable license to use, modify, combine, distribute,
+                  and incorporate your metadata contributions into the Readlink
+                  Dataset, including for use after you delete your account.
                 </p>
                 <p className="mt-2 text-muted">
-                  This applies only to the <em>factual and structural</em> layer
-                  of book information. It does not apply to your reviews,
-                  opinions, or creative writing about books, which fall under
-                  Section 3.3.
+                  This applies only to the factual and structural layer of book
+                  information. It does not apply to your reviews, opinions, or
+                  creative writing about books, which fall under Section 3.3.
                 </p>
                 <p className="mt-2 text-muted">
                   You represent and warrant that your contribution of functional
@@ -186,12 +195,12 @@ export default function LegalPage() {
                   right of quotation (including under Art. 25 of the Swiss
                   Federal Copyright Act), fair dealing, or equivalent
                   informational-use principles in your jurisdiction. Functional
-                  bibliographic data — titles, authors, ISBNs, publication
-                  dates, page counts, and structural elements such as tables of
-                  contents — is generally treated as factual information not
-                  subject to copyright in itself; nothing in this section
-                  requires you to contribute material that exceeds these
-                  recognized informational-use principles.
+                  bibliographic data — titles, authors, ISBNs, publication dates,
+                  page counts, and structural elements such as tables of contents
+                  — is generally treated as factual information not subject to
+                  copyright in itself; nothing in this section requires you to
+                  contribute material that exceeds these recognized
+                  informational-use principles.
                 </p>
               </div>
 
@@ -200,11 +209,10 @@ export default function LegalPage() {
                   3.6 License to Readlink — OCR Text Fragments (Category d)
                 </h3>
                 <p className="mt-2 text-muted">
-                  When you use the OCR feature, Readlink discards the source
-                  photo as soon as text extraction is complete. Only the text
-                  you affirmatively select is retained. Because OCR fragments
-                  may include short excerpts of copyrighted text, you agree
-                  that:
+                  When you use the OCR feature, Readlink discards the source photo
+                  as soon as text extraction is complete. Only the text you
+                  affirmatively select is retained. Because OCR fragments may
+                  include short excerpts of copyrighted text, you agree that:
                 </p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>You will only OCR books you own or have lawful access to.</li>
@@ -217,17 +225,20 @@ export default function LegalPage() {
                     treated as private notes (Section 3.4).
                   </li>
                   <li>
-                    Short fragments you choose to publish (for example,
-                    attaching a quote to a review) are treated as creative
-                    content (Section 3.3) and you represent that the use
-                    qualifies as quotation, criticism, or review under
-                    applicable copyright law.
+                    Short fragments you choose to publish (for example, attaching
+                    a quote to a review) are treated as creative content (Section
+                    3.3) and you represent that the use qualifies as quotation,
+                    criticism, or review under applicable copyright law.
                   </li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="font-semibold">3.7 Your Warranties</h3>
+                <p className="mt-2 text-muted">
+                  For all content you contribute, you represent and warrant
+                  that:
+                </p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
                     You own the content or have all necessary rights, licenses,
@@ -262,21 +273,20 @@ export default function LegalPage() {
                 <h3 className="font-semibold">4. The Readlink Dataset</h3>
                 <p className="mt-2 text-muted">
                   The Readlink Dataset is the compiled, curated body of book
-                  metadata that results from combining public sources (such as
-                  the Open Library API), our own work, and contributions from
-                  our community under Section 3.5.
+                  metadata that results from combining public sources (such as the
+                  Open Library API), our own work, and contributions from our
+                  community under Section 3.5.
                 </p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
-                    The selection, arrangement, structure, and presentation of
-                    the Readlink Dataset are proprietary to Readlink and
-                    protected to the maximum extent available under applicable
-                    copyright, database, and contract law.
+                    The selection, arrangement, structure, and presentation of the
+                    Readlink Dataset are proprietary to Readlink and protected to
+                    the maximum extent available under applicable copyright,
+                    database, and contract law.
                   </li>
                   <li>
                     You may use the Readlink Dataset through the Service for
-                    personal, non-commercial purposes consistent with these
-                    Terms.
+                    personal, non-commercial purposes consistent with these Terms.
                   </li>
                   <li>
                     You may not extract, copy, or reuse substantial parts of the
@@ -291,10 +301,10 @@ export default function LegalPage() {
                     through a published API).
                   </li>
                   <li>
-                    Violation of this section is a material breach of these
-                    Terms and may result in immediate account termination,
-                    technical countermeasures, and legal action including claims
-                    for damages and injunctive relief.
+                    Violation of this section is a material breach of these Terms
+                    and may result in immediate account termination, technical
+                    countermeasures, and legal action including claims for damages
+                    and injunctive relief.
                   </li>
                 </ul>
               </div>
@@ -303,12 +313,11 @@ export default function LegalPage() {
                 <h3 className="font-semibold">4.1 Survival and Persistence of the Dataset</h3>
                 <p className="mt-2 text-muted">
                   The Readlink Dataset is built up over time as users add
-                  corrections, structural data, and other functional
-                  contributions on top of records derived from public sources
-                  and licensed providers. To preserve the integrity of the
-                  Service and protect the work users invest in their libraries,
-                  Readlink asserts a Right of Persistence over the Readlink
-                  Dataset:
+                  corrections, structural data, and other functional contributions
+                  on top of records derived from public sources and licensed
+                  providers. To preserve the integrity of the Service and protect
+                  the work users invest in their libraries, Readlink asserts a
+                  Right of Persistence over the Readlink Dataset:
                 </p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
@@ -323,12 +332,12 @@ export default function LegalPage() {
                     terminates their account.
                   </li>
                   <li>
-                    The expiration, termination, or modification of any
-                    agreement with a third-party data provider does not
-                    extinguish Readlink&apos;s interest in records that have been
-                    integrated, augmented, curated, or materially transformed
-                    within the Readlink Dataset, which may be treated as
-                    derivative works of Readlink and its community.
+                    The expiration, termination, or modification of any agreement
+                    with a third-party data provider does not extinguish
+                    Readlink&apos;s interest in records that have been integrated,
+                    augmented, curated, or materially transformed within the
+                    Readlink Dataset, which may be treated as derivative works of
+                    Readlink and its community.
                   </li>
                   <li>
                     The persistence of the Dataset is a user-protective measure:
@@ -340,10 +349,10 @@ export default function LegalPage() {
                 <p className="mt-2 text-muted">
                   The Right of Persistence is exercised consistent with
                   applicable third-party rights and the specific terms of the
-                  relevant upstream agreement, and Readlink reserves the right
-                  to prune, regenerate, or restructure records as required by
-                  law or by a binding contractual obligation that cannot be
-                  reconciled with this Right.
+                  relevant upstream agreement, and Readlink reserves the right to
+                  prune, regenerate, or restructure records as required by law or
+                  by a binding contractual obligation that cannot be reconciled
+                  with this Right.
                 </p>
               </div>
 
@@ -358,8 +367,8 @@ export default function LegalPage() {
                     users&apos; accounts.
                   </li>
                   <li>
-                    Use automated systems to access, scrape, or interact with
-                    the Service except as expressly permitted.
+                    Use automated systems to access, scrape, or interact with the
+                    Service except as expressly permitted.
                   </li>
                   <li>
                     Use the Service to systematically reproduce copyrighted books
@@ -374,8 +383,8 @@ export default function LegalPage() {
                     commercial communications.
                   </li>
                   <li>
-                    Resell, sublicense, or commercially exploit the Service or
-                    its contents without our express written consent.
+                    Resell, sublicense, or commercially exploit the Service or its
+                    contents without our express written consent.
                   </li>
                 </ul>
               </div>
@@ -390,20 +399,19 @@ export default function LegalPage() {
                   <li>The Readlink Dataset is governed by Section 4.</li>
                   <li>
                     Book metadata sourced from the Open Library API and similar
-                    public sources is used in accordance with the licenses
-                    granted by those sources (typically CC0 or equivalent for
-                    Open Library).
+                    public sources is used in accordance with the licenses granted
+                    by those sources (typically CC0 or equivalent for Open Library).
                   </li>
                   <li>
                     Cover images displayed in the Service may be subject to
-                    publisher copyright; we display them under principles of
-                    fair use, fair dealing, and equivalent doctrines, and in
-                    accordance with our Content &amp; Copyright Policy.
+                    publisher copyright; we display them under principles of fair
+                    use, fair dealing, and equivalent doctrines, and in accordance
+                    with our Content &amp; Copyright Policy.
                   </li>
                   <li>
-                    You may not copy, reproduce, distribute, or create
-                    derivative works from Readlink&apos;s intellectual property
-                    without permission.
+                    You may not copy, reproduce, distribute, or create derivative
+                    works from Readlink&apos;s intellectual property without
+                    permission.
                   </li>
                 </ul>
               </div>
@@ -435,19 +443,19 @@ export default function LegalPage() {
                 <h3 className="font-semibold">8. Termination</h3>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
-                    You may terminate your account at any time through the app
-                    or by contacting us.
+                    You may terminate your account at any time through the app or
+                    by contacting us.
                   </li>
                   <li>
                     We may suspend or terminate accounts for: material violation
                     of these Terms; repeated copyright infringement; harassment,
-                    threats, or doxxing of users; security attacks or attempts
-                    to compromise the Service; systematic scraping or automated
-                    access in violation of Section 4; fraudulent activity
-                    (including in any promotion, referral, or campaign); or
-                    behavior that creates legal risk for Readlink or other
-                    users. Where reasonable, we will provide notice and an
-                    opportunity to remedy before termination.
+                    threats, or doxxing of users; security attacks or attempts to
+                    compromise the Service; systematic scraping or automated access
+                    in violation of Section 4; fraudulent activity (including in
+                    any promotion, referral, or campaign); or behavior that
+                    creates legal risk for Readlink or other users. Where
+                    reasonable, we will provide notice and an opportunity to remedy
+                    before termination.
                   </li>
                   <li>
                     Upon termination: creative content (Section 3.3) is removed
@@ -477,12 +485,19 @@ export default function LegalPage() {
               <div>
                 <h3 className="font-semibold">10. Limitation of Liability</h3>
                 <p className="mt-2 text-muted">
-                  To the maximum extent permitted by law, Lykan Sagl is not
-                  liable for indirect, incidental, consequential, or punitive
-                  damages arising from your use of the Service. Our total
-                  liability for any claim arising under these Terms is limited
-                  to the greater of (a) the amount you paid Readlink in the 12
-                  months preceding the claim, or (b) CHF 1,000.
+                  To the maximum extent permitted by law, Lykan Sagl is not liable
+                  for indirect, incidental, consequential, or punitive damages
+                  arising from your use of the Service. Our total liability for any
+                  claim arising under these Terms is limited to the greater of (a)
+                  the amount you paid Readlink in the 12 months preceding the
+                  claim, or (b) CHF 1,000.
+                </p>
+                <p className="mt-2 text-muted">
+                  Nothing in this section limits or excludes liability for death or
+                  personal injury caused by negligence, fraud, gross negligence,
+                  willful misconduct, or any other liability that cannot be
+                  excluded or limited under applicable law, including mandatory
+                  consumer protections in your jurisdiction.
                 </p>
               </div>
 
@@ -490,10 +505,10 @@ export default function LegalPage() {
                 <h3 className="font-semibold">11. Indemnification</h3>
                 <p className="mt-2 text-muted">
                   You agree to indemnify and hold harmless Lykan Sagl, its
-                  affiliates, and employees from any claims, damages, or
-                  expenses arising from: your use of the Service, your
-                  contributions, your violation of these Terms, or your
-                  violation of any third party&apos;s rights.
+                  affiliates, and employees from any claims, damages, or expenses
+                  arising from: your use of the Service, your contributions, your
+                  violation of these Terms, or your violation of any third
+                  party&apos;s rights.
                 </p>
               </div>
 
@@ -501,10 +516,10 @@ export default function LegalPage() {
                 <h3 className="font-semibold">12. Changes to These Terms</h3>
                 <p className="mt-2 text-muted">
                   We may update these Terms from time to time. For material
-                  changes, we will notify users via in-app notice or email at
-                  least 30 days before the change takes effect. Continued use of
-                  the Service after the effective date of an updated version
-                  constitutes acceptance of the changes.
+                  changes, we will notify users via in-app notice or email at least
+                  30 days before the change takes effect. Continued use of the
+                  Service after the effective date of an updated version constitutes
+                  acceptance of the changes.
                 </p>
               </div>
 
@@ -519,30 +534,80 @@ export default function LegalPage() {
                   </li>
                   <li>
                     Disputes are resolved in the competent courts of Locarno,
-                    Ticino, Switzerland, or as otherwise required by mandatory
-                    local consumer protection law.
+                    Ticino, Switzerland, or as otherwise required by mandatory local
+                    consumer protection law.
                   </li>
                   <li>
-                    Where you are an EU consumer, nothing in these Terms
-                    deprives you of mandatory consumer protections under your
-                    local law.
+                    Where you are an EU consumer, nothing in these Terms deprives
+                    you of mandatory consumer protections under your local law.
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-semibold">14. Contact</h3>
-                <p className="mt-2 text-muted">For questions about these Terms: legal@readlink.app</p>
+                <h3 className="font-semibold">14. Paid Features and In-App Purchases</h3>
+                <h4 className="mt-2 font-semibold">14.1 Apple App Store and Google Play</h4>
+                <p className="mt-2 text-muted">
+                  Paid features, subscriptions, and in-app purchases offered through
+                  the iOS or Android app are sold and processed by Apple or Google
+                  under their respective terms (Apple Media Services Terms and
+                  Conditions; Google Play Terms of Service). When you make such a
+                  purchase, you enter into a transaction with Apple or Google, not
+                  directly with Lykan Sagl, for the payment portion of that
+                  transaction. Their refund, billing, family sharing, and renewal
+                  terms govern the payment relationship and supersede anything to
+                  the contrary in these Terms.
+                </p>
+                <p className="mt-2 text-muted">
+                  The features and content delivered as a result of that purchase
+                  are provided by Lykan Sagl and remain subject to these Terms.
+                </p>
+                <h4 className="mt-2 font-semibold">14.2 Refunds</h4>
+                <p className="mt-2 text-muted">
+                  Refund requests for in-app purchases must be directed to Apple or
+                  Google through their respective support channels — we cannot
+                  directly refund a transaction Apple or Google processed. Where
+                  required by mandatory consumer protection law (including the EU
+                  right of withdrawal for digital content), we will honor your
+                  statutory rights regardless of the store&apos;s policy.
+                </p>
+                <h4 className="mt-2 font-semibold">14.3 Subscriptions</h4>
+                <p className="mt-2 text-muted">
+                  Subscriptions purchased through Apple or Google auto-renew under
+                  the terms of those stores until you cancel them in your Apple ID
+                  or Google Play account settings. Canceling within Readlink does
+                  not cancel the underlying store subscription. To manage or cancel
+                  your subscription, please use the subscription settings in your
+                  Apple ID (App Store) or Google Play account.
+                </p>
+                <h4 className="mt-2 font-semibold">14.4 RevenueCat</h4>
+                <p className="mt-2 text-muted">
+                  We use RevenueCat, Inc. to validate and manage subscription
+                  entitlements across platforms. RevenueCat acts as our processor for
+                  this purpose. See our Privacy Policy for the data flows involved.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold">15. Contact</h3>
+                <p className="mt-2 text-muted">
+                  For questions about these Terms: legal@readlink.app
+                </p>
               </div>
             </div>
           </section>
 
-          <section id="privacy" className="space-y-4 border-t border-border pt-10">
-            <h2 className="text-2xl font-semibold">Privacy Policy</h2>
+          <section className="space-y-4 border-t border-border pt-10">
+            <h2
+              id="privacy"
+              className="scroll-mt-24 text-2xl font-semibold tracking-tight"
+            >
+              Privacy Policy
+            </h2>
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 8, 2026
+              Last updated: May 9, 2026
               <br />
               Controller: Lykan Sagl, Ai Salici, 6633 Lavertezzo, Switzerland
               <br />
@@ -555,34 +620,53 @@ export default function LegalPage() {
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>Account info: email, login data via Clerk.</li>
                   <li>
-                    Content you create: reviews, posts, comments, photos you
-                    upload to the feed, private notes, OCR text fragments you
-                    save.
+                    Content you create: reviews, posts, comments, photos you upload
+                    to the feed, private notes, OCR text fragments you save.
                   </li>
-                  <li>Functional contributions: corrections and additions to book metadata.</li>
                   <li>
-                    Usage info: app interactions, device info, approximate
-                    location derived from IP.
+                    Functional contributions: corrections and additions to book
+                    metadata.
+                  </li>
+                  <li>
+                    Usage info: app interactions, device info, approximate location
+                    derived from IP.
                   </li>
                   <li>Cookies &amp; tracking: see Cookie Policy.</li>
                   <li>
                     Payment data (referrers opting into cash payouts only): full
-                    legal name, address, government-issued identification, bank
-                    or card details, tax identifiers, and additional information
+                    legal name, address, government-issued identification, bank or
+                    card details, tax identifiers, and additional information
                     required by Stripe for identity verification,
-                    anti-money-laundering screening, and tax reporting. This
-                    data is collected by Stripe, Inc. and its affiliates through
-                    Stripe&apos;s hosted onboarding flow when you opt into cash
-                    commissions under our referral program. By opting in, you
-                    also enter into a direct contractual relationship with
-                    Stripe and are subject to Stripe&apos;s Services Agreement and
-                    Privacy Policy.
+                    anti-money-laundering screening, and tax reporting. This data
+                    is collected by Stripe, Inc. and its affiliates through
+                    Stripe&apos;s hosted onboarding flow (Stripe Connect Express)
+                    when you opt into cash commissions under our referral program.
+                    By opting in, you also enter into a direct contractual
+                    relationship with Stripe and are subject to Stripe&apos;s
+                    Services Agreement, Connected Account Agreement, and Privacy
+                    Policy.
+                  </li>
+                  <li>
+                    In-app purchase and subscription data (paid features only): when
+                    you purchase a subscription or in-app feature on iOS or Android,
+                    the transaction is processed by Apple (App Store) or Google
+                    (Google Play) under their respective billing terms. We do not
+                    receive your full payment details (card number, billing address,
+                    etc.) — Apple and Google retain that data and share with us only
+                    the limited transaction information necessary to grant you the
+                    features you purchased, including a transaction identifier,
+                    product identifier, purchase and renewal timestamps, and
+                    entitlement status. We use RevenueCat, Inc. as our subscription
+                    management infrastructure to validate purchases, manage
+                    entitlements across platforms, and track subscription lifecycle
+                    events. RevenueCat receives the same limited transaction data
+                    described above plus a pseudonymous user identifier we generate.
                   </li>
                 </ul>
                 <p className="mt-2 text-muted">
-                  We do <strong>not</strong> retain photos used for OCR. The
-                  source image is discarded once text extraction is complete;
-                  only the text fragment you select is stored.
+                  We do not retain photos used for OCR. The source image is discarded
+                  once text extraction is complete; only the text fragment you
+                  select is stored.
                 </p>
               </div>
 
@@ -595,13 +679,13 @@ export default function LegalPage() {
                     privacy settings.
                   </li>
                   <li>
-                    Operate features such as recommendations, search, and the
-                    social graph.
+                    Operate features such as recommendations, search, and the social
+                    graph.
                   </li>
                   <li>Maintain the Readlink Dataset of book metadata.</li>
                   <li>
-                    Communicate with you about your account, and (with your
-                    consent) send optional updates or marketing.
+                    Communicate with you about your account, and (with your consent)
+                    send optional updates or marketing.
                   </li>
                   <li>Analyze app usage to improve the Service.</li>
                   <li>
@@ -616,23 +700,22 @@ export default function LegalPage() {
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
                     <strong>Performance of a contract</strong> — to provide the
-                    Service you signed up for, and to process referral
-                    commissions for participants in the referral program.
+                    Service you signed up for, and to process referral commissions for
+                    participants in the referral program.
                   </li>
                   <li>
-                    <strong>Legitimate interest</strong> — to operate, secure,
-                    and improve the Service, including dataset maintenance,
-                    abuse prevention, and analytics.
+                    <strong>Legitimate interest</strong> — to operate, secure, and
+                    improve the Service, including dataset maintenance, abuse
+                    prevention, and analytics.
                   </li>
                   <li>
                     <strong>Consent</strong> — for marketing communications and
                     optional features.
                   </li>
                   <li>
-                    <strong>Legal obligation</strong> — to comply with
-                    applicable law, including anti-money-laundering, sanctions
-                    screening, and tax reporting obligations triggered by
-                    referral commission payouts.
+                    <strong>Legal obligation</strong> — to comply with applicable law,
+                    including anti-money-laundering, sanctions screening, and tax
+                    reporting obligations triggered by referral commission payouts.
                   </li>
                 </ul>
               </div>
@@ -642,54 +725,66 @@ export default function LegalPage() {
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
                     We share data with service providers strictly as needed to
-                    operate the Service: Clerk (authentication), Vercel
-                    (hosting), Neon (database), Stripe (payments and identity
-                    verification for the referral program&apos;s cash payout
-                    track), Cookiebot (cookie consent management), and analytics
+                    operate the Service: Clerk (authentication), Vercel (hosting),
+                    Neon (database), Stripe (payments and identity verification for
+                    the referral program&apos;s cash payout track), RevenueCat
+                    (subscription management and entitlement validation for in-app
+                    purchases), Cookiebot (cookie consent management), and analytics
                     providers (planned).
                   </li>
-                  <li>
-                    We do not sell your personal data.
-                  </li>
+                  <li>We do not sell your personal data.</li>
                   <li>
                     <strong>Payment data and international payout transfers:</strong>{" "}
                     For referrers who opt into cash payouts under our referral
-                    program, payment-related personal data is shared with
-                    Stripe, Inc. and its affiliates, banking partners, and
-                    intermediary financial networks. Cash payouts may be
-                    processed through Stripe&apos;s Global Payouts and cross-border
-                    rails, which involve sharing payment-related data with
-                    correspondent banks, intermediary financial institutions, and
-                    payment networks in the recipient&apos;s country. Stripe
-                    dashboard access and feature availability vary by country and
-                    are subject to Stripe&apos;s local terms. Stripe operates as an
-                    independent controller for portions of this data under its
-                    own privacy policy, in addition to its role as our processor
-                    for other portions. See the Referral Program Terms for
-                    further detail.
+                    program, payment-related personal data is shared with Stripe,
+                    Inc. and its affiliates, banking partners, and intermediary
+                    financial networks. Cash payouts are processed through Stripe
+                    Connect Express. Cross-border payouts may involve correspondent
+                    banks and payment networks in the recipient&apos;s country. Stripe
+                    Connect Express onboarding, dashboard access, and feature
+                    availability vary by country and are subject to Stripe&apos;s local
+                    terms. Stripe operates as an independent controller for portions
+                    of this data under its own privacy policy, in addition to its role
+                    as our processor for other portions. See the Referral Program
+                    Terms for further detail.
                   </li>
                   <li>
-                    International transfers are safeguarded via standard
-                    contractual clauses, the EU-US Data Privacy Framework where
-                    applicable, and Switzerland&apos;s adequacy framework.
+                    <strong>In-app purchases via Apple and Google:</strong> When you
+                    purchase a subscription or paid feature through the iOS or
+                    Android app, your purchase is processed directly by Apple Inc.
+                    through the App Store or Google LLC through Google Play, under
+                    those companies&apos; own terms and privacy policies. Apple and
+                    Google act as independent controllers of your full payment data,
+                    which we do not receive. Limited transaction metadata (product,
+                    timestamp, entitlement status, anonymized transaction identifier)
+                    is shared with us and with RevenueCat, Inc., which we use to
+                    manage subscription lifecycle and entitlements across platforms.
+                    For information about how Apple and Google handle your payment
+                    data, see Apple&apos;s Privacy Policy and Google&apos;s Privacy Policy
+                    directly.
                   </li>
                   <li>
-                    We may disclose data where required by valid legal process,
-                    to enforce our Terms, or to protect the rights and safety of
-                    users.
+                    International transfers are safeguarded via standard contractual
+                    clauses, the EU-US Data Privacy Framework where applicable, and
+                    Switzerland&apos;s adequacy framework.
+                  </li>
+                  <li>
+                    We may disclose data where required by valid legal process, to
+                    enforce our Terms, or to protect the rights and safety of users.
                   </li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="font-semibold">5. Your Rights</h3>
+                <p className="mt-2 text-muted">You have the right to:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>Access the personal data we hold about you.</li>
                   <li>Request correction of inaccurate data.</li>
                   <li>
-                    Request deletion of your data, subject to limits described
-                    in our Terms (functional metadata contributions remain in the
-                    Readlink Dataset).
+                    Request deletion of your data, subject to limits described in our
+                    Terms (functional metadata contributions remain in the Readlink
+                    Dataset).
                   </li>
                   <li>Object to or restrict certain processing.</li>
                   <li>
@@ -698,8 +793,8 @@ export default function LegalPage() {
                   </li>
                   <li>
                     Lodge a complaint with the Swiss Federal Data Protection and
-                    Information Commissioner (FDPIC) or your local data
-                    protection authority.
+                    Information Commissioner (FDPIC) or your local data protection
+                    authority.
                   </li>
                   <li>Data portability where applicable.</li>
                 </ul>
@@ -711,36 +806,37 @@ export default function LegalPage() {
               <div>
                 <h3 className="font-semibold">6. Retention</h3>
                 <p className="mt-2 text-muted">
-                  We retain personal data only as long as necessary to operate
-                  the Service and comply with legal obligations. Specifically:
+                  We retain personal data only as long as necessary to operate the
+                  Service and comply with legal obligations. Specifically:
                 </p>
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
-                    <strong>Account data:</strong> retained while your account
-                    is active, deleted on termination.
+                    <strong>Account data:</strong> retained while your account is
+                    active, deleted on termination.
                   </li>
                   <li>
-                    <strong>Public creative content:</strong> removed from
-                    display on deletion, with reasonable backup retention.
+                    <strong>Public creative content:</strong> removed from public
+                    display upon deletion. Residual copies in encrypted backups are
+                    retained for up to 90 days, after which they are overwritten in
+                    the normal backup rotation.
                   </li>
                   <li>
                     <strong>Private notes and OCR fragments:</strong> deleted on
                     account termination.
                   </li>
                   <li>
-                    <strong>Functional metadata contributions:</strong> retained
-                    as part of the Readlink Dataset per the Terms of Service.
+                    <strong>Functional metadata contributions:</strong> retained as
+                    part of the Readlink Dataset per the Terms of Service.
                   </li>
                   <li>
                     <strong>Logs and security data:</strong> retained for limited
                     periods consistent with security and legal needs.
                   </li>
                   <li>
-                    <strong>Payment and KYC data:</strong> retained by Stripe and
-                    by Readlink for the periods required by applicable
-                    anti-money-laundering, tax, and accounting law, typically up
-                    to 10 years after the last payout, regardless of account
-                    termination.
+                    <strong>Payment and KYC data:</strong> retained by Stripe and by
+                    Readlink for the periods required by applicable
+                    anti-money-laundering, tax, and accounting law, typically up to 10
+                    years after the last payout, regardless of account termination.
                   </li>
                 </ul>
               </div>
@@ -748,192 +844,217 @@ export default function LegalPage() {
               <div>
                 <h3 className="font-semibold">7. Security</h3>
                 <p className="mt-2 text-muted">
-                  We use reasonable technical and organizational measures to
-                  protect your data, including encryption in transit, access
-                  controls, and provider-level security from our subprocessors.
-                  No system is perfectly secure; we will notify you of
-                  significant breaches as required by applicable law.
+                  We use reasonable technical and organizational measures to protect
+                  your data, including encryption in transit, access controls, and
+                  provider-level security from our subprocessors. No system is perfectly
+                  secure; we will notify you of significant breaches as required by
+                  applicable law.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold">8. Children</h3>
                 <p className="mt-2 text-muted">
-                  The Service is not intended for children under 13. We do not
-                  knowingly collect data from children under 13. If you believe
-                  a child has provided us data, contact legal@readlink.app and
-                  we will delete it.
+                  The Service is not intended for anyone under 16. We do not knowingly
+                  collect personal data from anyone under 16. If we become aware that we
+                  have collected data from a person under 16 without verified parental
+                  consent in jurisdictions where that is permissible, we will delete
+                  it. If you believe a person under 16 has provided us data, please
+                  contact legal@readlink.app.
                 </p>
               </div>
 
               <div>
                 <h3 className="font-semibold">9. Changes to This Policy</h3>
                 <p className="mt-2 text-muted">
-                  We may update this Privacy Policy. For material changes, we
-                  will notify you via in-app notice or email. The &quot;Last
+                  We may update this Privacy Policy from time to time. For material
+                  changes — including changes to the categories of data we collect, the
+                  purposes of processing, the legal basis, retention periods, or the list
+                  of subprocessors — we will notify you via in-app notice or email at
+                  least 30 days before the change takes effect. The &quot;Last
                   updated&quot; date above reflects the most recent revision.
                 </p>
               </div>
             </div>
           </section>
 
-          <section id="cookie" className="space-y-4 border-t border-border pt-10">
-            <h2 className="text-2xl font-semibold">Cookie Policy</h2>
+          <section className="space-y-4 border-t border-border pt-10">
+            <h2
+              id="cookies"
+              className="scroll-mt-24 text-2xl font-semibold tracking-tight"
+            >
+              Cookie Policy
+            </h2>
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 8, 2026
+              Last updated: May 9, 2026
             </p>
             <h3 className="font-semibold">What cookies we use</h3>
-            <ul className="list-disc space-y-1 pl-6 text-muted">
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
               <li>
-                <strong>Essential cookies</strong> — required for the Service to
-                function (authentication via Clerk, session management,
-                security). These are always active because the Service cannot
-                operate without them.
+                Essential cookies — required for the Service to function
+                (authentication via Clerk, session management, security). These are
+                always active because the Service cannot operate without them.
               </li>
               <li>
-                <strong>Analytics cookies</strong> — when activated, used to
-                understand how the Service is used (current or future providers
-                may include PostHog and Google Analytics). These are only set
-                after you give consent through our cookie banner.
+                Analytics cookies — when activated, used to understand how the Service
+                is used (current or future providers may include PostHog and Google
+                Analytics). These are only set after you give consent through our
+                cookie banner.
               </li>
               <li>
-                <strong>Functionality cookies</strong> — used to remember
-                preferences (e.g., theme, language). Set only after consent
-                where required by law.
+                Functionality cookies — used to remember preferences (e.g., theme,
+                language). Set only after consent where required by law.
               </li>
             </ul>
-            <h3 className="font-semibold">Consent</h3>
+            <h3 className="mt-2 font-semibold">Consent</h3>
             <p className="text-muted">
-              Where required by the EU ePrivacy Directive, Swiss data protection
-              law, or other applicable rules, we request your consent before
-              setting any non-essential cookies. You can change your preferences
-              at any time through the cookie banner or your account settings.
+              Where required by the EU ePrivacy Directive, Swiss data protection law,
+              or other applicable rules, we request your consent before setting any
+              non-essential cookies. You can change your preferences at any time
+              through the cookie banner or your account settings.
             </p>
             <p className="text-muted">
-              If you decline non-essential cookies, the Service will still work;
-              some features and our ability to improve the Service will be
-              limited.
+              If you decline non-essential cookies, the Service will still work; some
+              features and our ability to improve the Service will be limited.
             </p>
-            <h3 className="font-semibold">Your controls</h3>
+            <h3 className="mt-2 font-semibold">Your controls</h3>
             <ul className="list-disc space-y-1 pl-6 text-muted">
               <li>Adjust your consent through the cookie banner at any time.</li>
               <li>
                 Block or delete cookies through your browser settings (note that
-                disabling essential cookies may prevent the Service from
-                working).
+                disabling essential cookies may prevent the Service from working).
               </li>
               <li>
-                See the Privacy Policy for details on how we process the data
-                collected via cookies.
+                See the Privacy Policy for details on how we process the data collected
+                via cookies.
               </li>
             </ul>
-            <h3 className="font-semibold">Live cookie list</h3>
+            <h3 className="mt-2 font-semibold">Live cookie list</h3>
             <p className="text-muted">
-              A current list of all cookies and similar technologies used on
-              Readlink — including provider, purpose, duration, and category —
-              is available through our cookie banner declaration.
+              A current list of all cookies and similar technologies used on Readlink
+              — including provider, purpose, duration, and category — is available
+              through our cookie banner declaration.
             </p>
           </section>
 
-          <section id="content" className="space-y-4 border-t border-border pt-10">
-            <h2 className="text-2xl font-semibold">
+          <section className="space-y-4 border-t border-border pt-10">
+            <h2
+              id="content-copyright"
+              className="scroll-mt-24 text-2xl font-semibold tracking-tight"
+            >
               Content &amp; Copyright Policy
             </h2>
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 8, 2026
+              Last updated: May 9, 2026
             </p>
             <h3 className="font-semibold">Ownership and License</h3>
-            <ul className="list-disc space-y-1 pl-6 text-muted">
-              <li>Users retain ownership of uploaded content.</li>
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+              <li>Users retain ownership of content they upload.</li>
               <li>
-                License grants to Readlink are described in detail in Section 3
-                of the Terms of Service.
+                License grants to Readlink are described in detail in Section 3 of the
+                Terms of Service.
               </li>
-              <li>Users must only contribute content they own or have rights to share.</li>
-              <li>Public sharing and social media reposting are permitted under the licenses described in the Terms.</li>
+              <li>
+                Users must only contribute content they own or have rights to share.
+              </li>
+              <li>
+                Public sharing and social media reposting are permitted under the
+                licenses described in the Terms.
+              </li>
             </ul>
-            <h3 className="font-semibold">Third-Party Content</h3>
+            <h3 className="mt-2 font-semibold">Third-Party Content</h3>
             <ul className="list-disc space-y-1 pl-6 text-muted">
               <li>
-                Cover images, book descriptions, and other content surfaced via
-                APIs may be subject to third-party rights.
+                Cover images, book descriptions, and other content surfaced via APIs
+                may be subject to third-party rights.
               </li>
               <li>
-                Readlink displays such content on a good-faith basis under
-                principles of fair use, fair dealing, quotation, and equivalent
-                doctrines.
+                Readlink displays such content on a good-faith basis under principles of
+                fair use, fair dealing, quotation, and equivalent doctrines.
               </li>
               <li>We act expeditiously on valid takedown requests.</li>
             </ul>
-            <h3 className="font-semibold">Copyright Takedown Procedure</h3>
+            <h3 className="mt-2 font-semibold">Copyright Takedown Procedure</h3>
             <p className="text-muted">
-              If you believe content available through Readlink infringes your
-              copyright or other intellectual property rights, send a Takedown
-              Notice to <strong>legal@readlink.app</strong> including:
+              If you believe content available through Readlink infringes your copyright
+              or other intellectual property rights, send a Takedown Notice to
+              legal@readlink.app including:
             </p>
             <ol className="list-decimal space-y-1 pl-6 text-muted">
               <li>Your contact information (name, address, email, phone).</li>
               <li>
-                Identification of the work you claim is infringed (title,
-                author, ISBN where relevant).
+                Identification of the work you claim is infringed (title, author, ISBN
+                where relevant).
               </li>
               <li>
-                The exact location of the allegedly infringing material on
-                Readlink (URL, profile, post, or precise description).
+                The exact location of the allegedly infringing material on Readlink
+                (URL, profile, post, or precise description).
               </li>
               <li>
-                A statement that you have a good-faith belief the use is not
-                authorized by the rights holder, an agent, or the law.
+                A statement that you have a good-faith belief the use is not authorized
+                by the rights holder, an agent, or the law.
               </li>
               <li>
-                A statement, made under penalty of perjury or its civil-law
-                equivalent, that the information is accurate and that you are
-                the rights holder or authorized to act on the rights holder&apos;s
-                behalf.
+                A statement, made under penalty of perjury or its civil-law equivalent,
+                that the information is accurate and that you are the rights holder or
+                authorized to act on the rights holder&apos;s behalf.
               </li>
               <li>Your physical or electronic signature.</li>
             </ol>
             <p className="text-muted">
-              Readlink follows a notice-and-takedown procedure modeled on the
-              U.S. Digital Millennium Copyright Act (DMCA) and consistent with
-              EU and Swiss law on intermediary liability. We are not a U.S.-based
-              service and act under &quot;safe harbor&quot; principles available
-              to intermediaries under applicable law.
+              Readlink operates a notice-and-action procedure under Article 16 of the
+              EU Digital Services Act (Regulation (EU) 2022/2065), Swiss
+              intermediary-liability principles, and equivalent doctrines in other
+              jurisdictions where we offer the Service. We are a Swiss-established
+              service and do not rely on the U.S. Digital Millennium Copyright Act safe
+              harbor, although our procedure is designed to be compatible with
+              DMCA-style notices submitted by U.S. rights holders.
             </p>
             <p className="text-muted">We will:</p>
             <ul className="list-disc space-y-1 pl-6 text-muted">
-              <li>Acknowledge receipt of valid notices.</li>
+              <li>Acknowledge receipt of valid notices without undue delay.</li>
               <li>
-                Remove or disable access to allegedly infringing material
-                expeditiously where the notice is facially valid.
+                Process notices in a timely, diligent, non-arbitrary, and objective
+                manner.
               </li>
               <li>
-                Notify the user who posted the content and provide them an
-                opportunity to file a counter-notice.
+                Where the notice is sufficiently substantiated, remove or disable access
+                to the allegedly infringing material expeditiously and provide a clear
+                statement of reasons to the user who posted the content, including the
+                legal basis for the action and information about available redress.
               </li>
               <li>
-                Track repeat infringers and terminate accounts that repeatedly
-                post infringing content.
+                Notify the affected user and provide them an opportunity to file a
+                counter-notice through the procedure described below.
+              </li>
+              <li>
+                Maintain a record of all notices and actions for the period required by
+                applicable law.
+              </li>
+              <li>
+                Track repeat infringers and suspend or terminate accounts associated with
+                repeated, manifestly illegal content per Article 23 of the Digital
+                Services Act.
               </li>
             </ul>
-            <h3 className="font-semibold">Counter-Notice</h3>
+            <h3 className="mt-2 font-semibold">Counter-Notice</h3>
             <p className="text-muted">
-              If you believe content you posted was wrongly removed, you may
-              submit a counter-notice to legal@readlink.app including: your
-              contact information, identification of the removed content, a
-              statement under penalty of perjury or civil-law equivalent that
-              you believe the content was removed in error, and your consent to
-              legal jurisdiction in the courts of Locarno, Ticino, Switzerland.
+              If you believe content you posted was wrongly removed, you may submit a
+              counter-notice to legal@readlink.app including: your contact information,
+              identification of the removed content, a statement under penalty of perjury
+              or civil-law equivalent that you believe the content was removed in error,
+              and your consent to legal jurisdiction in the courts of Locarno, Ticino,
+              Switzerland.
             </p>
-            <h3 className="font-semibold">Repeat Infringers</h3>
+            <h3 className="mt-2 font-semibold">Repeat Infringers</h3>
             <ul className="list-disc space-y-1 pl-6 text-muted">
               <li>
-                Accounts that are the subject of multiple valid takedown notices
-                may be suspended or terminated at our discretion.
+                Accounts that are the subject of multiple valid takedown notices may be
+                suspended or terminated at our discretion.
               </li>
             </ul>
           </section>
