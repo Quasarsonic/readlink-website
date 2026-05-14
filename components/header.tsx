@@ -1,5 +1,6 @@
 "use client";
 
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 export function Header() {
   const pathname = usePathname();
   const forceDarkHeader = pathname === "/launch";
+  const { isSignedIn } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
@@ -39,9 +41,11 @@ export function Header() {
       });
     };
 
-    // Reset immediately on route transitions, then resolve repeatedly while layout/hash settle.
+    // Reset on route transitions, then resolve repeatedly while layout/hash settle.
     isDarkBackgroundRef.current = forceDarkHeader;
-    setIsDarkBackground(forceDarkHeader);
+    const resetThemeState = window.setTimeout(() => {
+      setIsDarkBackground(forceDarkHeader);
+    }, 0);
 
     scheduleHeaderThemeResolve();
     const delayedResolveOne = window.setTimeout(scheduleHeaderThemeResolve, 0);
@@ -55,6 +59,7 @@ export function Header() {
     window.addEventListener("hashchange", scheduleHeaderThemeResolve);
     window.addEventListener("popstate", scheduleHeaderThemeResolve);
     return () => {
+      window.clearTimeout(resetThemeState);
       window.clearTimeout(delayedResolveOne);
       window.clearTimeout(delayedResolveTwo);
       window.clearTimeout(delayedResolveThree);
@@ -68,7 +73,7 @@ export function Header() {
         window.cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [pathname]);
+  }, [forceDarkHeader, pathname]);
 
   // Logo reads dark with invert(1) and light with invert(0). Dark page sections use
   // invert(0); light sections use invert(1). The mobile menu bar is always light, so
@@ -167,6 +172,40 @@ export function Header() {
             >
               Join Challenge
             </Link>
+            {isSignedIn ? (
+              <>
+                <Link
+                  href="/premium"
+                  className={`text-sm transition-colors duration-500 ease-out ${
+                    desktopSignInOnDark
+                      ? "text-white/85 hover:text-white"
+                      : "text-foreground/85 hover:text-foreground"
+                  }`}
+                >
+                  Premium
+                </Link>
+                <UserButton />
+              </>
+            ) : (
+              <>
+                <SignInButton mode="modal" forceRedirectUrl="/premium">
+                  <button
+                    className={`text-sm transition-colors duration-500 ease-out ${
+                      desktopSignInOnDark
+                        ? "text-white/85 hover:text-white"
+                        : "text-foreground/85 hover:text-foreground"
+                    }`}
+                  >
+                    Sign in
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal" forceRedirectUrl="/premium">
+                  <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
+                    Get Premium
+                  </button>
+                </SignUpButton>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -247,6 +286,28 @@ export function Header() {
                 >
                   Join Challenge
                 </Link>
+                {isSignedIn ? (
+                  <Link
+                    href="/premium"
+                    className="text-sm text-muted hover:text-foreground transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Premium
+                  </Link>
+                ) : (
+                  <>
+                    <SignInButton mode="modal" forceRedirectUrl="/premium">
+                      <button className="text-left text-sm text-muted hover:text-foreground transition-colors">
+                        Sign in
+                      </button>
+                    </SignInButton>
+                    <SignUpButton mode="modal" forceRedirectUrl="/premium">
+                      <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
+                        Get Premium
+                      </button>
+                    </SignUpButton>
+                  </>
+                )}
               </div>
             </div>
           </div>
