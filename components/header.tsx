@@ -344,12 +344,8 @@ export function Header() {
                   </>
                 ) : (
                   <>
-                    <SignInButton
-                      mode="modal"
-                      forceRedirectUrl="/premium"
-                      className="flex w-full justify-center"
-                    >
-                      <button className="cursor-pointer text-sm text-muted hover:text-foreground transition-colors">
+                    <SignInButton mode="modal" forceRedirectUrl="/premium">
+                      <button className="flex w-full cursor-pointer justify-center text-sm text-muted transition-colors hover:text-foreground">
                         Sign in
                       </button>
                     </SignInButton>
