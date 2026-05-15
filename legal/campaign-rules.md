@@ -64,13 +64,25 @@ There are two paths to enter: a Standard Entry path (via Readlink platform activ
 
 ### 2.1 Standard entry
 
-- Sign up for a Readlink account at readlink.app during the campaign window.
-- Complete your profile (display name, handle, profile photo).
-- You are automatically entered when your profile is complete.
+1. Sign up for a Readlink account at readlink.app during the campaign window.
+2. Complete your profile (display name, handle, profile photo).
+3. You are registered for the campaign when your profile is complete and appear on the campaign leaderboard from this point.
+
+**Note on registration vs. prize qualification**: Completing your profile registers you for the campaign and places you on the leaderboard, but does not by itself qualify you for any prize tier. Prize tier qualification requires meeting the thresholds in Section 3.2 (a complete profile *and* at least 25 books in your Readlink library by the campaign close date). Registered users who do not meet the prize qualification threshold by close are not eligible for any campaign prize, including the Participant tier, regardless of whether they subscribed to Premium during the campaign window.
 
 ### 2.2 Earning points
 
-Once entered, you earn points through five actions:
+Once registered, you earn points through five actions defined in growth/launch.md and summarized here:
+
+| Action | Points | Trigger |
+|---|---|---|
+| Create your library (25 books) | 500 pts | Library reaches 25 books |
+| Bring a reader | 1,000 pts | Someone signs up via your unique referral link and adds 5+ books within 72 hours |
+| Your referral goes deep | 500 pts bonus | A user who signed up via your referral link reaches 25 books in their library |
+| Referral converts to Premium | 1,500 pts bonus | A user who signed up via your referral link subscribes to Premium |
+| Go Premium (campaign multiplier) | 2× all points earned | You subscribe to Premium during the campaign window |
+
+**Golden Tickets — Premium subscriber benefit (not a campaign reward)**: Premium subscribers receive 2 Golden Tickets during the campaign window. Golden Tickets are gift codes that grant the recipient one calendar month of free Premium access. **Golden Tickets and their recipients do not contribute any points, multipliers, or competitive advantage in the campaign.** A recipient of a Golden Ticket is not, by virtue of receiving the ticket, counted as a referral for the gifter; the "Bring a reader" action and its related bonuses only apply to users who sign up via the gifter's unique referral link, separately from any gift activity. Golden Tickets are characterised as a Premium product benefit (a generosity feature for Premium subscribers to share their subscription with friends) and not as a contest mechanic, and are therefore not subject to the Section 8 No-Purchase-Necessary equivalence (see Section 8.3).
 
 ### 2.3 Entry limit
 
@@ -82,15 +94,17 @@ One entry per person. Multiple accounts, automated entries, accounts created by 
 
 Final leaderboard positions at the close of the campaign window lock each participant's prize tier. All prizes are truly lifetime (no sunset, no cap, no expiry).
 
-### 3.2 Participant tier qualification
+### 3.2 Prize qualification threshold
 
-To qualify for the Participant tier (10% lifetime), a user must, before the campaign close date:
+To qualify for **any** prize tier (Top Finisher, Top 20 Finisher, The Shelf, or Participant), a registered user must, before the campaign close date:
 
-(a) Have a complete Readlink profile (display name, handle, profile photo); AND
-
-Users who sign up but do not meet both (a) and (b) are not entered into the campaign and do not receive any campaign commission entitlement.
+(a) Have a complete Readlink profile (display name, handle, profile photo); **AND**
 
 (b) Add at least 25 books to their Readlink library.
+
+Registered users who do not meet both (a) and (b) by the campaign close date are not eligible for any prize tier — including the Participant tier — regardless of (i) leaderboard position, (ii) points accumulated, (iii) Premium subscription status, or (iv) Golden Tickets gifted or received. Subscribing to Premium during the campaign window does not substitute for, lower, or otherwise affect the 25-book qualification threshold; non-qualifying Premium subscribers retain full Premium product access for the duration of their subscription but receive no campaign commission entitlement, no hero-section placement, and no leaderboard award.
+
+Non-qualifying users keep their Readlink account and may participate in the Phase 2 referral program (separate terms) when it launches.
 
 ### 3.3 Commission rate — what it applies to
 
@@ -223,21 +237,31 @@ To comply with applicable laws in jurisdictions where any element of the campaig
 
 ### 8.1 What the alternative is
 
-Premium subscription doubles all points earned ("Go Premium" multiplier in Section 2.2). This creates a paid path that could be interpreted as consideration in some jurisdictions. The No-Purchase-Necessary alternative allows any participant to receive an equivalent points multiplier without subscribing to Premium.
+The "Go Premium" campaign action (Section 2.2) provides Premium subscribers with a 2× points multiplier. The Premium subscription requires payment, which could be interpreted as consideration in some jurisdictions. The No-Purchase-Necessary alternative allows any participant to receive an equivalent 2× points multiplier without subscribing to Premium.
+
+The No-Purchase-Necessary alternative covers **only** the 2× points multiplier — that being the sole element of the "Go Premium" campaign action that affects competitive position in the campaign (see Section 8.3 on what is and is not covered).
 
 ### 8.2 How to claim
 
-To claim the No-Purchase-Necessary points multiplier, send an email to legal@readlink.app with:
+To claim the No-Purchase-Necessary points multiplier, submit a request through the Readlink contact form at readlink.app/contact:
 
-Upon receipt and verification, the Promoter will apply the equivalent of the Premium 2× multiplier to the participant's account for one calendar month from grant date, renewable monthly by re-sending the request.
+- Select the request type "NPN Campaign Entry."
+- Provide your Readlink handle.
+- Attach a handwritten declaration (scanned or photographed) stating: "I request the No-Purchase-Necessary alternative entry to the Readlink 200 Founders Edition campaign," signed and dated.
 
-- Subject line: "NPN Campaign Entry"
-- Your Readlink handle.
-- A handwritten declaration (scanned or photographed) stating: "I request the No-Purchase-Necessary alternative entry to the Readlink 200 Founders Edition campaign," signed and dated.
+Upon receipt and verification, the Promoter will apply the equivalent of the Premium 2× multiplier to the participant's account for the same duration the Premium multiplier would have applied (one calendar month from grant date, renewable monthly by submitting a new request through the same form).
 
-### 8.3 No other distinction
+The Promoter aims to verify and apply No-Purchase-Necessary multipliers within five (5) business days of receipt. The multiplier applies retroactively from the date of request submission once verified.
 
-A participant entering via the No-Purchase-Necessary path has equal eligibility for all campaign tiers and prizes as a participant who subscribed to Premium.
+### 8.3 Scope of equivalence — what the No-Purchase-Necessary path does and does not cover
+
+The No-Purchase-Necessary path provides **equivalence with respect to every campaign mechanic that affects competitive position in the contest**. Currently, the only such mechanic introduced by the "Go Premium" campaign action is the 2× points multiplier. The No-Purchase-Necessary path equalises this mechanic in full.
+
+**Golden Tickets are not covered** by the No-Purchase-Necessary path because Golden Tickets are characterised as a Premium product benefit (a generosity feature for Premium subscribers to share a free month of Premium with friends), not as a campaign mechanic. Under the terms of Section 2.2, Golden Tickets and their recipients do not contribute any points, multipliers, or competitive advantage in the campaign — receiving or gifting a Golden Ticket has no effect on a participant's leaderboard position or prize tier qualification. Because Golden Tickets do not affect competitive position, they fall outside the equal-dignity scope of the No-Purchase-Necessary alternative.
+
+**Premium product features** (the standalone benefits of a Premium subscription unrelated to the campaign — full app features, knowledge-graph proposals, advanced search, and similar) are likewise not covered. These are product features purchased through the Premium subscription, not campaign mechanics.
+
+A participant entering via the No-Purchase-Necessary path has **equal eligibility for all campaign tiers and prizes** (Top Finisher, Top 20 Finisher, The Shelf, Participant) as a participant who subscribed to Premium, subject only to the same prize-qualification threshold defined in Section 3.2 (complete profile + 25 books). The No-Purchase-Necessary path is not lesser, secondary, or limited in any campaign-mechanic respect.
 
 ## 9. Disputes and termination
 

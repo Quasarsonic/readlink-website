@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { participants } from "./launchCampaignData";
 
 type TileConfig = {
   id: number;
@@ -35,38 +35,31 @@ const tiles: TileConfig[] = [
 export function HeroProfileTiles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
-      {tiles.map((tile) => (
-        <div
-          key={tile.id}
-          className="profile-tile absolute"
-          style={{
-            left: tile.left,
-            top: "-120px",
-            width: `${tile.width}px`,
-            height: `${tile.height}px`,
-            borderRadius: "14px",
-            background: "#1A1A1A",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
-            overflow: "hidden",
-            animationName: "floatDown",
-            animationDuration: tile.animationDuration,
-            animationDelay: tile.animationDelay,
-            animationTimingFunction: "linear",
-            animationIterationCount: "infinite",
-          }}
-        >
-          <Image
-            src={`https://i.pravatar.cc/100?img=${tile.id}`}
-            alt=""
-            width={tile.width}
-            height={tile.height}
-            className="h-full w-full object-cover grayscale"
-            loading="lazy"
-            unoptimized
-          />
-        </div>
-      ))}
+      {tiles.map((tile, index) => {
+        const participant = participants[index];
+        return (
+          <div
+            key={participant.rank}
+            className="profile-tile absolute"
+            style={{
+              left: tile.left,
+              top: "-120px",
+              width: `${tile.width}px`,
+              height: `${tile.height}px`,
+              borderRadius: "14px",
+              background: "#1A1A1A",
+              border: "1px solid rgba(255,255,255,0.06)",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+              overflow: "hidden",
+              animationName: "floatDown",
+              animationDuration: tile.animationDuration,
+              animationDelay: tile.animationDelay,
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
+            }}
+          ></div>
+        );
+      })}
     </div>
   );
 }

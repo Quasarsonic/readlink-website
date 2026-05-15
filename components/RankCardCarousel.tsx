@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { participants } from "./launchCampaignData";
 
@@ -256,17 +255,7 @@ export default function RankCardCarousel() {
                     />
 
                     <div className="relative mb-4 flex items-center gap-3">
-                      <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]">
-                        <Image
-                          src={`https://i.pravatar.cc/100?img=${participant.rank}`}
-                          alt={`${participant.name} avatar`}
-                          width={44}
-                          height={44}
-                          className="h-full w-full object-cover grayscale"
-                          loading="lazy"
-                          unoptimized
-                        />
-                      </div>
+                      <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]" />
                       <div className="min-w-0">
                         <p className="truncate text-[14px] font-medium text-white">{participant.name}</p>
                         <p className="mt-0.5 truncate text-[11px] text-[#666666]">@{participant.handle}</p>

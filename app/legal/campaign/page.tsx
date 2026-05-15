@@ -229,7 +229,7 @@ export default function CampaignRulesPage() {
 
             <div>
               <h3 className="font-semibold">2.1 Standard entry</h3>
-              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+              <ol className="mt-2 list-decimal space-y-1 pl-6 text-muted">
                 <li>
                   Sign up for a Readlink account at readlink.app during the
                   campaign window.
@@ -238,15 +238,32 @@ export default function CampaignRulesPage() {
                   Complete your profile (display name, handle, profile photo).
                 </li>
                 <li>
-                  You are automatically entered when your profile is complete.
+                  You are registered for the campaign when your profile is
+                  complete and appear on the campaign leaderboard from this
+                  point.
                 </li>
-              </ul>
+              </ol>
+              <p className="mt-4 font-semibold text-muted">
+                Note on registration vs. prize qualification:
+              </p>
+              <p className="mt-2 text-muted">
+                Completing your profile registers you for the campaign and
+                places you on the leaderboard, but does not by itself qualify
+                you for any prize tier. Prize tier qualification requires
+                meeting the thresholds in Section 3.2 (a complete profile{" "}
+                <em>and</em> at least 25 books in your Readlink library by the
+                campaign close date). Registered users who do not meet the prize
+                qualification threshold by close are not eligible for any
+                campaign prize, including the Participant tier, regardless of
+                whether they subscribed to Premium during the campaign window.
+              </p>
             </div>
 
             <div>
               <h3 className="font-semibold">2.2 Earning points</h3>
               <p className="mt-2 text-muted">
-                Once entered, you earn points through five actions:
+                Once registered, you earn points through five actions defined in
+                growth/launch.md and summarized here:
               </p>
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full min-w-[32rem] border-collapse text-sm">
@@ -269,15 +286,16 @@ export default function CampaignRulesPage() {
                       <td className="py-2 pr-4">Bring a reader</td>
                       <td className="py-2 pr-4">1,000 pts</td>
                       <td className="py-2">
-                        Someone signs up via your referral link and adds 5+
-                        books within 72 hours
+                        Someone signs up via your unique referral link and adds
+                        5+ books within 72 hours
                       </td>
                     </tr>
                     <tr className="border-b border-border">
                       <td className="py-2 pr-4">Your referral goes deep</td>
                       <td className="py-2 pr-4">500 pts bonus</td>
                       <td className="py-2">
-                        A user you referred reaches 25 books in their library
+                        A user who signed up via your referral link reaches 25
+                        books in their library
                       </td>
                     </tr>
                     <tr className="border-b border-border">
@@ -286,24 +304,44 @@ export default function CampaignRulesPage() {
                       </td>
                       <td className="py-2 pr-4">1,500 pts bonus</td>
                       <td className="py-2">
-                        A user you referred subscribes to Premium
+                        A user who signed up via your referral link subscribes to
+                        Premium
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4">Go Premium (multiplier)</td>
                       <td className="py-2 pr-4">
-                        2× all points earned, plus 2 Golden Tickets
+                        Go Premium (campaign multiplier)
                       </td>
-                      <td className="py-2">You subscribe to Premium</td>
+                      <td className="py-2 pr-4">2× all points earned</td>
+                      <td className="py-2">
+                        You subscribe to Premium during the campaign window
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className="mt-4 text-muted">
-                Golden Tickets are gift codes that grant the recipient free
-                Premium access for a defined period (default: 1 month).
-                Recipients of Golden Tickets also count as referrals for the
-                gifter under the &quot;Bring a reader&quot; action.
+              <p className="mt-4 font-semibold text-muted">
+                Golden Tickets — Premium subscriber benefit (not a campaign
+                reward):
+              </p>
+              <p className="mt-2 text-muted">
+                Premium subscribers receive 2 Golden Tickets during the campaign
+                window. Golden Tickets are gift codes that grant the recipient
+                one calendar month of free Premium access.{" "}
+                <strong>
+                  Golden Tickets and their recipients do not contribute any
+                  points, multipliers, or competitive advantage in the campaign.
+                </strong>{" "}
+                A recipient of a Golden Ticket is not, by virtue of receiving
+                the ticket, counted as a referral for the gifter; the
+                &quot;Bring a reader&quot; action and its related bonuses only
+                apply to users who sign up via the gifter&apos;s unique referral
+                link, separately from any gift activity. Golden Tickets are
+                characterised as a Premium product benefit (a generosity feature
+                for Premium subscribers to share their subscription with
+                friends) and not as a contest mechanic, and are therefore not
+                subject to the Section 8 No-Purchase-Necessary equivalence (see
+                Section 8.3).
               </p>
             </div>
 
@@ -382,22 +420,35 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">3.2 Participant tier qualification</h3>
+              <h3 className="font-semibold">3.2 Prize qualification threshold</h3>
               <p className="mt-2 text-muted">
-                To qualify for the Participant tier (10% lifetime), a user must,
+                To qualify for <strong>any</strong> prize tier (Top Finisher, Top
+                20 Finisher, The Shelf, or Participant), a registered user must,
                 before the campaign close date:
               </p>
               <p className="mt-2 text-muted">
                 (a) Have a complete Readlink profile (display name, handle,
-                profile photo); AND
+                profile photo); <strong>AND</strong>
               </p>
               <p className="text-muted">
                 (b) Add at least 25 books to their Readlink library.
               </p>
               <p className="mt-2 text-muted">
-                Users who sign up but do not meet both (a) and (b) are not
-                entered into the campaign and do not receive any campaign
-                commission entitlement.
+                Registered users who do not meet both (a) and (b) by the campaign
+                close date are not eligible for any prize tier — including the
+                Participant tier — regardless of (i) leaderboard position, (ii)
+                points accumulated, (iii) Premium subscription status, or (iv)
+                Golden Tickets gifted or received. Subscribing to Premium during
+                the campaign window does not substitute for, lower, or otherwise
+                affect the 25-book qualification threshold; non-qualifying
+                Premium subscribers retain full Premium product access for the
+                duration of their subscription but receive no campaign commission
+                entitlement, no hero-section placement, and no leaderboard award.
+              </p>
+              <p className="mt-2 text-muted">
+                Non-qualifying users keep their Readlink account and may
+                participate in the Phase 2 referral program (separate terms) when
+                it launches.
               </p>
             </div>
 
@@ -747,45 +798,106 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">8.1 What the alternative is</h3>
               <p className="mt-2 text-muted">
-                Premium subscription doubles all points earned (&quot;Go
-                Premium&quot; multiplier in Section 2.2). This creates a paid
-                path that could be interpreted as consideration in some
-                jurisdictions. The No-Purchase-Necessary alternative allows any
-                participant to receive an equivalent points multiplier without
-                subscribing to Premium.
+                The &quot;Go Premium&quot; campaign action (Section 2.2) provides
+                Premium subscribers with a 2× points multiplier. The Premium
+                subscription requires payment, which could be interpreted as
+                consideration in some jurisdictions. The No-Purchase-Necessary
+                alternative allows any participant to receive an equivalent 2×
+                points multiplier without subscribing to Premium.
+              </p>
+              <p className="mt-2 text-muted">
+                The No-Purchase-Necessary alternative covers <strong>only</strong>{" "}
+                the 2× points multiplier — that being the sole element of the
+                &quot;Go Premium&quot; campaign action that affects competitive
+                position in the campaign (see Section 8.3 on what is and is not
+                covered).
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold">8.2 How to claim</h3>
               <p className="mt-2 text-muted">
-                To claim the No-Purchase-Necessary points multiplier, send an
-                email to legal@readlink.app with:
+                To claim the No-Purchase-Necessary points multiplier, submit a
+                request through the Readlink contact form at readlink.app/contact:
               </p>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
-                <li>Subject line: &quot;NPN Campaign Entry&quot;</li>
-                <li>Your Readlink handle.</li>
                 <li>
-                  A handwritten declaration (scanned or photographed) stating:
-                  &quot;I request the No-Purchase-Necessary alternative entry to
-                  the Readlink 200 Founders Edition campaign,&quot; signed and
-                  dated.
+                  Select the request type &quot;NPN Campaign Entry.&quot;
+                </li>
+                <li>Provide your Readlink handle.</li>
+                <li>
+                  Attach a handwritten declaration (scanned or photographed)
+                  stating: &quot;I request the No-Purchase-Necessary alternative
+                  entry to the Readlink 200 Founders Edition campaign,&quot;
+                  signed and dated.
                 </li>
               </ul>
               <p className="mt-2 text-muted">
                 Upon receipt and verification, the Promoter will apply the
                 equivalent of the Premium 2× multiplier to the participant&apos;s
-                account for one calendar month from grant date, renewable
-                monthly by re-sending the request.
+                account for the same duration the Premium multiplier would have
+                applied (one calendar month from grant date, renewable monthly by
+                submitting a new request through the same form).
+              </p>
+              <p className="mt-2 text-muted">
+                The Promoter aims to verify and apply No-Purchase-Necessary
+                multipliers within five (5) business days of receipt. The
+                multiplier applies retroactively from the date of request
+                submission once verified.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold">8.3 No other distinction</h3>
+              <h3 className="font-semibold">
+                8.3 Scope of equivalence — what the No-Purchase-Necessary path
+                does and does not cover
+              </h3>
               <p className="mt-2 text-muted">
-                A participant entering via the No-Purchase-Necessary path has
-                equal eligibility for all campaign tiers and prizes as a
-                participant who subscribed to Premium.
+                The No-Purchase-Necessary path provides{" "}
+                <strong>
+                  equivalence with respect to every campaign mechanic that
+                  affects competitive position in the contest
+                </strong>
+                . Currently, the only such mechanic introduced by the &quot;Go
+                Premium&quot; campaign action is the 2× points multiplier. The
+                No-Purchase-Necessary path equalises this mechanic in full.
+              </p>
+              <p className="mt-4 font-semibold text-muted">
+                Golden Tickets are not covered
+              </p>
+              <p className="mt-2 text-muted">
+                by the No-Purchase-Necessary path because Golden Tickets are
+                characterised as a Premium product benefit (a generosity feature
+                for Premium subscribers to share a free month of Premium with
+                friends), not as a campaign mechanic. Under the terms of Section
+                2.2, Golden Tickets and their recipients do not contribute any
+                points, multipliers, or competitive advantage in the campaign —
+                receiving or gifting a Golden Ticket has no effect on a
+                participant&apos;s leaderboard position or prize tier
+                qualification. Because Golden Tickets do not affect competitive
+                position, they fall outside the equal-dignity scope of the
+                No-Purchase-Necessary alternative.
+              </p>
+              <p className="mt-4 font-semibold text-muted">
+                Premium product features
+              </p>
+              <p className="mt-2 text-muted">
+                (the standalone benefits of a Premium subscription unrelated to
+                the campaign — full app features, knowledge-graph proposals,
+                advanced search, and similar) are likewise not covered. These are
+                product features purchased through the Premium subscription, not
+                campaign mechanics.
+              </p>
+              <p className="mt-2 text-muted">
+                A participant entering via the No-Purchase-Necessary path has{" "}
+                <strong>
+                  equal eligibility for all campaign tiers and prizes
+                </strong>{" "}
+                (Top Finisher, Top 20 Finisher, The Shelf, Participant) as a
+                participant who subscribed to Premium, subject only to the same
+                prize-qualification threshold defined in Section 3.2 (complete
+                profile + 25 books). The No-Purchase-Necessary path is not
+                lesser, secondary, or limited in any campaign-mechanic respect.
               </p>
             </div>
           </section>
