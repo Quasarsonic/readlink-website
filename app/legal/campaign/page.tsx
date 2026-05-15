@@ -70,33 +70,128 @@ export default function CampaignRulesPage() {
               <h3 className="font-semibold">1.2 Geographic eligibility</h3>
               <p className="mt-2 text-muted">
                 The campaign is open to residents of all countries where
-                Readlink operates, except jurisdictions where the campaign
-                would qualify as a regulated lottery, sweepstakes, or gambling
-                activity. The campaign is explicitly void in the following
-                jurisdictions:
+                Readlink operates, <strong>except</strong> the jurisdictions
+                listed below. For clarity, jurisdictions are excluded for one of
+                two distinct reasons — legal exclusion (the campaign cannot
+                lawfully run there) or operational exclusion (the campaign could
+                lawfully run with additional compliance work not pursued for the
+                launch). The effect on participants is the same.
+              </p>
+
+              <p className="mt-4 font-semibold text-muted">
+                Open jurisdictions:
               </p>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
-                  United States: open in all states subject to state-level
-                  restrictions; the No-Purchase-Necessary alternative path
-                  (Section 8) ensures compliance with state laws requiring
-                  consideration-free entry.
+                  <strong>United States</strong>: open in all states. The
+                  No-Purchase-Necessary alternative path (Section 8) addresses
+                  state laws requiring consideration-free entry.
                 </li>
-                <li>Canada: open in all provinces except Quebec.</li>
-                <li>France, Belgium: void.</li>
-                <li>Italy: void.</li>
-                <li>Brazil: void.</li>
-                <li>India: void.</li>
-                <li>Saudi Arabia, United Arab Emirates: void.</li>
                 <li>
-                  Specific Swiss cantons with promotional-contest-specific
-                  rules: subject to verification before campaign open.
+                  <strong>Canada (except Quebec)</strong>: open in all provinces
+                  and territories except Quebec (see operational exclusions
+                  below). Per Canadian federal contest law, prize awards in
+                  Canada are subject to a mathematical skill-testing requirement
+                  administered by the Promoter at the time of prize claim.
                 </li>
               </ul>
+
+              <p className="mt-4 font-semibold text-muted">
+                Fully void — legal exclusion
+              </p>
+              <p className="mt-1 text-muted">
+                (the campaign cannot lawfully run in these jurisdictions under
+                our current structure, regardless of additional paperwork):
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+                <li>
+                  <strong>Belgium</strong>: void under Belgian
+                  promotional-contest restrictions.
+                </li>
+                <li>
+                  <strong>Saudi Arabia, United Arab Emirates</strong>: void under
+                  applicable restrictions on prize promotions and games of
+                  chance.
+                </li>
+              </ul>
+
+              <p className="mt-4 font-semibold text-muted">
+                Operationally excluded — compliance lift not pursued for the
+                launch
+              </p>
+              <p className="mt-1 text-muted">
+                (the campaign could lawfully run in these jurisdictions, but
+                the additional registration, bonding, translation, or filing
+                requirements are not pursued for the launch campaign):
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+                <li>
+                  <strong>Quebec</strong>: French-language materials and the
+                  federal skill-testing question requirement not pursued for the
+                  launch. Eligibility may be extended to Quebec residents in
+                  subsequent campaigns.
+                </li>
+                <li>
+                  <strong>France</strong>: French-language materials and{" "}
+                  <em>règlement</em> deposit with a <em>huissier de justice</em>{" "}
+                  not pursued for the launch.
+                </li>
+                <li>
+                  <strong>Italy</strong>: notification to the Ministry of
+                  Enterprises and Made in Italy, prize-value bond,
+                  Italian-server prize-assignment infrastructure, notarial
+                  witnessing, and Italian-language materials not pursued for the
+                  launch.
+                </li>
+                <li>
+                  <strong>Brazil</strong>: SECAP (Secretariat for Evaluation,
+                  Planning, Energy and Lottery) authorization and
+                  Portuguese-language materials not pursued for the launch.
+                </li>
+                <li>
+                  <strong>India</strong>: state-by-state regulatory variability
+                  not assessed for the launch; the campaign is excluded in all
+                  Indian states and union territories.
+                </li>
+              </ul>
+
+              <p className="mt-4 font-semibold text-muted">
+                Subject to pre-launch verification:
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+                <li>
+                  <strong>Specific Swiss cantons</strong> with
+                  promotional-contest-specific rules: subject to verification
+                  before campaign open. Switzerland&apos;s federal Money Gaming Act
+                  treats skill contests (<em>Geschicklichkeitswettbewerbe</em>)
+                  differently from games of chance, and the campaign is
+                  structured as a skill contest; cantonal disclosure rules will
+                  be confirmed before launch.
+                </li>
+              </ul>
+
+              <p className="mt-4 font-semibold text-muted">
+                Note on the Premium multiplier and jurisdictional analysis:
+              </p>
+              <p className="mt-2 text-muted">
+                The Go Premium 2× multiplier (Section 2.2) is a feature of the
+                campaign mechanic and applies uniformly to all eligible
+                participants regardless of jurisdiction. The
+                No-Purchase-Necessary alternative (Section 8) provides an
+                equivalent multiplier to participants who do not subscribe to
+                Premium, neutralizing the multiplier as a basis for excluding
+                additional jurisdictions on consideration grounds. Jurisdictions
+                are excluded above because of categorical legal restrictions or
+                operational compliance lift, not because of the multiplier
+                itself.
+              </p>
+
               <p className="mt-2 text-muted">
                 The Promoter reserves the right to add or remove jurisdictions
                 from the exclusion list at any time if regulatory analysis
-                warrants.
+                warrants. The current exclusion list will be published at
+                readlink.app/legal/campaign at the time of campaign open and
+                updated within 24 hours of any change.
               </p>
             </div>
 

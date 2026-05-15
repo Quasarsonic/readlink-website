@@ -21,7 +21,7 @@ type ShelfLeaderboardProps = {
 export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
   const entries = expanded ? participants : participants.slice(0, 5);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [rowsVisible, setRowsVisible] = useState(false);
+  const [rowsVisible, setRowsVisible] = useState(true);
 
   useEffect(() => {
     if (!expanded) return;

@@ -22,18 +22,33 @@ By participating, you agree to be bound by these Official Rules and the decision
 
 ### 1.2 Geographic eligibility
 
-The campaign is open to residents of all countries where Readlink operates, except jurisdictions where the campaign would qualify as a regulated lottery, sweepstakes, or gambling activity. The campaign is explicitly void in the following jurisdictions:
+The campaign is open to residents of all countries where Readlink operates, **except** the jurisdictions listed below. For clarity, jurisdictions are excluded for one of two distinct reasons — legal exclusion (the campaign cannot lawfully run there) or operational exclusion (the campaign could lawfully run with additional compliance work not pursued for the launch). The effect on participants is the same.
 
-The Promoter reserves the right to add or remove jurisdictions from the exclusion list at any time if regulatory analysis warrants.
+**Open jurisdictions**:
 
-- United States: open in all states subject to state-level restrictions; the No-Purchase-Necessary alternative path (Section 8) ensures compliance with state laws requiring consideration-free entry.
-- Canada: open in all provinces except Quebec.
-- France, Belgium: void.
-- Italy: void.
-- Brazil: void.
-- India: void.
-- Saudi Arabia, United Arab Emirates: void.
-- Specific Swiss cantons with promotional-contest-specific rules: subject to verification before campaign open.
+- **United States**: open in all states. The No-Purchase-Necessary alternative path (Section 8) addresses state laws requiring consideration-free entry.
+- **Canada (except Quebec)**: open in all provinces and territories except Quebec (see operational exclusions below). Per Canadian federal contest law, prize awards in Canada are subject to a mathematical skill-testing requirement administered by the Promoter at the time of prize claim.
+
+**Fully void — legal exclusion** (the campaign cannot lawfully run in these jurisdictions under our current structure, regardless of additional paperwork):
+
+- **Belgium**: void under Belgian promotional-contest restrictions.
+- **Saudi Arabia, United Arab Emirates**: void under applicable restrictions on prize promotions and games of chance.
+
+**Operationally excluded — compliance lift not pursued for the launch** (the campaign could lawfully run in these jurisdictions, but the additional registration, bonding, translation, or filing requirements are not pursued for the launch campaign):
+
+- **Quebec**: French-language materials and the federal skill-testing question requirement not pursued for the launch. Eligibility may be extended to Quebec residents in subsequent campaigns.
+- **France**: French-language materials and *règlement* deposit with a *huissier de justice* not pursued for the launch.
+- **Italy**: notification to the Ministry of Enterprises and Made in Italy, prize-value bond, Italian-server prize-assignment infrastructure, notarial witnessing, and Italian-language materials not pursued for the launch.
+- **Brazil**: SECAP (Secretariat for Evaluation, Planning, Energy and Lottery) authorization and Portuguese-language materials not pursued for the launch.
+- **India**: state-by-state regulatory variability not assessed for the launch; the campaign is excluded in all Indian states and union territories.
+
+**Subject to pre-launch verification**:
+
+- **Specific Swiss cantons** with promotional-contest-specific rules: subject to verification before campaign open. Switzerland's federal Money Gaming Act treats skill contests (*Geschicklichkeitswettbewerbe*) differently from games of chance, and the campaign is structured as a skill contest; cantonal disclosure rules will be confirmed before launch.
+
+**Note on the Premium multiplier and jurisdictional analysis**: The Go Premium 2× multiplier (Section 2.2) is a feature of the campaign mechanic and applies uniformly to all eligible participants regardless of jurisdiction. The No-Purchase-Necessary alternative (Section 8) provides an equivalent multiplier to participants who do not subscribe to Premium, neutralizing the multiplier as a basis for excluding additional jurisdictions on consideration grounds. Jurisdictions are excluded above because of categorical legal restrictions or operational compliance lift, not because of the multiplier itself.
+
+The Promoter reserves the right to add or remove jurisdictions from the exclusion list at any time if regulatory analysis warrants. The current exclusion list will be published at `readlink.app/legal/campaign` at the time of campaign open and updated within 24 hours of any change.
 
 ### 1.3 Excluded persons
 
