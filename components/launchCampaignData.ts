@@ -7,28 +7,14 @@ export type CampaignParticipant = {
   points: number;
 };
 
-export const participants: CampaignParticipant[] = [
-  { rank: 1, name: "Sarah Chen", handle: "sarahreads", referrals: 14, books: 87, points: 4820 },
-  { rank: 2, name: "Marco Rossi", handle: "marcobooks", referrals: 9, books: 143, points: 3650 },
-  { rank: 3, name: "Priya Nair", handle: "priyareads", referrals: 7, books: 62, points: 2900 },
-  { rank: 4, name: "Alex Müller", handle: "alexm", referrals: 5, books: 31, points: 2310 },
-  { rank: 5, name: "Lena Torres", handle: "lena_t", referrals: 3, books: 55, points: 1780 },
-  { rank: 6, name: "Jin Park", handle: "jinreads", referrals: 4, books: 44, points: 1540 },
-  { rank: 7, name: "Sofia Greco", handle: "sofiabooks", referrals: 2, books: 91, points: 1320 },
-  { rank: 8, name: "Tom Eriksson", handle: "tomreads", referrals: 6, books: 28, points: 1180 },
-  { rank: 9, name: "Aisha Diallo", handle: "aishalib", referrals: 1, books: 67, points: 980 },
-  { rank: 10, name: "Luca Ferri", handle: "lucaferri", referrals: 3, books: 39, points: 870 },
-  { rank: 11, name: "Emma Walsh", handle: "emmawalsh", referrals: 2, books: 52, points: 760 },
-  { rank: 12, name: "Ravi Patel", handle: "ravipatel", referrals: 1, books: 33, points: 650 },
-  { rank: 13, name: "Clara Dumont", handle: "clarabooks", referrals: 2, books: 41, points: 590 },
-  { rank: 14, name: "Noah Kim", handle: "noahkim", referrals: 1, books: 29, points: 510 },
-  { rank: 15, name: "Mia Johansson", handle: "miajohansson", referrals: 0, books: 78, points: 450 },
-  { rank: 16, name: "Omar Hassan", handle: "omarhassan", referrals: 1, books: 22, points: 390 },
-  { rank: 17, name: "Lea Müller", handle: "leamuller", referrals: 0, books: 45, points: 340 },
-  { rank: 18, name: "Ivan Petrov", handle: "ivanpetrov", referrals: 1, books: 18, points: 290 },
-  { rank: 19, name: "Yuki Tanaka", handle: "yukitanaka", referrals: 0, books: 61, points: 240 },
-  { rank: 20, name: "Zara Ahmed", handle: "zaraahmed", referrals: 0, books: 34, points: 190 },
-];
+export const participants: CampaignParticipant[] = Array.from({ length: 200 }, (_, index) => ({
+  rank: index + 1,
+  name: "",
+  handle: "",
+  referrals: 0,
+  books: 0,
+  points: 0,
+}));
 
 export type EarnPointsCard = {
   points: string;

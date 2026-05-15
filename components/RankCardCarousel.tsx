@@ -279,7 +279,8 @@ export default function RankCardCarousel() {
                     </div>
 
                     <p className="relative mb-4 font-mono text-[11px] text-[#999999]">
-                      {pointsFormatter.format(participant.points)} pts · {participant.referrals} referrals ·{" "}
+                      {pointsFormatter.format(participant.points)} pts · {participant.referrals}{" "}
+                      {participant.referrals === 1 ? "referral" : "referrals"} ·{" "}
                       {participant.books} books
                     </p>
 

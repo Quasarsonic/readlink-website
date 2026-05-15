@@ -129,7 +129,8 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                     ) : null}
                   </p>
                   <p className="mt-1 truncate text-[12px] text-[#666666]">
-                    @{entry.handle} · {entry.referrals} referrals · {entry.books} books
+                    @{entry.handle} · {entry.referrals}{" "}
+                    {entry.referrals === 1 ? "referral" : "referrals"} · {entry.books} books
                   </p>
                   <div className="mt-2 h-[4px] w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
                     <div
