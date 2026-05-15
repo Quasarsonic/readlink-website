@@ -139,15 +139,17 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
             );
           })}
 
-          <article className="grid grid-cols-[40px_52px_1fr_auto] items-center gap-4 rounded-[12px] border border-dashed border-[rgba(255,255,255,0.04)] px-5 py-[14px] opacity-50">
-            <p className="font-mono text-[13px] text-[#666666]">#200</p>
-            <div className="h-[52px] w-[52px] rounded-[12px] border border-dashed border-[rgba(255,255,255,0.06)]" />
-            <div>
-              <p className="text-[15px] font-medium text-white">Last shelf open</p>
-              <p className="mt-1 text-[12px] text-[#666666]">Could be yours</p>
-            </div>
-            <p className="font-mono text-[16px] text-[#666666]">—</p>
-          </article>
+          {!expanded ? (
+            <article className="grid grid-cols-[40px_52px_1fr_auto] items-center gap-4 rounded-[12px] border border-dashed border-[rgba(255,255,255,0.04)] px-5 py-[14px] opacity-50">
+              <p className="font-mono text-[13px] text-[#666666]">#200</p>
+              <div className="h-[52px] w-[52px] rounded-[12px] border border-dashed border-[rgba(255,255,255,0.06)]" />
+              <div>
+                <p className="text-[15px] font-medium text-white">Last shelf open</p>
+                <p className="mt-1 text-[12px] text-[#666666]">Could be yours</p>
+              </div>
+              <p className="font-mono text-[16px] text-[#666666]">—</p>
+            </article>
+          ) : null}
         </div>
 
         {!expanded ? (
