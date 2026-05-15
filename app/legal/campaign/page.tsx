@@ -19,11 +19,9 @@ export default function CampaignRulesPage() {
         <div className="space-y-12">
           <section className="space-y-4">
             <p className="text-sm text-muted">
-              Effective date: [DATE — to be filled in before publish; ≥3 days
-              before campaign opens]
+              Effective date: 2026-05-15
               <br />
-              Campaign window: [OPEN DATE] through [CLOSE DATE], inclusive.
-              Both dates UTC.
+              Campaign window: 2026-06-01 00:00 UTC through 2026-08-31 23:59 UTC, inclusive. Both dates UTC. (92 days.)
             </p>
             <p>
               Promoter: Lykan Sagl, Ai Salici, 6633 Lavertezzo, Switzerland
@@ -32,7 +30,7 @@ export default function CampaignRulesPage() {
             <p>Governing law: Swiss law.</p>
             <p className="font-semibold">
               NO PURCHASE NECESSARY TO ENTER. A FREE ALTERNATIVE ENTRY METHOD IS
-              AVAILABLE. SEE SECTION 8. VOID WHERE PROHIBITED.
+              AVAILABLE. SEE SECTION 7. VOID WHERE PROHIBITED.
             </p>
             <p>
               By participating, you agree to be bound by these Official Rules
@@ -54,7 +52,7 @@ export default function CampaignRulesPage() {
                   represent and warrant that you meet this age requirement.
                   Readlink does not independently verify participant age; any
                   entry or prize obtained in violation of this requirement is
-                  void and subject to forfeiture under Section 6.
+                  void and subject to forfeiture under Section 5.
                 </li>
                 <li>
                   You must have a valid Readlink account at readlink.app.
@@ -84,7 +82,7 @@ export default function CampaignRulesPage() {
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
                   <strong>United States</strong>: open in all states. The
-                  No-Purchase-Necessary alternative path (Section 8) addresses
+                  No-Purchase-Necessary alternative path (Section 7) addresses
                   state laws requiring consideration-free entry.
                 </li>
                 <li>
@@ -177,7 +175,7 @@ export default function CampaignRulesPage() {
                 The Go Premium 2× multiplier (Section 2.2) is a feature of the
                 campaign mechanic and applies uniformly to all eligible
                 participants regardless of jurisdiction. The
-                No-Purchase-Necessary alternative (Section 8) provides an
+                No-Purchase-Necessary alternative (Section 7) provides an
                 equivalent multiplier to participants who do not subscribe to
                 Premium, neutralizing the multiplier as a basis for excluding
                 additional jurisdictions on consideration grounds. Jurisdictions
@@ -224,46 +222,47 @@ export default function CampaignRulesPage() {
             <p className="text-muted">
               There are two paths to enter: a Standard Entry path (via Readlink
               platform activity) and a No-Purchase-Necessary Alternative Entry
-              path (described in Section 8).
+              path (described in Section 7).
             </p>
 
             <div>
               <h3 className="font-semibold">2.1 Standard entry</h3>
               <ol className="mt-2 list-decimal space-y-1 pl-6 text-muted">
                 <li>
-                  Sign up for a Readlink account at readlink.app during the
-                  campaign window.
+                  Have a Readlink account at readlink.app. Accounts may be
+                  created at any time, including before the campaign opens (see
+                  Section 2.4).
                 </li>
                 <li>
                   Complete your profile (display name, handle, profile photo).
                 </li>
                 <li>
                   You are registered for the campaign when your profile is
-                  complete and appear on the campaign leaderboard from this
-                  point.
+                  complete and the campaign window is open, and you appear on
+                  the campaign leaderboard from this point. Profiles completed
+                  before the campaign opens are registered at the moment the
+                  window opens (Section 2.4).
                 </li>
               </ol>
-              <p className="mt-4 font-semibold text-muted">
-                Note on registration vs. prize qualification:
-              </p>
-              <p className="mt-2 text-muted">
+              <p className="mt-4 text-muted">
+                <strong>Note on registration vs. prize qualification</strong>:
                 Completing your profile registers you for the campaign and
                 places you on the leaderboard, but does not by itself qualify
-                you for any prize tier. Prize tier qualification requires
-                meeting the thresholds in Section 3.2 (a complete profile{" "}
-                <em>and</em> at least 25 books in your Readlink library by the
-                campaign close date). Registered users who do not meet the prize
-                qualification threshold by close are not eligible for any
-                campaign prize, including the Participant tier, regardless of
-                whether they subscribed to Premium during the campaign window.
+                you for any prize tier. Prize tier qualification requires meeting
+                the thresholds in Section 3.2 (a complete profile <em>and</em>{" "}
+                at least 25 books in your Readlink library by the campaign close
+                date). Registered users who do not meet the prize qualification
+                threshold by close are not eligible for any campaign prize,
+                including the Participant tier, regardless of whether they
+                subscribed to Premium during the campaign window.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold">2.2 Earning points</h3>
               <p className="mt-2 text-muted">
-                Once registered, you earn points through five actions defined in
-                growth/launch.md and summarized here:
+                Once registered, you earn points through the following five
+                actions:
               </p>
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full min-w-[32rem] border-collapse text-sm">
@@ -312,9 +311,14 @@ export default function CampaignRulesPage() {
                       <td className="py-2 pr-4">
                         Go Premium (campaign multiplier)
                       </td>
-                      <td className="py-2 pr-4">2× all points earned</td>
+                      <td className="py-2 pr-4">
+                        2× all points earned across the entire campaign
+                        (retroactive + going forward)
+                      </td>
                       <td className="py-2">
-                        You subscribe to Premium during the campaign window
+                        You subscribe to Premium at any point in the campaign
+                        window (or hold an active Premium subscription at
+                        window-open)
                       </td>
                     </tr>
                   </tbody>
@@ -340,8 +344,8 @@ export default function CampaignRulesPage() {
                 characterised as a Premium product benefit (a generosity feature
                 for Premium subscribers to share their subscription with
                 friends) and not as a contest mechanic, and are therefore not
-                subject to the Section 8 No-Purchase-Necessary equivalence (see
-                Section 8.3).
+                subject to the Section 7 No-Purchase-Necessary equivalence (see
+                Section 7.3).
               </p>
             </div>
 
@@ -351,7 +355,106 @@ export default function CampaignRulesPage() {
                 One entry per person. Multiple accounts, automated entries,
                 accounts created by third parties on a participant&apos;s behalf,
                 or any other attempt to circumvent the one-entry-per-person
-                limit are grounds for disqualification (Section 6).
+                limit are grounds for disqualification (Section 5).
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">
+                2.4 Pre-launch activity (accounts and subscriptions created before
+                the campaign opens)
+              </h3>
+              <p className="mt-2 text-muted">
+                The Readlink website is available from the effective date of these
+                Rules. The Readlink mobile application launches on 2026-06-01
+                00:00 UTC, simultaneously with the opening of the campaign window.
+                Before that moment, users may create a Readlink account, complete
+                their profile, and subscribe to Premium via the website.
+                Pre-launch activity interacts with the campaign as follows:
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+                <li>
+                  <strong>Accounts and profile completion</strong>: pre-launch
+                  accounts are valid Readlink accounts under the Terms of Service.
+                  Completing a profile (display name, handle, profile photo) before
+                  the campaign opens reserves the user&apos;s handle, registers the user
+                  with Readlink, and places the user on the campaign leaderboard at 0
+                  points. During the pre-launch period (2026-05-15 through 2026-05-31),
+                  pre-registered users are displayed on the leaderboard sorted by the
+                  timestamp of profile completion, earliest at top; this ordering is
+                  for display purposes only and is not a competitive ranking, as no
+                  points can be earned before the campaign window opens. Point accrual
+                  begins at 2026-06-01 00:00 UTC, after which leaderboard position is
+                  determined solely by points earned during the campaign window in
+                  accordance with Section 2.2 (with ties broken under Section 3.3). No
+                  re-action is required at window-open.
+                </li>
+                <li>
+                  <strong>Library additions and the 25-book threshold (Section 3.2)</strong>: the
+                  library feature is part of the Readlink mobile application, which
+                  does not exist before 2026-06-01 00:00 UTC. No books can be added
+                  to any user&apos;s library before that moment. All books counting
+                  toward the Section 3.2 qualification threshold are therefore added
+                  during the campaign window. The 500-point &quot;Create your library&quot;
+                  award (Section 2.2) can only be earned during the campaign window.
+                </li>
+                <li>
+                  <strong>Premium subscriptions</strong>: pre-launch Premium
+                  subscriptions are valid product subscriptions under the Terms of
+                  Service and entitle the subscriber to the Premium product features
+                  from the moment of subscription. The campaign 2× multiplier (Section
+                  2.2) applies as follows: any participant who holds an active Premium
+                  subscription at the moment the campaign window opens (2026-06-01
+                  00:00 UTC), <strong>or who subscribes to Premium at any point during
+                  the campaign window</strong>, has the 2× multiplier applied to{" "}
+                  <strong>all</strong> campaign points credited to their account — both
+                  points already earned in the window prior to subscription (applied
+                  retroactively) and points earned subsequently (applied going forward).
+                  Once the 2× multiplier has been applied to a participant&apos;s account
+                  through Premium subscription during the campaign window, it remains in
+                  effect for the remainder of that participant&apos;s campaign even if the
+                  Premium subscription is later cancelled. The multiplier is a personal
+                  benefit of the Premium subscription: it applies only to the subscribing
+                  participant&apos;s own campaign points and has no effect on the points of
+                  any other participant (including the subscriber&apos;s referrer or
+                  referrals). There is no retroactive application to pre-window activity,
+                  because no campaign points are earned before 2026-06-01 00:00 UTC.
+                </li>
+                <li>
+                  <strong>Referrals — campaign points vs. lifetime commission</strong>:
+                  campaign points (the &quot;Bring a reader&quot; action and the related
+                  deep-engagement and Premium-conversion bonuses in Section 2.2) are
+                  credited only for signups where the referred user creates their
+                  Readlink account <strong>during the campaign window</strong>{" "}
+                  (2026-06-01 00:00 UTC through 2026-08-31 23:59 UTC) via the
+                  referrer&apos;s unique referral link. Referral signups completed before
+                  2026-06-01 do not contribute to leaderboard points, even if the
+                  qualifying conditions (5+ books within 72 hours, 25 books, Premium
+                  subscription) are met after the window opens.{" "}
+                  <strong>Lifetime referral commissions (Section 3.1) are separate</strong>:
+                  once a participant qualifies for a prize tier at campaign close, the
+                  lifetime commission rate associated with that tier applies to all
+                  referrals the participant has brought to Readlink, including referrals
+                  who signed up during the pre-launch period and including referrals
+                  brought in after the campaign closes. The window restriction governs
+                  campaign-point credit only; it does not narrow the population of
+                  referrals against which the lifetime commission rate is paid.
+                </li>
+                <li>
+                  <strong>Golden Tickets</strong>: Premium subscribers whose
+                  subscription is active at the moment the window opens receive their
+                  2 Golden Tickets at 2026-06-01 00:00 UTC. Users who subscribe to
+                  Premium on or after 2026-06-01 receive their 2 Golden Tickets at the
+                  moment of subscription. Golden Tickets remain a Premium product
+                  benefit unrelated to campaign points (Section 2.2).
+                </li>
+              </ul>
+              <p className="mt-4 text-muted">
+                Nothing in this Section 2.4 changes the Section 3.2 prize
+                qualification threshold or the Section 1 eligibility requirements.
+                Pre-launch participation is handle reservation and Premium product use
+                under the Terms of Service; it is not entry into the competitive
+                period, which begins at 2026-06-01 00:00 UTC.
               </p>
             </div>
           </section>
@@ -401,7 +504,8 @@ export default function CampaignRulesPage() {
                       <td className="py-2 pr-4">The Shelf</td>
                       <td className="py-2">
                         20% lifetime referral commission rate + permanent
-                        featured spot on the Readlink homepage hero section
+                        featured spot on the founders leaderboard at
+                        readlink.app/launch
                       </td>
                     </tr>
                     <tr>
@@ -443,12 +547,8 @@ export default function CampaignRulesPage() {
                 affect the 25-book qualification threshold; non-qualifying
                 Premium subscribers retain full Premium product access for the
                 duration of their subscription but receive no campaign commission
-                entitlement, no hero-section placement, and no leaderboard award.
-              </p>
-              <p className="mt-2 text-muted">
-                Non-qualifying users keep their Readlink account and may
-                participate in the Phase 2 referral program (separate terms) when
-                it launches.
+                entitlement, no hero-section placement, no founders-leaderboard
+                placement, and no campaign award.
               </p>
             </div>
 
@@ -492,10 +592,18 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">3.5 Hero-section placement</h3>
               <p className="mt-2 text-muted">
-                Top 200 finishers receive a permanent placement on the Readlink
-                homepage hero section, displaying their profile photo, display
-                name, handle, and rank. The placement is clickable through to
-                their readlink.app/l/[handle] library page.
+                Top 200 finishers receive permanent featured placement displaying
+                their profile photo, display name, handle, and rank, with the
+                placement surface determined by tier. The top 20 finishers (Top
+                Finisher and Top 20 Finisher tiers, ranks #1–#20) are displayed on
+                the Readlink homepage hero section — the prominent rotating
+                &quot;founders tiles&quot; surface on readlink.app. The Shelf tier
+                (ranks #21–#200) is displayed on the founders leaderboard at
+                readlink.app/launch, which remains live as a permanent founders
+                archive after campaign close. In both surfaces, the placement is
+                clickable through to the finisher&apos;s readlink.app/l/[handle]
+                library page. Both surfaces persist indefinitely subject to Section
+                3.6.
               </p>
             </div>
 
@@ -511,7 +619,7 @@ export default function CampaignRulesPage() {
                 </li>
                 <li>
                   Is found, after the fact, to have gained their rank through
-                  fraud or any prohibited conduct under Section 6.
+                  fraud or any prohibited conduct under Section 5.
                 </li>
                 <li>Voluntarily deletes their Readlink account.</li>
               </ul>
@@ -571,7 +679,7 @@ export default function CampaignRulesPage() {
               <h3 className="font-semibold">4.3 Adjustments</h3>
               <p className="mt-2 text-muted">
                 The Promoter reserves the right to adjust point totals before
-                the closing snapshot if anti-fraud detection (Section 6)
+                the closing snapshot if anti-fraud detection (Section 5)
                 requires it. Post-snapshot adjustments are only made in cases
                 of detected fraud or technical error.
               </p>
@@ -580,29 +688,7 @@ export default function CampaignRulesPage() {
 
           <section className="space-y-4">
             <h2 className="scroll-mt-24 text-2xl font-semibold tracking-tight">
-              5. Phase 1 / Phase 2 referral program structure
-            </h2>
-            <p className="text-muted">
-              During the campaign window (&quot;Phase 1&quot;), referral
-              commissions exist only as campaign prizes. There is no general,
-              open-to-everyone referral program during Phase 1.
-            </p>
-            <p className="text-muted">
-              After campaign close (&quot;Phase 2&quot;), Readlink will launch a
-              general referral program open to all users. Phase 2 terms will be
-              published separately before Phase 2 launches.
-            </p>
-            <p className="text-muted">
-              Campaign-tier participants (Top Finisher, Top 20 Finisher, The
-              Shelf, Participant) keep their campaign-earned commission rates
-              indefinitely under the Phase 2 program. Their rates are not
-              adjusted, reduced, or replaced by the Phase 2 standard rate.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="scroll-mt-24 text-2xl font-semibold tracking-tight">
-              6. Prohibited conduct and disqualification
+              5. Prohibited conduct and disqualification
             </h2>
             <p className="text-muted">
               The Promoter may disqualify any participant, revoke any prize
@@ -611,7 +697,7 @@ export default function CampaignRulesPage() {
             </p>
 
             <div>
-              <h3 className="font-semibold">6.1 Account and identity fraud</h3>
+              <h3 className="font-semibold">5.1 Account and identity fraud</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
                   Creating multiple Readlink accounts to gain multiple entries.
@@ -627,7 +713,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">6.2 Referral fraud</h3>
+              <h3 className="font-semibold">5.2 Referral fraud</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
                   Self-referral via secondary accounts, alternate devices,
@@ -650,7 +736,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">6.3 System gaming</h3>
+              <h3 className="font-semibold">5.3 System gaming</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
                   Using bots, scripts, or any automated tools to perform campaign
@@ -668,7 +754,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">6.4 Other grounds</h3>
+              <h3 className="font-semibold">5.4 Other grounds</h3>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
                   Violating any other section of these Rules or the Readlink
@@ -682,7 +768,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">6.5 Detection methods</h3>
+              <h3 className="font-semibold">5.5 Detection methods</h3>
               <p className="mt-2 text-muted">
                 The Promoter uses a combination of fingerprint, IP,
                 payment-method, email-domain, behavioral, and graph-analysis
@@ -692,7 +778,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">6.6 Consequences</h3>
+              <h3 className="font-semibold">5.6 Consequences</h3>
               <p className="mt-2 text-muted">
                 Consequences of detected prohibited conduct, at the
                 Promoter&apos;s discretion, include any or all of: points
@@ -705,11 +791,11 @@ export default function CampaignRulesPage() {
 
           <section className="space-y-4">
             <h2 className="scroll-mt-24 text-2xl font-semibold tracking-tight">
-              7. Privacy and publicity
+              6. Privacy and publicity
             </h2>
 
             <div>
-              <h3 className="font-semibold">7.1 Data collected</h3>
+              <h3 className="font-semibold">6.1 Data collected</h3>
               <p className="mt-2 text-muted">
                 The Promoter collects the following data from participants for
                 campaign purposes:
@@ -724,13 +810,13 @@ export default function CampaignRulesPage() {
                   referrals made, leaderboard position over time).
                 </li>
                 <li>
-                  Anti-fraud telemetry as needed for Section 6 enforcement.
+                  Anti-fraud telemetry as needed for Section 5 enforcement.
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold">7.2 Use of data</h3>
+              <h3 className="font-semibold">6.2 Use of data</h3>
               <p className="mt-2 text-muted">
                 Campaign data is used to operate the campaign, compute rankings,
                 detect fraud, award prizes, and display the participant on the
@@ -739,7 +825,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">7.3 Publicity rights</h3>
+              <h3 className="font-semibold">6.3 Publicity rights</h3>
               <p className="mt-2 text-muted">
                 By participating, the participant consents to the use of their
                 display name, handle, profile photo, and rank in:
@@ -747,21 +833,25 @@ export default function CampaignRulesPage() {
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
                   The leaderboard at readlink.app/launch and the homepage hero
-                  section during the campaign.
+                  section during the campaign window.
                 </li>
                 <li>
                   Marketing materials related to the campaign for the duration
                   of the campaign and for 12 months after campaign close.
                 </li>
                 <li>
-                  Permanent display on the Readlink homepage hero section if
-                  the participant is a top 200 finisher.
+                  Permanent display on the Readlink homepage hero section if the
+                  participant finishes in the top 20 (Top Finisher or Top 20
+                  Finisher tier), and permanent display on the founders leaderboard
+                  at readlink.app/launch if the participant finishes in The Shelf
+                  tier (ranks #21–#200) — in both cases with no time limit on this
+                  use, subject to the participant retaining their Readlink account.
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold">7.4 Data retention</h3>
+              <h3 className="font-semibold">6.4 Data retention</h3>
               <p className="mt-2 text-muted">
                 Campaign data is retained for the duration of the campaign and
                 for the longer of: (i) the lifetime of the participant&apos;s
@@ -772,7 +862,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">7.5 Reference to Privacy Policy</h3>
+              <h3 className="font-semibold">6.5 Reference to Privacy Policy</h3>
               <p className="mt-2 text-muted">
                 All processing of personal data under this campaign is also
                 governed by the Readlink Privacy Policy at{" "}
@@ -787,7 +877,7 @@ export default function CampaignRulesPage() {
 
           <section className="space-y-4">
             <h2 className="scroll-mt-24 text-2xl font-semibold tracking-tight">
-              8. No-Purchase-Necessary alternative entry
+              7. No-Purchase-Necessary alternative entry
             </h2>
             <p className="text-muted">
               To comply with applicable laws in jurisdictions where any element
@@ -796,7 +886,7 @@ export default function CampaignRulesPage() {
             </p>
 
             <div>
-              <h3 className="font-semibold">8.1 What the alternative is</h3>
+              <h3 className="font-semibold">7.1 What the alternative is</h3>
               <p className="mt-2 text-muted">
                 The &quot;Go Premium&quot; campaign action (Section 2.2) provides
                 Premium subscribers with a 2× points multiplier. The Premium
@@ -809,13 +899,13 @@ export default function CampaignRulesPage() {
                 The No-Purchase-Necessary alternative covers <strong>only</strong>{" "}
                 the 2× points multiplier — that being the sole element of the
                 &quot;Go Premium&quot; campaign action that affects competitive
-                position in the campaign (see Section 8.3 on what is and is not
+                position in the campaign (see Section 7.3 on what is and is not
                 covered).
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold">8.2 How to claim</h3>
+              <h3 className="font-semibold">7.2 How to claim</h3>
               <p className="mt-2 text-muted">
                 To claim the No-Purchase-Necessary points multiplier, submit a
                 request through the Readlink contact form at readlink.app/contact:
@@ -841,15 +931,22 @@ export default function CampaignRulesPage() {
               </p>
               <p className="mt-2 text-muted">
                 The Promoter aims to verify and apply No-Purchase-Necessary
-                multipliers within five (5) business days of receipt. The
-                multiplier applies retroactively from the date of request
-                submission once verified.
+                multipliers within five (5) business days of receipt. Once verified,
+                the 2× multiplier is applied to <strong>all</strong> campaign points
+                credited to the participant&apos;s account — both points already earned
+                earlier in the campaign window (applied retroactively to 2026-06-01
+                00:00 UTC) and points earned subsequently (applied going forward through
+                campaign close). The NPN multiplier, once granted, remains in effect for
+                the remainder of the campaign and does not require renewal or re-request.
+                This matches the application of the Premium 2× multiplier described in
+                Section 2.2 and Section 2.4 and preserves equal-dignity between the two
+                entry paths.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold">
-                8.3 Scope of equivalence — what the No-Purchase-Necessary path
+                7.3 Scope of equivalence — what the No-Purchase-Necessary path
                 does and does not cover
               </h3>
               <p className="mt-2 text-muted">
@@ -904,12 +1001,12 @@ export default function CampaignRulesPage() {
 
           <section className="space-y-4">
             <h2 className="scroll-mt-24 text-2xl font-semibold tracking-tight">
-              9. Disputes and termination
+              8. Disputes and termination
             </h2>
 
             <div>
               <h3 className="font-semibold">
-                9.1 Promoter&apos;s right to modify or terminate
+                8.1 Promoter&apos;s right to modify or terminate
               </h3>
               <p className="mt-2 text-muted">
                 The Promoter reserves the right to terminate, modify, or suspend
@@ -926,7 +1023,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">9.2 Decisions final</h3>
+              <h3 className="font-semibold">8.2 Decisions final</h3>
               <p className="mt-2 text-muted">
                 The Promoter&apos;s decisions on eligibility, ranking, prize
                 awards, and the application of these Rules are final and binding
@@ -935,7 +1032,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">9.3 Disputes</h3>
+              <h3 className="font-semibold">8.3 Disputes</h3>
               <p className="mt-2 text-muted">
                 Disputes arising under these Rules are governed by Swiss law and
                 resolved in the courts of Locarno, Switzerland.

@@ -67,9 +67,7 @@ export function Hero() {
             style={headingStyle}
             className="relative z-10 mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.02em] text-black sm:text-5xl lg:text-6xl text-balance leading-[1.06] will-change-transform sm:mt-8"
           >
-            One of these falling tiles
-            <br />
-            could be yours...
+            Get your tile
           </h1>
 
           <Link

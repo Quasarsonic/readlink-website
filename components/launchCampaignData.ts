@@ -1,3 +1,18 @@
+/** Campaign window (UTC). Update before launch. */
+export const CAMPAIGN_OPEN_ISO = "2026-06-01T00:00:00.000Z";
+export const CAMPAIGN_CLOSE_ISO = "2026-08-31T23:59:59.999Z";
+
+export const campaignOpen = new Date(CAMPAIGN_OPEN_ISO);
+export const campaignClose = new Date(CAMPAIGN_CLOSE_ISO);
+
+export type CampaignPhase = "upcoming" | "active" | "ended";
+
+export function getCampaignPhase(now = Date.now()): CampaignPhase {
+  if (now < campaignOpen.getTime()) return "upcoming";
+  if (now > campaignClose.getTime()) return "ended";
+  return "active";
+}
+
 export type CampaignParticipant = {
   rank: number;
   name: string;

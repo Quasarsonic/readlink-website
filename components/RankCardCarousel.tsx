@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { CampaignCountdown } from "./CampaignCountdown";
 import { participants } from "./launchCampaignData";
 
 function makeSeededRandom(seed: number) {
@@ -158,7 +159,10 @@ export default function RankCardCarousel() {
   const stopDragging = () => setIsDragging(false);
 
   return (
-    <section className="bg-[#0A0A0A] pb-[80px] pt-[120px]">
+    <section className="bg-[#0A0A0A] pb-[80px] pt-[40px]">
+      <div className="mx-auto w-full max-w-[1280px] px-[clamp(16px,5vw,80px)]">
+        <CampaignCountdown />
+      </div>
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start px-[clamp(16px,5vw,80px)] lg:flex-row lg:items-start">
         <div className="w-full lg:w-[40%] lg:pr-12">
           <p className="inline-flex items-center text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">

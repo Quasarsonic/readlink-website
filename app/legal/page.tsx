@@ -31,7 +31,7 @@ export default function LegalPage() {
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 13, 2026
+              Last updated: May 15, 2026
             </p>
             <p>
               Welcome to Readlink. Readlink is operated by Lykan Sagl, Ai
@@ -586,6 +586,74 @@ export default function LegalPage() {
                   entitlements across platforms. RevenueCat acts as our processor for
                   this purpose. See our Privacy Policy for the data flows involved.
                 </p>
+                <h4 className="mt-2 font-semibold">
+                  14.5 Web Subscriptions and Stripe
+                </h4>
+                <p className="mt-2 text-muted">
+                  Premium subscriptions purchased on the Readlink website are sold
+                  and processed by Lykan Sagl as merchant of record, with payments
+                  handled by Stripe Payments Europe, Limited or its affiliates
+                  (&quot;Stripe&quot;) acting as our payment processor. When you
+                  subscribe on the website, you enter into the subscription contract
+                  directly with Lykan Sagl under these Terms; Stripe&apos;s role is
+                  limited to processing the transaction under its own terms applicable
+                  to payers.
+                </p>
+                <p className="mt-2 text-muted">
+                  Web subscriptions auto-renew at the cadence selected at checkout
+                  (monthly or annual) until you cancel. You may cancel a web
+                  subscription at any time through your Readlink account settings or
+                  by contacting us at legal@readlink.app. Cancellation takes effect at
+                  the end of the current billing period; you retain access to Premium
+                  features through that period.
+                </p>
+                <p className="mt-2 text-muted">
+                  Refunds for web subscriptions are handled directly by Readlink. We
+                  will honor refund requests where required by mandatory consumer
+                  protection law, including the European Union right of withdrawal for
+                  digital content where applicable, and otherwise consider refund
+                  requests on a case-by-case basis. Contact legal@readlink.app to
+                  request a refund.
+                </p>
+                <p className="mt-2 text-muted">
+                  We use RevenueCat, Inc. to maintain a single, unified Premium
+                  entitlement across our website and (once available) our mobile
+                  applications. If you subscribe on the website and later sign in on
+                  a mobile device with the same Readlink account, your Premium
+                  entitlement is recognized on both surfaces. RevenueCat does not
+                  handle payment funds; its role is described in Section 14.4 and in
+                  our Privacy Policy.
+                </p>
+                <h4 className="mt-2 font-semibold">
+                  14.6 Premium and Time-Limited Campaigns
+                </h4>
+                <p className="mt-2 text-muted">
+                  From time to time, Readlink runs time-limited campaigns,
+                  promotions, or contests with their own published rules and entry
+                  windows. Subscribing to Premium — whether before, during, or after
+                  such a campaign, and whether on the website (Section 14.5) or
+                  through Apple or Google (Sections 14.1–14.3) — gives you access to
+                  the Premium product features for the term of your subscription, and
+                  is governed by these Terms together with the relevant billing terms.
+                </p>
+                <p className="mt-2 text-muted">
+                  Purchasing or holding a Premium subscription does not, by itself,
+                  enroll you in any campaign. Entry into a campaign, eligibility for
+                  any campaign prize or reward, and the effect (if any) that your
+                  Premium subscription has on campaign mechanics are governed
+                  exclusively by the published rules of that campaign in effect at the
+                  time you participate. Where a campaign&apos;s published rules describe
+                  a benefit, multiplier, or bonus tied to Premium status, that benefit
+                  applies only within the entry window and under the conditions
+                  specified in those rules.
+                </p>
+                <p className="mt-2 text-muted">
+                  Campaigns may include a free alternative entry path for participants
+                  who do not subscribe to Premium; that path is described in the
+                  relevant campaign rules. The existence of such an alternative does
+                  not entitle you to a refund of a Premium subscription you have
+                  separately chosen to purchase.
+                </p>
               </div>
 
               <div>
@@ -726,11 +794,11 @@ export default function LegalPage() {
                   <li>
                     We share data with service providers strictly as needed to
                     operate the Service: Clerk (authentication), Vercel (hosting),
-                    Neon (database), Stripe (payments and identity verification for
-                    the referral program&apos;s cash payout track), RevenueCat
-                    (subscription management and entitlement validation for in-app
-                    purchases), Cookiebot (cookie consent management), and analytics
-                    providers (planned).
+                    Neon (database), Stripe (processing payments for web subscriptions
+                    and identity verification for the referral program&apos;s cash
+                    payout track), RevenueCat (subscription management and entitlement
+                    validation across the website and in-app purchases), Cookiebot
+                    (cookie consent management), and analytics providers (planned).
                   </li>
                   <li>We do not sell your personal data.</li>
                   <li>
@@ -747,6 +815,23 @@ export default function LegalPage() {
                     of this data under its own privacy policy, in addition to its role
                     as our processor for other portions. See the Referral Program
                     Terms for further detail.
+                  </li>
+                  <li>
+                    <strong>Web subscription processing via Stripe:</strong> When you
+                    purchase a Premium subscription on the Readlink website, Stripe
+                    processes the payment as our processor under Swiss data protection
+                    law and the GDPR. Stripe receives the billing email, billing
+                    address, and tokenized payment instrument details necessary to
+                    complete and renew the transaction; we receive only the limited
+                    subscription metadata described in Section 1. Stripe may further
+                    share transaction data with card networks, issuing banks, and
+                    fraud-prevention partners as necessary to authorize and settle the
+                    payment. Stripe operates from the European Union (Stripe Payments
+                    Europe, Limited) and, for cross-border processing flows internal to
+                    Stripe, relies on its own legal transfer mechanisms (standard
+                    contractual clauses, the EU-US Data Privacy Framework). For further
+                    information about how Stripe handles your data, see Stripe&apos;s
+                    Privacy Policy.
                   </li>
                   <li>
                     <strong>In-app purchases via Apple and Google:</strong> When you

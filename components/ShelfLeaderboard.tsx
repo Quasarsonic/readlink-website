@@ -154,12 +154,18 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
         </div>
 
         {!expanded ? (
-          <div className="mt-8 text-center">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/launch"
               className="inline-flex items-center justify-center rounded-[12px] border border-white bg-transparent px-6 py-3 text-[15px] font-medium text-white transition-colors duration-150 ease-in-out hover:bg-white/10"
             >
               Join the Challenge →
+            </Link>
+            <Link
+              href="/launch#challenge"
+              className="inline-flex items-center justify-center rounded-[12px] border border-white bg-transparent px-6 py-3 text-[15px] font-medium text-white transition-colors duration-150 ease-in-out hover:bg-white/10"
+            >
+              Full Leaderboard →
             </Link>
           </div>
         ) : null}
