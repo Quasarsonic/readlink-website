@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { ParticipantAvatar } from "./ParticipantAvatar";
 import { useEffect, useRef, useState } from "react";
 import { participants } from "./launchCampaignData";
 
@@ -107,17 +107,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                   #{entry.rank}
                 </p>
 
-                <div className="h-[52px] w-[52px] overflow-hidden rounded-[12px] border border-[rgba(255,255,255,0.06)]">
-                  <Image
-                    src={`https://i.pravatar.cc/100?img=${entry.rank}`}
-                    alt={`${entry.name} avatar`}
-                    width={52}
-                    height={52}
-                    className="h-full w-full object-cover grayscale"
-                    loading="lazy"
-                    unoptimized
-                  />
-                </div>
+                <ParticipantAvatar name={entry.name} handle={entry.handle} size={52} />
 
                 <div className="min-w-0">
                   <p className="truncate text-[15px] font-medium text-white">
