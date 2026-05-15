@@ -1,4 +1,11 @@
-import { participants } from "./launchCampaignData";
+import { heroParticipants } from "./launchCampaignData";
+import { ParticipantAvatar } from "./ParticipantAvatar";
+
+const rankBorderColors: Record<number, string> = {
+  1: "#E8C96A",
+  2: "#B0B0B0",
+  3: "#C0856A",
+};
 
 type TileConfig = {
   id: number;
@@ -36,11 +43,12 @@ export function HeroProfileTiles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
       {tiles.map((tile, index) => {
-        const participant = participants[index];
+        const participant = heroParticipants[index];
+        const rankBorder = rankBorderColors[participant.rank];
         return (
           <div
             key={participant.rank}
-            className="profile-tile absolute"
+            className="profile-tile absolute flex items-center justify-center"
             style={{
               left: tile.left,
               top: "-120px",
@@ -48,8 +56,12 @@ export function HeroProfileTiles() {
               height: `${tile.height}px`,
               borderRadius: "14px",
               background: "#1A1A1A",
-              border: "1px solid rgba(255,255,255,0.06)",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+              border: rankBorder
+                ? `1px solid ${rankBorder}`
+                : "1px solid rgba(255,255,255,0.06)",
+              boxShadow: rankBorder
+                ? `0 4px 16px rgba(0,0,0,0.08), 0 0 0 1px ${rankBorder}33`
+                : "0 4px 16px rgba(0,0,0,0.08)",
               overflow: "hidden",
               animationName: "floatDown",
               animationDuration: tile.animationDuration,
@@ -57,7 +69,13 @@ export function HeroProfileTiles() {
               animationTimingFunction: "linear",
               animationIterationCount: "infinite",
             }}
-          ></div>
+          >
+            <ParticipantAvatar
+              name={participant.name}
+              handle={participant.handle}
+              size={Math.round(tile.width * 0.85)}
+            />
+          </div>
         );
       })}
     </div>

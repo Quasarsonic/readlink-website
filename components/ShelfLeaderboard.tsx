@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ParticipantAvatar } from "./ParticipantAvatar";
 import { useEffect, useRef, useState } from "react";
-import { participants } from "./launchCampaignData";
+import { isOnHero, participants } from "./launchCampaignData";
 
 const rankColors: Record<number, string> = {
   1: "#E8C96A",
@@ -81,6 +81,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
         <div className="space-y-3">
           {entries.map((entry, index) => {
             const isTopThree = entry.rank <= 3;
+            const showOnHeroBadge = isOnHero(entry.rank);
             const progressWidth = `${Math.max(8, (entry.points / maxPoints) * 100)}%`;
             const rankColor = rankColors[entry.rank] ?? "#666666";
 
@@ -112,7 +113,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                 <div className="min-w-0">
                   <p className="truncate text-[15px] font-medium text-white">
                     {entry.name}
-                    {isTopThree ? (
+                    {showOnHeroBadge ? (
                       <span className="ml-[6px] inline-flex rounded-[4px] bg-[rgba(91,158,248,0.1)] px-[6px] py-[2px] align-middle text-[10px] font-medium uppercase tracking-[0.06em] text-[#5B9EF8]">
                         On Hero
                       </span>

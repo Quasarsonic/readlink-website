@@ -16,6 +16,15 @@ export const participants: CampaignParticipant[] = Array.from({ length: 200 }, (
   points: 0,
 }));
 
+/** Ranks 1–20 appear on the homepage hero and show the "On Hero" leaderboard badge. */
+export const HERO_PARTICIPANT_COUNT = 20;
+
+export const heroParticipants = participants.slice(0, HERO_PARTICIPANT_COUNT);
+
+export function isOnHero(rank: number) {
+  return rank <= HERO_PARTICIPANT_COUNT;
+}
+
 export type EarnPointsCard = {
   points: string;
   suffix: string;
@@ -23,6 +32,7 @@ export type EarnPointsCard = {
   description: string;
   expandedDescription: string;
   trackedVia: string;
+  comingSoon?: boolean;
 };
 
 export const earnPointsCards: EarnPointsCard[] = [
@@ -61,6 +71,24 @@ export const earnPointsCards: EarnPointsCard[] = [
     expandedDescription:
       "A bonus awarded when someone you referred reaches 25 books in their library. You earn this on top of the 800 pts from bringing them in. Rewards you for bringing quality readers, not just sign-ups.",
     trackedVia: "downstream library depth event on referred accounts",
+  },
+  {
+    points: "1,500",
+    suffix: "pts bonus",
+    title: "Referral converts to Premium",
+    description: "Someone you referred subscribes to Premium.",
+    expandedDescription:
+      "A bonus awarded when someone who signed up via your referral link subscribes to Readlink Premium. This is the highest-value action in the campaign — it directly rewards bringing readers who become paying members.",
+    trackedVia: "subscription payment event with referral attribution",
+  },
+  {
+    points: "",
+    suffix: "",
+    title: "More ways to earn",
+    description: "New ways to earn points are coming. Stay tuned.",
+    expandedDescription: "",
+    trackedVia: "",
+    comingSoon: true,
   },
   {
     points: "10",
