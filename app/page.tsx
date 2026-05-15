@@ -2,7 +2,7 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { ShelfLeaderboard } from "@/components/ShelfLeaderboard";
 import { EarnPoints } from "@/components/EarnPoints";
-import { RankCardPreview } from "@/components/RankCardPreview";
+import { FounderRewards } from "@/components/FounderRewards";
 import { Features } from "@/components/features";
 import { Quote } from "@/components/quote";
 import { HowItWorks } from "@/components/how-it-works";
@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <ShelfLeaderboard />
         <EarnPoints />
-        <RankCardPreview />
+        <FounderRewards />
         <Quote />
         <Features />
         <HowItWorks />

@@ -198,9 +198,8 @@ export function Header() {
                 Vision
               </Link>
               <Link
-                href="/#challenge"
+                href="/launch"
                 className="text-sm text-white/85 hover:text-white transition-colors"
-                onClick={navigateHomeSection("challenge")}
               >
                 Challenge
               </Link>
@@ -315,9 +314,9 @@ export function Header() {
                 Vision
               </Link>
               <Link
-                href="/#challenge"
+                href="/launch"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={navigateHomeSection("challenge")}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Challenge
               </Link>

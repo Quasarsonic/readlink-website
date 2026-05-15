@@ -67,16 +67,20 @@ export function Hero() {
             style={headingStyle}
             className="relative z-10 mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.02em] text-black sm:text-5xl lg:text-6xl text-balance leading-[1.06] will-change-transform sm:mt-8"
           >
-            Reimagine How
+            One of these falling tiles
             <br />
-            You Interact With
-            <br />
-            <span className="text-muted/90">Books</span>
+            could be yours...
           </h1>
+
+          <Link
+            href="/launch"
+            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+          >
+            Claim your spot
+          </Link>
 
           {/* Phone mockup with logo */}
           <div className="relative -mt-2 mb-1">
-            {/* Phone mockup */}
             <div
               className="relative mx-auto -translate-y-4 w-[min(88vw,430px)] sm:-translate-y-5"
               style={{ aspectRatio: "1014 / 2048" }}
