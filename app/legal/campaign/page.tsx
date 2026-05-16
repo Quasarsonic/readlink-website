@@ -485,7 +485,7 @@ export default function CampaignRulesPage() {
                   <tbody className="text-muted">
                     <tr className="border-b border-border">
                       <td className="py-2 pr-4">#1 – #3</td>
-                      <td className="py-2 pr-4">Top Finisher</td>
+                      <td className="py-2 pr-4">Top Founders</td>
                       <td className="py-2">
                         50% lifetime referral commission rate + permanent
                         featured spot on the Readlink homepage hero section
@@ -493,7 +493,7 @@ export default function CampaignRulesPage() {
                     </tr>
                     <tr className="border-b border-border">
                       <td className="py-2 pr-4">#4 – #20</td>
-                      <td className="py-2 pr-4">Top 20 Finisher</td>
+                      <td className="py-2 pr-4">First Edition</td>
                       <td className="py-2">
                         35% lifetime referral commission rate + permanent
                         featured spot on the Readlink homepage hero section
@@ -526,8 +526,8 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">3.2 Prize qualification threshold</h3>
               <p className="mt-2 text-muted">
-                To qualify for <strong>any</strong> prize tier (Top Finisher, Top
-                20 Finisher, The Shelf, or Participant), a registered user must,
+                To qualify for <strong>any</strong> prize tier (Top Founders,
+                First Edition, The Shelf, or Participant), a registered user must,
                 before the campaign close date:
               </p>
               <p className="mt-2 text-muted">
@@ -595,7 +595,7 @@ export default function CampaignRulesPage() {
                 Top 200 finishers receive permanent featured placement displaying
                 their profile photo, display name, handle, and rank, with the
                 placement surface determined by tier. The top 20 finishers (Top
-                Finisher and Top 20 Finisher tiers, ranks #1–#20) are displayed on
+                Founders and First Edition tiers, ranks #1–#20) are displayed on
                 the Readlink homepage hero section — the prominent rotating
                 &quot;founders tiles&quot; surface on readlink.app. The Shelf tier
                 (ranks #21–#200) is displayed on the founders leaderboard at
@@ -841,8 +841,8 @@ export default function CampaignRulesPage() {
                 </li>
                 <li>
                   Permanent display on the Readlink homepage hero section if the
-                  participant finishes in the top 20 (Top Finisher or Top 20
-                  Finisher tier), and permanent display on the founders leaderboard
+                  participant finishes in the top 20 (Top Founders or First Edition
+                  tier), and permanent display on the founders leaderboard
                   at readlink.app/launch if the participant finishes in The Shelf
                   tier (ranks #21–#200) — in both cases with no time limit on this
                   use, subject to the participant retaining their Readlink account.
@@ -990,7 +990,7 @@ export default function CampaignRulesPage() {
                 <strong>
                   equal eligibility for all campaign tiers and prizes
                 </strong>{" "}
-                (Top Finisher, Top 20 Finisher, The Shelf, Participant) as a
+                (Top Founders, First Edition, The Shelf, Participant) as a
                 participant who subscribed to Premium, subject only to the same
                 prize-qualification threshold defined in Section 3.2 (complete
                 profile + 25 books). The No-Purchase-Necessary path is not
