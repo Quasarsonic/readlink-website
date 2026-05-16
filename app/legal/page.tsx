@@ -675,7 +675,7 @@ export default function LegalPage() {
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 9, 2026
+              Last updated: May 15, 2026
               <br />
               Controller: Lykan Sagl, Ai Salici, 6633 Lavertezzo, Switzerland
               <br />
@@ -713,6 +713,27 @@ export default function LegalPage() {
                     relationship with Stripe and are subject to Stripe&apos;s
                     Services Agreement, Connected Account Agreement, and Privacy
                     Policy.
+                  </li>
+                  <li>
+                    <strong>
+                      Web subscription data (Premium subscribers on the website)
+                    </strong>
+                    : when you purchase a Premium subscription on the Readlink
+                    website, the transaction is processed by Stripe Payments
+                    Europe, Limited or its affiliates (&quot;Stripe&quot;) under
+                    Stripe&apos;s terms. Stripe collects your billing email, billing
+                    address, and tokenized card or alternative payment instrument
+                    details on our behalf. We do not store full card numbers on our
+                    servers — Stripe retains that data and shares with us only the
+                    limited information necessary to grant you Premium and manage your
+                    subscription, including a customer identifier, subscription
+                    identifier, plan, currency, payment status, and renewal
+                    timestamps. We use RevenueCat, Inc. as our cross-platform
+                    subscription management infrastructure, which receives the same
+                    limited transaction data plus a pseudonymous user identifier we
+                    generate. Lykan Sagl is the merchant of record for web
+                    subscriptions; Stripe is our payment processor (a data processor)
+                    under Swiss data protection law and the GDPR.
                   </li>
                   <li>
                     In-app purchase and subscription data (paid features only): when

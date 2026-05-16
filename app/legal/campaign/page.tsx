@@ -386,7 +386,7 @@ export default function CampaignRulesPage() {
                   points can be earned before the campaign window opens. Point accrual
                   begins at 2026-06-01 00:00 UTC, after which leaderboard position is
                   determined solely by points earned during the campaign window in
-                  accordance with Section 2.2 (with ties broken under Section 3.3). No
+                  accordance with Section 2.2 (with ties broken under Section 3.4). No
                   re-action is required at window-open.
                 </li>
                 <li>
@@ -1047,11 +1047,11 @@ export default function CampaignRulesPage() {
 
           <section className="space-y-4">
             <h2 className="scroll-mt-24 text-2xl font-semibold tracking-tight">
-              10. Miscellaneous
+              9. Miscellaneous
             </h2>
 
             <div>
-              <h3 className="font-semibold">10.1 Severability</h3>
+              <h3 className="font-semibold">9.1 Severability</h3>
               <p className="mt-2 text-muted">
                 If any provision of these Rules is found to be invalid or
                 unenforceable, the remaining provisions remain in full force.
@@ -1059,7 +1059,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">10.2 No waiver</h3>
+              <h3 className="font-semibold">9.2 No waiver</h3>
               <p className="mt-2 text-muted">
                 The Promoter&apos;s failure to enforce any provision of these
                 Rules in any specific case does not waive the Promoter&apos;s
@@ -1068,7 +1068,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">10.3 Independent campaign</h3>
+              <h3 className="font-semibold">9.3 Independent campaign</h3>
               <p className="mt-2 text-muted">
                 This campaign is not sponsored, endorsed, administered by, or
                 associated with Apple Inc., Google LLC, Meta Platforms Inc., or
@@ -1077,7 +1077,7 @@ export default function CampaignRulesPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold">10.4 Contact</h3>
+              <h3 className="font-semibold">9.4 Contact</h3>
               <p className="mt-2 text-muted">
                 For questions about these Rules: legal@readlink.app.
               </p>
