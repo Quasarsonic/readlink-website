@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ParticipantAvatar } from "./ParticipantAvatar";
 import { useEffect, useRef, useState } from "react";
+import { CampaignCountdown } from "./CampaignCountdown";
+import { CampaignStatusBadge } from "./CampaignStatusBadge";
 import { isOnHero, participants } from "./launchCampaignData";
 
 const rankColors: Record<number, string> = {
@@ -63,14 +65,11 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
             >
               The 200 Founders Edition
             </h2>
-            <div className="inline-flex items-center gap-1.5">
-              <span
-                className="h-2 w-2 rounded-full bg-[#5B9EF8]"
-                style={{ animation: "pulse 2s infinite" }}
-              />
-              <span className="text-[11px] font-medium text-[#5B9EF8]">live</span>
-            </div>
+            <CampaignStatusBadge />
           </div>
+          {!expanded ? (
+            <CampaignCountdown size="sm" showHeader={false} className="mt-4" />
+          ) : null}
           <p className="mt-4 max-w-2xl text-[14px] leading-[1.6] text-[#999999]">
             {expanded
               ? "Rankings update in real time. Top 200 earn a permanent spot on the homepage."
