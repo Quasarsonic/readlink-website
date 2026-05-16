@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const bodyTextClass = "max-w-prose text-[14px] leading-[1.6] text-[#999999]";
 
 const founderTiers = [
@@ -124,6 +126,11 @@ export function FounderRewards() {
 
         <p className="mt-8 max-w-prose text-[12px] leading-[1.6] text-[#666666]">
           To qualify for any tier, build your library: 25 books. Ties broken by who got there first.
+          No purchase necessary — see the{" "}
+          <Link href="/legal/campaign" className="text-inherit underline-offset-2 hover:underline">
+            Official Rules
+          </Link>{" "}
+          for the free alternative entry path. Void where prohibited.
         </p>
       </div>
     </section>
