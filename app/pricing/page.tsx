@@ -8,15 +8,17 @@ const planButtonClassName =
 
 const plans = [
   {
-    id: "monthly",
+    id: "annually",
+    label: "Annually",
     price: "$9.99",
-    period: "per month",
+    billing: "Billed annually",
+    savings: "Save 33%",
   },
   {
-    id: "yearly",
-    price: "$99.99",
-    period: "per year",
-    savings: "2 months free",
+    id: "monthly",
+    label: "Monthly",
+    price: "$14.99",
+    billing: "Billed monthly",
   },
 ] as const;
 
@@ -42,16 +44,24 @@ export default function PricingPage() {
                     key={plan.id}
                     className="feature-card flex h-full min-h-[17.5rem] flex-col overflow-hidden p-8 sm:min-h-[19rem] sm:p-10"
                   >
+                    <div className="mb-4 inline-flex w-fit items-center rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium uppercase tracking-widest text-white">
+                      {plan.label}
+                    </div>
                     <div className="flex flex-1 flex-col justify-start">
-                      <p className="text-5xl font-medium tabular-nums tracking-tight text-white lg:text-6xl">
-                        {plan.price}
-                      </p>
-                      <div className="mt-4 flex flex-col gap-2">
+                      <div className="flex items-baseline gap-1">
+                        <p className="text-5xl font-medium tabular-nums tracking-tight text-white lg:text-6xl">
+                          {plan.price}
+                        </p>
+                        <span className="text-2xl font-medium tracking-tight text-white lg:text-3xl">
+                          /mo
+                        </span>
+                      </div>
+                      <div className="mt-4 flex flex-col gap-1">
                         <p className="text-sm leading-relaxed text-white/60">
-                          {plan.period}
+                          {plan.billing}
                         </p>
                         {"savings" in plan && plan.savings ? (
-                          <p className="pb-8 text-sm leading-relaxed text-white/60">
+                          <p className="text-sm leading-relaxed text-white/60">
                             {plan.savings}
                           </p>
                         ) : null}
