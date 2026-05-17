@@ -675,7 +675,7 @@ export default function LegalPage() {
             <p className="text-sm text-muted">
               Effective date: March 2, 2026
               <br />
-              Last updated: May 15, 2026
+              Last updated: May 17, 2026
               <br />
               Controller: Lykan Sagl, Ai Salici, 6633 Lavertezzo, Switzerland
               <br />
@@ -700,20 +700,6 @@ export default function LegalPage() {
                     derived from IP.
                   </li>
                   <li>Cookies &amp; tracking: see Cookie Policy.</li>
-                  <li>
-                    Payment data (referrers opting into cash payouts only): full
-                    legal name, address, government-issued identification, bank or
-                    card details, tax identifiers, and additional information
-                    required by Stripe for identity verification,
-                    anti-money-laundering screening, and tax reporting. This data
-                    is collected by Stripe, Inc. and its affiliates through
-                    Stripe&apos;s hosted onboarding flow (Stripe Connect Express)
-                    when you opt into cash commissions under our referral program.
-                    By opting in, you also enter into a direct contractual
-                    relationship with Stripe and are subject to Stripe&apos;s
-                    Services Agreement, Connected Account Agreement, and Privacy
-                    Policy.
-                  </li>
                   <li>
                     <strong>
                       Web subscription data (Premium subscribers on the website)
@@ -789,8 +775,7 @@ export default function LegalPage() {
                 <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                   <li>
                     <strong>Performance of a contract</strong> — to provide the
-                    Service you signed up for, and to process referral commissions for
-                    participants in the referral program.
+                    Service you signed up for.
                   </li>
                   <li>
                     <strong>Legitimate interest</strong> — to operate, secure, and
@@ -802,9 +787,7 @@ export default function LegalPage() {
                     optional features.
                   </li>
                   <li>
-                    <strong>Legal obligation</strong> — to comply with applicable law,
-                    including anti-money-laundering, sanctions screening, and tax
-                    reporting obligations triggered by referral commission payouts.
+                    <strong>Legal obligation</strong> — to comply with applicable law.
                   </li>
                 </ul>
               </div>
@@ -815,28 +798,12 @@ export default function LegalPage() {
                   <li>
                     We share data with service providers strictly as needed to
                     operate the Service: Clerk (authentication), Vercel (hosting),
-                    Neon (database), Stripe (processing payments for web subscriptions
-                    and identity verification for the referral program&apos;s cash
-                    payout track), RevenueCat (subscription management and entitlement
+                    Neon (database), Stripe (processing payments for web subscriptions),
+                    RevenueCat (subscription management and entitlement
                     validation across the website and in-app purchases), Cookiebot
                     (cookie consent management), and analytics providers (planned).
                   </li>
                   <li>We do not sell your personal data.</li>
-                  <li>
-                    <strong>Payment data and international payout transfers:</strong>{" "}
-                    For referrers who opt into cash payouts under our referral
-                    program, payment-related personal data is shared with Stripe,
-                    Inc. and its affiliates, banking partners, and intermediary
-                    financial networks. Cash payouts are processed through Stripe
-                    Connect Express. Cross-border payouts may involve correspondent
-                    banks and payment networks in the recipient&apos;s country. Stripe
-                    Connect Express onboarding, dashboard access, and feature
-                    availability vary by country and are subject to Stripe&apos;s local
-                    terms. Stripe operates as an independent controller for portions
-                    of this data under its own privacy policy, in addition to its role
-                    as our processor for other portions. See the Referral Program
-                    Terms for further detail.
-                  </li>
                   <li>
                     <strong>Web subscription processing via Stripe:</strong> When you
                     purchase a Premium subscription on the Readlink website, Stripe
@@ -937,12 +904,6 @@ export default function LegalPage() {
                   <li>
                     <strong>Logs and security data:</strong> retained for limited
                     periods consistent with security and legal needs.
-                  </li>
-                  <li>
-                    <strong>Payment and KYC data:</strong> retained by Stripe and by
-                    Readlink for the periods required by applicable
-                    anti-money-laundering, tax, and accounting law, typically up to 10
-                    years after the last payout, regardless of account termination.
                   </li>
                 </ul>
               </div>

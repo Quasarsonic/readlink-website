@@ -21,6 +21,8 @@ export default function CampaignRulesPage() {
             <p className="text-sm text-muted">
               Effective date: 2026-05-15
               <br />
+              Last updated: May 17, 2026
+              <br />
               Campaign window: 2026-06-01 00:00 UTC through 2026-08-31 23:59 UTC, inclusive. Both dates UTC. (92 days.)
             </p>
             <p>
@@ -253,8 +255,8 @@ export default function CampaignRulesPage() {
                 at least 25 books in your Readlink library by the campaign close
                 date). Registered users who do not meet the prize qualification
                 threshold by close are not eligible for any campaign prize,
-                including the Participant tier, regardless of whether they
-                subscribed to Premium during the campaign window.
+                regardless of whether they subscribed to Premium during the
+                campaign window.
               </p>
             </div>
 
@@ -275,45 +277,32 @@ export default function CampaignRulesPage() {
                   </thead>
                   <tbody className="text-muted">
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">
-                        Create your library (25 books)
-                      </td>
-                      <td className="py-2 pr-4">500 pts</td>
-                      <td className="py-2">Library reaches 25 books</td>
+                      <td className="py-2 pr-4">[Coming soon]</td>
+                      <td className="py-2 pr-4">TBD</td>
+                      <td className="py-2">TBD</td>
                     </tr>
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">Bring a reader</td>
-                      <td className="py-2 pr-4">1,000 pts</td>
-                      <td className="py-2">
-                        Someone signs up via your unique referral link and adds
-                        5+ books within 72 hours
-                      </td>
+                      <td className="py-2 pr-4">[Coming soon]</td>
+                      <td className="py-2 pr-4">TBD</td>
+                      <td className="py-2">TBD</td>
                     </tr>
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">Your referral goes deep</td>
-                      <td className="py-2 pr-4">500 pts bonus</td>
-                      <td className="py-2">
-                        A user who signed up via your referral link reaches 25
-                        books in their library
-                      </td>
+                      <td className="py-2 pr-4">[Coming soon]</td>
+                      <td className="py-2 pr-4">TBD</td>
+                      <td className="py-2">TBD</td>
                     </tr>
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">
-                        Referral converts to Premium
-                      </td>
-                      <td className="py-2 pr-4">1,500 pts bonus</td>
-                      <td className="py-2">
-                        A user who signed up via your referral link subscribes to
-                        Premium
-                      </td>
+                      <td className="py-2 pr-4">[Coming soon]</td>
+                      <td className="py-2 pr-4">TBD</td>
+                      <td className="py-2">TBD</td>
                     </tr>
                     <tr>
                       <td className="py-2 pr-4">
                         Go Premium (campaign multiplier)
                       </td>
                       <td className="py-2 pr-4">
-                        2× all points earned across the entire campaign
-                        (retroactive + going forward)
+                        2× all points earned through the actions in this Section
+                        2.2 once defined
                       </td>
                       <td className="py-2">
                         You subscribe to Premium at any point in the campaign
@@ -324,6 +313,14 @@ export default function CampaignRulesPage() {
                   </tbody>
                 </table>
               </div>
+              <p className="mt-2 text-muted">
+                Actions 1–4 above are placeholders. The Promoter will define and
+                publish the four actions before the campaign window opens
+                (2026-06-01 00:00 UTC). Any such definitions will be published as
+                amendments to these Rules under Section 8.1, with at least seven
+                (7) days&apos; advance notice before they take effect. Until actions
+                1–4 are defined and published, points are not earned through them.
+              </p>
               <p className="mt-4 font-semibold text-muted">
                 Golden Tickets — Premium subscriber benefit (not a campaign
                 reward):
@@ -337,10 +334,11 @@ export default function CampaignRulesPage() {
                   points, multipliers, or competitive advantage in the campaign.
                 </strong>{" "}
                 A recipient of a Golden Ticket is not, by virtue of receiving
-                the ticket, counted as a referral for the gifter; the
-                &quot;Bring a reader&quot; action and its related bonuses only
-                apply to users who sign up via the gifter&apos;s unique referral
-                link, separately from any gift activity. Golden Tickets are
+                the ticket, counted as a referral for the gifter; if a future
+                campaign action defined under Section 2.2 involves referrals,
+                that action will apply only to users who sign up via the
+                gifter&apos;s unique referral link, separately from any gift activity.
+                Golden Tickets are
                 characterised as a Premium product benefit (a generosity feature
                 for Premium subscribers to share their subscription with
                 friends) and not as a contest mechanic, and are therefore not
@@ -395,8 +393,9 @@ export default function CampaignRulesPage() {
                   does not exist before 2026-06-01 00:00 UTC. No books can be added
                   to any user&apos;s library before that moment. All books counting
                   toward the Section 3.2 qualification threshold are therefore added
-                  during the campaign window. The 500-point &quot;Create your library&quot;
-                  award (Section 2.2) can only be earned during the campaign window.
+                  during the campaign window. Any future campaign action tied to the
+                  25-book threshold, once defined per Section 2.2, can only be earned
+                  during the campaign window.
                 </li>
                 <li>
                   <strong>Premium subscriptions</strong>: pre-launch Premium
@@ -407,7 +406,8 @@ export default function CampaignRulesPage() {
                   subscription at the moment the campaign window opens (2026-06-01
                   00:00 UTC), <strong>or who subscribes to Premium at any point during
                   the campaign window</strong>, has the 2× multiplier applied to{" "}
-                  <strong>all</strong> campaign points credited to their account — both
+                  <strong>all</strong>{" "}
+                  campaign points credited to their account — both
                   points already earned in the window prior to subscription (applied
                   retroactively) and points earned subsequently (applied going forward).
                   Once the 2× multiplier has been applied to a participant&apos;s account
@@ -421,24 +421,13 @@ export default function CampaignRulesPage() {
                   because no campaign points are earned before 2026-06-01 00:00 UTC.
                 </li>
                 <li>
-                  <strong>Referrals — campaign points vs. lifetime commission</strong>:
-                  campaign points (the &quot;Bring a reader&quot; action and the related
-                  deep-engagement and Premium-conversion bonuses in Section 2.2) are
-                  credited only for signups where the referred user creates their
-                  Readlink account <strong>during the campaign window</strong>{" "}
-                  (2026-06-01 00:00 UTC through 2026-08-31 23:59 UTC) via the
-                  referrer&apos;s unique referral link. Referral signups completed before
-                  2026-06-01 do not contribute to leaderboard points, even if the
-                  qualifying conditions (5+ books within 72 hours, 25 books, Premium
-                  subscription) are met after the window opens.{" "}
-                  <strong>Lifetime referral commissions (Section 3.1) are separate</strong>:
-                  once a participant qualifies for a prize tier at campaign close, the
-                  lifetime commission rate associated with that tier applies to all
-                  referrals the participant has brought to Readlink, including referrals
-                  who signed up during the pre-launch period and including referrals
-                  brought in after the campaign closes. The window restriction governs
-                  campaign-point credit only; it does not narrow the population of
-                  referrals against which the lifetime commission rate is paid.
+                  <strong>Referrals</strong>: when one of the defined actions in
+                  Section 2.2 (once published) involves a referral, campaign points
+                  for that action are credited only for referee accounts created
+                  during the campaign window (2026-06-01 00:00 UTC through 2026-08-31
+                  23:59 UTC) via the referrer&apos;s unique referral link. Referral
+                  signups completed before 2026-06-01 do not contribute to leaderboard
+                  points.
                 </li>
                 <li>
                   <strong>Golden Tickets</strong>: Premium subscribers whose
@@ -468,8 +457,11 @@ export default function CampaignRulesPage() {
               <h3 className="font-semibold">3.1 Prize tiers</h3>
               <p className="mt-2 text-muted">
                 Final leaderboard positions at the close of the campaign window
-                lock each participant&apos;s prize tier. All prizes are truly
-                lifetime (no sunset, no cap, no expiry).
+                lock each participant&apos;s prize tier. All visibility prizes
+                (homepage hero and founders page placement) are permanent and persist
+                for as long as Readlink operates, subject to the forfeiture conditions
+                in Section 3.6. Premium-time prizes activate at campaign close for the
+                duration awarded.
               </p>
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full min-w-[40rem] border-collapse text-sm">
@@ -487,35 +479,26 @@ export default function CampaignRulesPage() {
                       <td className="py-2 pr-4">#1 – #3</td>
                       <td className="py-2 pr-4">Top Founders</td>
                       <td className="py-2">
-                        50% lifetime referral commission rate + permanent
-                        featured spot on the Readlink homepage hero section
+                        3 years of free Readlink Premium + permanent featured spot
+                        on the Readlink homepage hero section
                       </td>
                     </tr>
                     <tr className="border-b border-border">
                       <td className="py-2 pr-4">#4 – #20</td>
                       <td className="py-2 pr-4">First Edition</td>
                       <td className="py-2">
-                        35% lifetime referral commission rate + permanent
-                        featured spot on the Readlink homepage hero section
-                      </td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="py-2 pr-4">#21 – #200</td>
-                      <td className="py-2 pr-4">The Shelf</td>
-                      <td className="py-2">
-                        20% lifetime referral commission rate + permanent
-                        featured spot on the founders leaderboard at
-                        readlink.app/launch
+                        1 year of free Readlink Premium + permanent featured spot on
+                        the Readlink homepage hero section
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-2 pr-4">
-                        Participated, didn&apos;t finish top 200, qualified per
-                        Section 3.2
-                      </td>
-                      <td className="py-2 pr-4">Participant</td>
+                      <td className="py-2 pr-4">#21 – #200</td>
+                      <td className="py-2 pr-4">Collection</td>
                       <td className="py-2">
-                        10% lifetime referral commission rate
+                        Up to 6 months of free Readlink Premium, scaled by points
+                        earned according to a published schedule (see Section 3.3
+                        below) + permanent featured spot on the founders page at
+                        readlink.app/launch
                       </td>
                     </tr>
                   </tbody>
@@ -527,7 +510,7 @@ export default function CampaignRulesPage() {
               <h3 className="font-semibold">3.2 Prize qualification threshold</h3>
               <p className="mt-2 text-muted">
                 To qualify for <strong>any</strong> prize tier (Top Founders,
-                First Edition, The Shelf, or Participant), a registered user must,
+                First Edition, or Collection), a registered user must,
                 before the campaign close date:
               </p>
               <p className="mt-2 text-muted">
@@ -539,53 +522,55 @@ export default function CampaignRulesPage() {
               </p>
               <p className="mt-2 text-muted">
                 Registered users who do not meet both (a) and (b) by the campaign
-                close date are not eligible for any prize tier — including the
-                Participant tier — regardless of (i) leaderboard position, (ii)
-                points accumulated, (iii) Premium subscription status, or (iv)
-                Golden Tickets gifted or received. Subscribing to Premium during
-                the campaign window does not substitute for, lower, or otherwise
-                affect the 25-book qualification threshold; non-qualifying
-                Premium subscribers retain full Premium product access for the
-                duration of their subscription but receive no campaign commission
-                entitlement, no hero-section placement, no founders-leaderboard
-                placement, and no campaign award.
+                close date are not eligible for any prize tier, regardless of (i)
+                leaderboard position, (ii) points accumulated, (iii) Premium
+                subscription status, or (iv) Golden Tickets gifted or received.
+                Subscribing to Premium during the campaign window does not
+                substitute for, lower, or otherwise affect the 25-book qualification
+                threshold; non-qualifying Premium subscribers retain full Premium
+                product access for the duration of their subscription but receive
+                no campaign award.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold">
-                3.3 Commission rate — what it applies to
+                3.3 Premium-time prize — what it covers
               </h3>
               <p className="mt-2 text-muted">
-                The lifetime commission rate applies to: every referred user
-                who subscribes to Readlink Premium, paid for the duration of
-                that referred user&apos;s Premium subscription, at the
-                percentage of the subscription revenue defined by the
-                participant&apos;s tier.
+                The Premium-time prize activates at the campaign close date. Top
+                Founders (ranks #1–#3) receive 3 years of free Readlink Premium.
+                First Edition (ranks #4–#20) receive 1 year of free Readlink
+                Premium. Collection (ranks #21–#200) receive up to 6 months of
+                free Readlink Premium, scaled by points earned at campaign close
+                according to a points-to-Premium-time schedule that will be
+                published at readlink.app/legal/campaign before the campaign
+                window opens.
               </p>
               <p className="mt-2 text-muted">
-                Commissions are credited to the participant&apos;s Readlink
-                commission balance and convertible to: (i) Premium credit applied
-                against their own subscription, (ii) general in-app credit, or
-                (iii) cash payout via Stripe Express subject to a minimum payout
-                threshold (CHF 100) and Stripe Express identity-verification
-                (KYC) requirements.
+                Free Premium time grants the participant access to all Premium
+                product features for the duration awarded, beginning at campaign
+                close. Free Premium time is not transferable, not redeemable for
+                cash, and does not stack with any concurrent paid Premium
+                subscription (a paid subscription is paused for the duration of
+                the free Premium-time award, with paid renewal resuming
+                automatically after the free period ends, unless the participant
+                cancels).
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold">3.4 Tie-breaker</h3>
               <p className="mt-2 text-muted">
-                If two or more participants are tied at exactly the same
-                points total at a tier boundary, the tie-breaker is the earliest
-                timestamp at which each participant reached that point total.
-                The participant who reached it earliest wins the higher rank.
+                If two or more participants are tied at exactly the same points
+                total at a tier boundary, the tie-breaker is the earliest
+                timestamp at which each participant reached that point total. The
+                participant who reached it earliest wins the higher rank.
               </p>
               <p className="mt-2 text-muted">
-                If the earliest-timestamp data is unavailable, the secondary
-                tie-breaker is the participant with the higher count of
-                &quot;Bring a reader&quot; actions (most referrals). Final
-                tertiary tie-breaker is at the Promoter&apos;s sole discretion.
+                If the earliest-timestamp data is unavailable, the tie-breaker is
+                at the Promoter&apos;s sole discretion based on overall campaign
+                contribution.
               </p>
             </div>
 
@@ -597,8 +582,8 @@ export default function CampaignRulesPage() {
                 placement surface determined by tier. The top 20 finishers (Top
                 Founders and First Edition tiers, ranks #1–#20) are displayed on
                 the Readlink homepage hero section — the prominent rotating
-                &quot;founders tiles&quot; surface on readlink.app. The Shelf tier
-                (ranks #21–#200) is displayed on the founders leaderboard at
+                &quot;founders tiles&quot; surface on readlink.app. The Collection tier
+                (ranks #21–#200) is displayed on the founders page at
                 readlink.app/launch, which remains live as a permanent founders
                 archive after campaign close. In both surfaces, the placement is
                 clickable through to the finisher&apos;s readlink.app/l/[handle]
@@ -610,8 +595,8 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">3.6 Forfeiture of prize</h3>
               <p className="mt-2 text-muted">
-                The Promoter may revoke any prize tier (commission rate and/or
-                hero placement) if the participant:
+                The Promoter may revoke any prize tier (Premium-time award and/or
+                featured placement) if the participant:
               </p>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
@@ -636,9 +621,11 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">3.8 Tax responsibility</h3>
               <p className="mt-2 text-muted">
-                Participants are solely responsible for any taxes owed on
-                commissions earned. Readlink may issue tax documentation where
-                required by law.
+                Participants are solely responsible for any taxes owed on the value
+                of campaign prizes, including any in-kind value attributed to free
+                Premium-time awards under applicable local tax law. Readlink may
+                issue tax documentation where required by law in the participant&apos;s
+                jurisdiction.
               </p>
             </div>
 
@@ -692,7 +679,7 @@ export default function CampaignRulesPage() {
             </h2>
             <p className="text-muted">
               The Promoter may disqualify any participant, revoke any prize
-              tier, and reverse any accrued points or commissions if the
+              tier, and reverse any accrued points if the
               participant engages in any of the following:
             </p>
 
@@ -782,7 +769,7 @@ export default function CampaignRulesPage() {
               <p className="mt-2 text-muted">
                 Consequences of detected prohibited conduct, at the
                 Promoter&apos;s discretion, include any or all of: points
-                reversal, commission balance reversal, removal from the
+                reversal, removal from the
                 leaderboard, disqualification from the campaign, revocation of
                 prize tier, and account suspension or termination.
               </p>
@@ -807,7 +794,7 @@ export default function CampaignRulesPage() {
                 </li>
                 <li>
                   Campaign activity (points accrued, actions completed,
-                  referrals made, leaderboard position over time).
+                  leaderboard position over time).
                 </li>
                 <li>
                   Anti-fraud telemetry as needed for Section 5 enforcement.
@@ -842,8 +829,8 @@ export default function CampaignRulesPage() {
                 <li>
                   Permanent display on the Readlink homepage hero section if the
                   participant finishes in the top 20 (Top Founders or First Edition
-                  tier), and permanent display on the founders leaderboard
-                  at readlink.app/launch if the participant finishes in The Shelf
+                  tier), and permanent display on the founders page at
+                  readlink.app/launch if the participant finishes in the Collection
                   tier (ranks #21–#200) — in both cases with no time limit on this
                   use, subject to the participant retaining their Readlink account.
                 </li>
@@ -853,11 +840,11 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">6.4 Data retention</h3>
               <p className="mt-2 text-muted">
-                Campaign data is retained for the duration of the campaign and
-                for the longer of: (i) the lifetime of the participant&apos;s
-                Readlink account, or (ii) such period as is necessary to
-                administer the lifetime commission prize and comply with
-                applicable legal and tax requirements.
+                Campaign data is retained for the duration of the campaign and for
+                the longer of: (i) the lifetime of the participant&apos;s Readlink
+                account, or (ii) such period as is necessary to administer the
+                Premium-time prize and comply with applicable legal and tax
+                requirements.
               </p>
             </div>
 
@@ -932,7 +919,8 @@ export default function CampaignRulesPage() {
               <p className="mt-2 text-muted">
                 The Promoter aims to verify and apply No-Purchase-Necessary
                 multipliers within five (5) business days of receipt. Once verified,
-                the 2× multiplier is applied to <strong>all</strong> campaign points
+                the 2× multiplier is applied to <strong>all</strong>{" "}
+                campaign points
                 credited to the participant&apos;s account — both points already earned
                 earlier in the campaign window (applied retroactively to 2026-06-01
                 00:00 UTC) and points earned subsequently (applied going forward through
@@ -990,7 +978,7 @@ export default function CampaignRulesPage() {
                 <strong>
                   equal eligibility for all campaign tiers and prizes
                 </strong>{" "}
-                (Top Founders, First Edition, The Shelf, Participant) as a
+                (Top Founders, First Edition, Collection) as a
                 participant who subscribed to Premium, subject only to the same
                 prize-qualification threshold defined in Section 3.2 (complete
                 profile + 25 books). The No-Purchase-Necessary path is not

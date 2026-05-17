@@ -198,7 +198,7 @@ export default function RankCardCarousel() {
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start px-[clamp(16px,5vw,80px)] lg:flex-row lg:items-start">
         <div className="w-full lg:w-[40%] lg:pr-12">
           <p className="inline-flex items-center text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">
-            Rank Cards
+            The Founders
             <span
               className="ml-[10px] inline-block h-2 w-2 rounded-full bg-[#5B9EF8]"
               style={{ animation: "pulse 2s infinite" }}
@@ -212,7 +212,7 @@ export default function RankCardCarousel() {
             The 200 most influential readers of Readlink.
           </p>
           <p className="mt-4 max-w-[420px] text-[14px] leading-[1.6] text-[#999999]">
-            Scroll through every participant card and discover their personal library.
+            Scroll through all 200 founder cards and click through to their libraries.
           </p>
           {shouldAnimate ? (
             <div className="mb-5 mt-8 lg:mb-0">
