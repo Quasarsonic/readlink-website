@@ -52,7 +52,7 @@ export function EarnPoints({ expandable = false, extraBottomPadding = false }: E
 
             return (
               <article
-                key={card.title}
+                key={`${card.title}-${index}`}
                 className={`rounded-[16px] border p-5 transition-[transform,box-shadow,border-color,opacity] duration-200 ease-in-out ${
                   isComingSoon
                     ? "opacity-45"
