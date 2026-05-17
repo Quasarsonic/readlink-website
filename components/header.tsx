@@ -198,9 +198,8 @@ export function Header() {
                 Vision
               </Link>
               <Link
-                href="/#challenge"
+                href="/launch"
                 className="text-sm text-white/85 hover:text-white transition-colors"
-                onClick={navigateHomeSection("challenge")}
               >
                 Challenge
               </Link>
@@ -232,7 +231,7 @@ export function Header() {
               <>
                 <SignInButton mode="modal" forceRedirectUrl="/premium">
                   <button
-                    className={`text-sm transition-colors duration-500 ease-out ${
+                    className={`cursor-pointer text-sm transition-colors duration-500 ease-out ${
                       desktopSignInOnDark
                         ? "text-white/85 hover:text-white"
                         : "text-foreground/85 hover:text-foreground"
@@ -315,9 +314,9 @@ export function Header() {
                 Vision
               </Link>
               <Link
-                href="/#challenge"
+                href="/launch"
                 className="text-sm text-muted hover:text-foreground transition-colors"
-                onClick={navigateHomeSection("challenge")}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Challenge
               </Link>
@@ -345,7 +344,7 @@ export function Header() {
                 ) : (
                   <>
                     <SignInButton mode="modal" forceRedirectUrl="/premium">
-                      <button className="text-left text-sm text-muted hover:text-foreground transition-colors">
+                      <button className="flex w-full cursor-pointer justify-center text-sm text-muted transition-colors hover:text-foreground">
                         Sign in
                       </button>
                     </SignInButton>

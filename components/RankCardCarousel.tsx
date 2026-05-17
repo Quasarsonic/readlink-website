@@ -1,8 +1,18 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { participants } from "./launchCampaignData";
+import { CampaignCountdown } from "./CampaignCountdown";
+import { participants, type CampaignParticipant } from "./launchCampaignData";
+
+// TODO(dev): replace with live participant count from backend.
+// Determines how many ranked cards to display in the deck.
+// Cards become visible in order: 1 occupied → only #1 shows;
+// 2 occupied → #1 and #2 show; up to a maximum of 200.
+// Sign-ups beyond #200 do not appear as cards.
+const OCCUPIED_RANK_COUNT = 1;
+
+const shouldAnimate = OCCUPIED_RANK_COUNT >= 10;
+const visibleParticipants = participants.slice(0, OCCUPIED_RANK_COUNT);
 
 function makeSeededRandom(seed: number) {
   let value = seed >>> 0;
@@ -12,8 +22,11 @@ function makeSeededRandom(seed: number) {
   };
 }
 
-function shuffleParticipants(randomFn: () => number = Math.random) {
-  const next = [...participants];
+function shuffleParticipants(
+  list: CampaignParticipant[],
+  randomFn: () => number = Math.random,
+) {
+  const next = [...list];
   for (let index = next.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(randomFn() * (index + 1));
     [next[index], next[swapIndex]] = [next[swapIndex], next[index]];
@@ -24,7 +37,9 @@ function shuffleParticipants(randomFn: () => number = Math.random) {
 const pointsFormatter = new Intl.NumberFormat("en-US");
 
 export default function RankCardCarousel() {
-  const [shuffled, setShuffled] = useState(() => shuffleParticipants(makeSeededRandom(1337)));
+  const [shuffled, setShuffled] = useState(() =>
+    shuffleParticipants(visibleParticipants, makeSeededRandom(1337)),
+  );
   const [isDragging, setIsDragging] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [isShuffleSpinning, setIsShuffleSpinning] = useState(false);
@@ -36,11 +51,12 @@ export default function RankCardCarousel() {
   const dragStartXRef = useRef(0);
   const scrollStartLeftRef = useRef(0);
   const loopedParticipants = useMemo(
-    () => [...shuffled, ...shuffled, ...shuffled],
+    () => (shouldAnimate ? [...shuffled, ...shuffled, ...shuffled] : shuffled),
     [shuffled],
   );
 
   const onShuffle = () => {
+    if (!shouldAnimate) return;
     if (shuffleSpinTimeoutRef.current !== null) {
       window.clearTimeout(shuffleSpinTimeoutRef.current);
     }
@@ -55,7 +71,7 @@ export default function RankCardCarousel() {
 
     setIsFading(true);
     shuffleFadeTimeoutRef.current = window.setTimeout(() => {
-      setShuffled(shuffleParticipants());
+      setShuffled(shuffleParticipants(visibleParticipants));
       setIsFading(false);
     }, 200);
   };
@@ -78,6 +94,16 @@ export default function RankCardCarousel() {
     const applyLinearScale = () => {
       const activeContainer = carouselRef.current;
       if (!activeContainer) return;
+
+      if (!shouldAnimate) {
+        cardRefs.current.forEach((card) => {
+          if (!card) return;
+          card.style.transform = "scale(1)";
+          card.style.opacity = "1";
+        });
+        return;
+      }
+
       const firstMiddleCard = cardRefs.current[shuffled.length];
       const firstLastCard = cardRefs.current[shuffled.length * 2];
 
@@ -116,12 +142,16 @@ export default function RankCardCarousel() {
       });
     };
 
-    container.addEventListener("scroll", scheduleScaleUpdate, { passive: true });
+    if (shouldAnimate) {
+      container.addEventListener("scroll", scheduleScaleUpdate, { passive: true });
+    }
     window.addEventListener("resize", scheduleScaleUpdate);
     scheduleScaleUpdate();
 
     return () => {
-      container.removeEventListener("scroll", scheduleScaleUpdate);
+      if (shouldAnimate) {
+        container.removeEventListener("scroll", scheduleScaleUpdate);
+      }
       window.removeEventListener("resize", scheduleScaleUpdate);
       if (rafRef.current !== null) {
         window.cancelAnimationFrame(rafRef.current);
@@ -130,6 +160,7 @@ export default function RankCardCarousel() {
   }, [shuffled]);
 
   useEffect(() => {
+    if (!shouldAnimate) return;
     const container = carouselRef.current;
     if (!container) return;
     const centerIndex = shuffled.length + Math.floor(shuffled.length / 2);
@@ -141,6 +172,7 @@ export default function RankCardCarousel() {
   }, [shuffled]);
 
   const onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!shouldAnimate) return;
     const node = carouselRef.current;
     if (!node) return;
     setIsDragging(true);
@@ -159,11 +191,14 @@ export default function RankCardCarousel() {
   const stopDragging = () => setIsDragging(false);
 
   return (
-    <section className="bg-[#0A0A0A] pb-[80px] pt-[120px]">
+    <section className="bg-[#0A0A0A] pb-[80px] pt-[40px]">
+      <div className="mx-auto w-full max-w-[1280px] px-[clamp(16px,5vw,80px)]">
+        <CampaignCountdown />
+      </div>
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start px-[clamp(16px,5vw,80px)] lg:flex-row lg:items-start">
         <div className="w-full lg:w-[40%] lg:pr-12">
           <p className="inline-flex items-center text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">
-            Rank Cards
+            The Founders
             <span
               className="ml-[10px] inline-block h-2 w-2 rounded-full bg-[#5B9EF8]"
               style={{ animation: "pulse 2s infinite" }}
@@ -177,44 +212,55 @@ export default function RankCardCarousel() {
             The 200 most influential readers of Readlink.
           </p>
           <p className="mt-4 max-w-[420px] text-[14px] leading-[1.6] text-[#999999]">
-            Scroll through every participant card and discover their personal library.
+            Scroll through all 200 founder cards and click through to their libraries.
           </p>
-          <div className="mb-5 mt-8 lg:mb-0">
-            <button
-              type="button"
-              onClick={onShuffle}
-              className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(91,158,248,0.35)] bg-[rgba(91,158,248,0.06)] px-5 py-2.5 text-[14px] font-medium tracking-[-0.01em] text-[#5B9EF8] transition-all duration-150 ease-in-out hover:border-[rgba(91,158,248,0.6)] hover:bg-[rgba(91,158,248,0.12)] hover:text-white"
-            >
-              <span
-                aria-hidden="true"
-                className={`shuffle-icon ${isShuffleSpinning ? "spinning" : ""}`}
+          {shouldAnimate ? (
+            <div className="mb-5 mt-8 lg:mb-0">
+              <button
+                type="button"
+                onClick={onShuffle}
+                className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(91,158,248,0.35)] bg-[rgba(91,158,248,0.06)] px-5 py-2.5 text-[14px] font-medium tracking-[-0.01em] text-[#5B9EF8] transition-all duration-150 ease-in-out hover:border-[rgba(91,158,248,0.6)] hover:bg-[rgba(91,158,248,0.12)] hover:text-white"
               >
-                ↺
-              </span>
-              Shuffle cards
-            </button>
-          </div>
+                <span
+                  aria-hidden="true"
+                  className={`shuffle-icon ${isShuffleSpinning ? "spinning" : ""}`}
+                >
+                  ↺
+                </span>
+                Shuffle cards
+              </button>
+            </div>
+          ) : null}
         </div>
 
-        <div className="mt-8 w-full overflow-hidden lg:mt-0 lg:w-[60%]">
+        <div
+          className={`mt-8 w-full overflow-hidden lg:mt-0 lg:w-[60%] ${
+            shouldAnimate ? "" : "flex justify-center"
+          }`}
+        >
           <div
             ref={carouselRef}
-            className={`launch-carousel-scroll flex gap-4 overflow-x-auto pb-12 pt-2 ${
-              isDragging ? "cursor-grabbing" : "cursor-grab"
+            className={`launch-carousel-scroll flex gap-4 pb-12 pt-2 ${
+              shouldAnimate
+                ? `overflow-x-auto ${isDragging ? "cursor-grabbing" : "cursor-grab"}`
+                : "w-full justify-center overflow-x-hidden"
             }`}
             style={{
-              opacity: isFading ? 0 : 1,
-              transition: "opacity 200ms ease",
-              perspective: "1000px",
-              scrollSnapType: "x mandatory",
-              maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+              opacity: shouldAnimate && isFading ? 0 : 1,
+              transition: shouldAnimate ? "opacity 200ms ease" : undefined,
+              perspective: shouldAnimate ? "1000px" : undefined,
+              scrollSnapType: shouldAnimate ? "x mandatory" : undefined,
+              maskImage: shouldAnimate
+                ? "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)"
+                : undefined,
+              WebkitMaskImage: shouldAnimate
+                ? "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)"
+                : undefined,
             }}
-            onMouseDown={onMouseDown}
-            onMouseMove={onMouseMove}
-            onMouseUp={stopDragging}
-            onMouseLeave={stopDragging}
+            onMouseDown={shouldAnimate ? onMouseDown : undefined}
+            onMouseMove={shouldAnimate ? onMouseMove : undefined}
+            onMouseUp={shouldAnimate ? stopDragging : undefined}
+            onMouseLeave={shouldAnimate ? stopDragging : undefined}
           >
             {loopedParticipants.map((participant, index) => {
               const progress = Math.min(100, (participant.points / 5000) * 100);
@@ -256,17 +302,7 @@ export default function RankCardCarousel() {
                     />
 
                     <div className="relative mb-4 flex items-center gap-3">
-                      <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]">
-                        <Image
-                          src={`https://i.pravatar.cc/100?img=${participant.rank}`}
-                          alt={`${participant.name} avatar`}
-                          width={44}
-                          height={44}
-                          className="h-full w-full object-cover grayscale"
-                          loading="lazy"
-                          unoptimized
-                        />
-                      </div>
+                      <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]" />
                       <div className="min-w-0">
                         <p className="truncate text-[14px] font-medium text-white">{participant.name}</p>
                         <p className="mt-0.5 truncate text-[11px] text-[#666666]">@{participant.handle}</p>
@@ -279,7 +315,8 @@ export default function RankCardCarousel() {
                     </div>
 
                     <p className="relative mb-4 font-mono text-[11px] text-[#999999]">
-                      {pointsFormatter.format(participant.points)} pts · {participant.referrals} referrals ·{" "}
+                      {pointsFormatter.format(participant.points)} pts · {participant.referrals}{" "}
+                      {participant.referrals === 1 ? "referral" : "referrals"} ·{" "}
                       {participant.books} books
                     </p>
 

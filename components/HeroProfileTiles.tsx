@@ -1,4 +1,11 @@
-import Image from "next/image";
+import { heroParticipants } from "./launchCampaignData";
+import { ParticipantAvatar } from "./ParticipantAvatar";
+
+const rankBorderColors: Record<number, string> = {
+  1: "#E8C96A",
+  2: "#B0B0B0",
+  3: "#C0856A",
+};
 
 type TileConfig = {
   id: number;
@@ -35,38 +42,42 @@ const tiles: TileConfig[] = [
 export function HeroProfileTiles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
-      {tiles.map((tile) => (
-        <div
-          key={tile.id}
-          className="profile-tile absolute"
-          style={{
-            left: tile.left,
-            top: "-120px",
-            width: `${tile.width}px`,
-            height: `${tile.height}px`,
-            borderRadius: "14px",
-            background: "#1A1A1A",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
-            overflow: "hidden",
-            animationName: "floatDown",
-            animationDuration: tile.animationDuration,
-            animationDelay: tile.animationDelay,
-            animationTimingFunction: "linear",
-            animationIterationCount: "infinite",
-          }}
-        >
-          <Image
-            src={`https://i.pravatar.cc/100?img=${tile.id}`}
-            alt=""
-            width={tile.width}
-            height={tile.height}
-            className="h-full w-full object-cover grayscale"
-            loading="lazy"
-            unoptimized
-          />
-        </div>
-      ))}
+      {tiles.map((tile, index) => {
+        const participant = heroParticipants[index];
+        const rankBorder = rankBorderColors[participant.rank];
+        return (
+          <div
+            key={participant.rank}
+            className="profile-tile absolute flex items-center justify-center"
+            style={{
+              left: tile.left,
+              top: "-120px",
+              width: `${tile.width}px`,
+              height: `${tile.height}px`,
+              borderRadius: "14px",
+              background: "#1A1A1A",
+              border: rankBorder
+                ? `1px solid ${rankBorder}`
+                : "1px solid rgba(255,255,255,0.06)",
+              boxShadow: rankBorder
+                ? `0 4px 16px rgba(0,0,0,0.08), 0 0 0 1px ${rankBorder}33`
+                : "0 4px 16px rgba(0,0,0,0.08)",
+              overflow: "hidden",
+              animationName: "floatDown",
+              animationDuration: tile.animationDuration,
+              animationDelay: tile.animationDelay,
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
+            }}
+          >
+            <ParticipantAvatar
+              name={participant.name}
+              handle={participant.handle}
+              size={Math.round(tile.width * 0.85)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }

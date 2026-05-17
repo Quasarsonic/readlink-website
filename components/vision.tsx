@@ -74,7 +74,7 @@ export function Vision() {
               <br />
               Upload and connect your library into a living network that
               accelerates the evolution of your thinking. Connect with readers,
-              dicover their libraries, link insights, and watch your knowledge
+              discover their libraries, link insights, and watch your knowledge
               compound into real intellectual power.
             </p>
           </div>

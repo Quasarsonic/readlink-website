@@ -2,6 +2,7 @@
 
 import { EarnPoints } from "@/components/EarnPoints";
 import { Footer } from "@/components/footer";
+import { FounderRewards } from "@/components/FounderRewards";
 import { Header } from "@/components/header";
 import RankCardCarousel from "@/components/RankCardCarousel";
 import { ShelfLeaderboard } from "@/components/ShelfLeaderboard";
@@ -12,8 +13,9 @@ export default function LaunchPage() {
       <Header />
       <main>
         <RankCardCarousel />
-        <ShelfLeaderboard expanded />
+        <FounderRewards />
         <EarnPoints expandable extraBottomPadding />
+        <ShelfLeaderboard expanded />
       </main>
       <Footer />
     </div>

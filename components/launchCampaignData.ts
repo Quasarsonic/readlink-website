@@ -1,3 +1,12 @@
+export {
+  CAMPAIGN_CLOSE_ISO,
+  CAMPAIGN_OPEN_ISO,
+  campaignClose,
+  campaignOpen,
+  getCampaignPhase,
+  type CampaignPhase,
+} from "@/lib/campaign-state";
+
 export type CampaignParticipant = {
   rank: number;
   name: string;
@@ -7,28 +16,23 @@ export type CampaignParticipant = {
   points: number;
 };
 
-export const participants: CampaignParticipant[] = [
-  { rank: 1, name: "Sarah Chen", handle: "sarahreads", referrals: 14, books: 87, points: 4820 },
-  { rank: 2, name: "Marco Rossi", handle: "marcobooks", referrals: 9, books: 143, points: 3650 },
-  { rank: 3, name: "Priya Nair", handle: "priyareads", referrals: 7, books: 62, points: 2900 },
-  { rank: 4, name: "Alex Müller", handle: "alexm", referrals: 5, books: 31, points: 2310 },
-  { rank: 5, name: "Lena Torres", handle: "lena_t", referrals: 3, books: 55, points: 1780 },
-  { rank: 6, name: "Jin Park", handle: "jinreads", referrals: 4, books: 44, points: 1540 },
-  { rank: 7, name: "Sofia Greco", handle: "sofiabooks", referrals: 2, books: 91, points: 1320 },
-  { rank: 8, name: "Tom Eriksson", handle: "tomreads", referrals: 6, books: 28, points: 1180 },
-  { rank: 9, name: "Aisha Diallo", handle: "aishalib", referrals: 1, books: 67, points: 980 },
-  { rank: 10, name: "Luca Ferri", handle: "lucaferri", referrals: 3, books: 39, points: 870 },
-  { rank: 11, name: "Emma Walsh", handle: "emmawalsh", referrals: 2, books: 52, points: 760 },
-  { rank: 12, name: "Ravi Patel", handle: "ravipatel", referrals: 1, books: 33, points: 650 },
-  { rank: 13, name: "Clara Dumont", handle: "clarabooks", referrals: 2, books: 41, points: 590 },
-  { rank: 14, name: "Noah Kim", handle: "noahkim", referrals: 1, books: 29, points: 510 },
-  { rank: 15, name: "Mia Johansson", handle: "miajohansson", referrals: 0, books: 78, points: 450 },
-  { rank: 16, name: "Omar Hassan", handle: "omarhassan", referrals: 1, books: 22, points: 390 },
-  { rank: 17, name: "Lea Müller", handle: "leamuller", referrals: 0, books: 45, points: 340 },
-  { rank: 18, name: "Ivan Petrov", handle: "ivanpetrov", referrals: 1, books: 18, points: 290 },
-  { rank: 19, name: "Yuki Tanaka", handle: "yukitanaka", referrals: 0, books: 61, points: 240 },
-  { rank: 20, name: "Zara Ahmed", handle: "zaraahmed", referrals: 0, books: 34, points: 190 },
-];
+export const participants: CampaignParticipant[] = Array.from({ length: 200 }, (_, index) => ({
+  rank: index + 1,
+  name: "",
+  handle: "",
+  referrals: 0,
+  books: 0,
+  points: 0,
+}));
+
+/** Ranks 1–20 appear on the homepage hero and show the "On Hero" leaderboard badge. */
+export const HERO_PARTICIPANT_COUNT = 20;
+
+export const heroParticipants = participants.slice(0, HERO_PARTICIPANT_COUNT);
+
+export function isOnHero(rank: number) {
+  return rank <= HERO_PARTICIPANT_COUNT;
+}
 
 export type EarnPointsCard = {
   points: string;
@@ -37,6 +41,7 @@ export type EarnPointsCard = {
   description: string;
   expandedDescription: string;
   trackedVia: string;
+  comingSoon?: boolean;
 };
 
 export const earnPointsCards: EarnPointsCard[] = [
@@ -59,22 +64,40 @@ export const earnPointsCards: EarnPointsCard[] = [
     trackedVia: "UTM + ref= parameter on your referral link",
   },
   {
-    points: "800",
-    suffix: "pts",
-    title: "Bring a reader",
-    description: "Someone signs up via your link and builds a library with 5 or more books.",
-    expandedDescription:
-      "When someone signs up via your referral link and adds 5 or more books within 72 hours, you earn 800 pts. The 72h window and 5-book minimum ensure genuine users, not empty installs.",
-    trackedVia: "referral attribution + library depth event",
+    points: "",
+    suffix: "",
+    title: "More ways to earn",
+    description: "New ways to earn points are coming. Stay tuned.",
+    expandedDescription: "",
+    trackedVia: "",
+    comingSoon: true,
   },
   {
-    points: "300",
-    suffix: "pts bonus",
-    title: "Your referral goes deep",
-    description: "When someone you referred adds 25 or more books to their library.",
-    expandedDescription:
-      "A bonus awarded when someone you referred reaches 25 books in their library. You earn this on top of the 800 pts from bringing them in. Rewards you for bringing quality readers, not just sign-ups.",
-    trackedVia: "downstream library depth event on referred accounts",
+    points: "",
+    suffix: "",
+    title: "More ways to earn",
+    description: "New ways to earn points are coming. Stay tuned.",
+    expandedDescription: "",
+    trackedVia: "",
+    comingSoon: true,
+  },
+  {
+    points: "",
+    suffix: "",
+    title: "More ways to earn",
+    description: "New ways to earn points are coming. Stay tuned.",
+    expandedDescription: "",
+    trackedVia: "",
+    comingSoon: true,
+  },
+  {
+    points: "",
+    suffix: "",
+    title: "More ways to earn",
+    description: "New ways to earn points are coming. Stay tuned.",
+    expandedDescription: "",
+    trackedVia: "",
+    comingSoon: true,
   },
   {
     points: "10",
