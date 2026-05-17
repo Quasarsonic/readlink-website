@@ -5,7 +5,7 @@ import { ParticipantAvatar } from "./ParticipantAvatar";
 import { useEffect, useRef, useState } from "react";
 import { CampaignCountdown } from "./CampaignCountdown";
 import { CampaignStatusBadge } from "./CampaignStatusBadge";
-import { isOnHero, participants } from "./launchCampaignData";
+import { isOnHero, isParticipantOccupied, participants } from "./launchCampaignData";
 
 const rankColors: Record<number, string> = {
   1: "#E8C96A",
@@ -81,6 +81,7 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
           {entries.map((entry, index) => {
             const isTopThree = entry.rank <= 3;
             const showOnHeroBadge = isOnHero(entry.rank);
+            const occupied = isParticipantOccupied(entry);
             const progressWidth = `${Math.max(8, (entry.points / maxPoints) * 100)}%`;
             const rankColor = rankColors[entry.rank] ?? "#666666";
 
@@ -119,7 +120,13 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                     ) : null}
                   </p>
                   <p className="mt-1 truncate text-[12px] text-[#666666]">
-                    @{entry.handle} · {entry.books} books
+                    {occupied ? (
+                      <>
+                        @{entry.handle.trim()} · {entry.books} books
+                      </>
+                    ) : (
+                      <>{entry.books} books</>
+                    )}
                   </p>
                   <div className="mt-2 h-[4px] w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
                     <div

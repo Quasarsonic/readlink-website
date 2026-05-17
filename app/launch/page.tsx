@@ -14,7 +14,7 @@ export default function LaunchPage() {
       <main>
         <RankCardCarousel />
         <FounderRewards />
-        <EarnPoints expandable extraBottomPadding />
+        <EarnPoints extraBottomPadding />
         <ShelfLeaderboard expanded />
       </main>
       <Footer />

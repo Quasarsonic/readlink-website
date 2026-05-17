@@ -2,7 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CampaignCountdown } from "./CampaignCountdown";
-import { participants, type CampaignParticipant } from "./launchCampaignData";
+import {
+  isParticipantOccupied,
+  participants,
+  type CampaignParticipant,
+} from "./launchCampaignData";
 
 // TODO(dev): replace with live participant count from backend.
 // Determines how many ranked cards to display in the deck.
@@ -264,14 +268,10 @@ export default function RankCardCarousel() {
           >
             {loopedParticipants.map((participant, index) => {
               const progress = Math.min(100, (participant.points / 5000) * 100);
-              return (
-                <a
-                  key={`${participant.handle}-${index}`}
-                  href={`https://readlink.app/@${participant.handle}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block shrink-0"
-                >
+              const occupied = isParticipantOccupied(participant);
+              const handle = participant.handle.trim();
+
+              const card = (
                   <div
                     ref={(el) => {
                       cardRefs.current[index] = el;
@@ -305,7 +305,9 @@ export default function RankCardCarousel() {
                       <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]" />
                       <div className="min-w-0">
                         <p className="truncate text-[14px] font-medium text-white">{participant.name}</p>
-                        <p className="mt-0.5 truncate text-[11px] text-[#666666]">@{participant.handle}</p>
+                        {occupied ? (
+                          <p className="mt-0.5 truncate text-[11px] text-[#666666]">@{handle}</p>
+                        ) : null}
                       </div>
                     </div>
 
@@ -315,9 +317,7 @@ export default function RankCardCarousel() {
                     </div>
 
                     <p className="relative mb-4 font-mono text-[11px] text-[#999999]">
-                      {pointsFormatter.format(participant.points)} pts · {participant.referrals}{" "}
-                      {participant.referrals === 1 ? "referral" : "referrals"} ·{" "}
-                      {participant.books} books
+                      {pointsFormatter.format(participant.points)} pts · {participant.books} books
                     </p>
 
                     <div className="relative mb-4 h-[2px] w-full overflow-hidden rounded-[2px] bg-[rgba(255,255,255,0.06)]">
@@ -330,15 +330,36 @@ export default function RankCardCarousel() {
                       />
                     </div>
 
-                    <p className="relative font-mono text-[10px] text-[#666666]">
-                      readlink.app/@{participant.handle}
-                    </p>
+                    {occupied ? (
+                      <p className="relative font-mono text-[10px] text-[#666666]">
+                        readlink.app/@{handle}
+                      </p>
+                    ) : null}
 
                     <span className="absolute bottom-4 right-4 font-mono text-[9px] tracking-[0.04em] text-[rgba(255,255,255,0.12)]">
                       readlink
                     </span>
                   </div>
-                </a>
+              );
+
+              if (occupied) {
+                return (
+                  <a
+                    key={`${participant.rank}-${index}`}
+                    href={`https://readlink.app/@${handle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block shrink-0"
+                  >
+                    {card}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={`${participant.rank}-${index}`} className="block shrink-0">
+                  {card}
+                </div>
               );
             })}
           </div>

@@ -1,5 +1,14 @@
-import { heroParticipants } from "./launchCampaignData";
+"use client";
+
+import { SignUpButton, useUser } from "@clerk/nextjs";
+import { type ReactNode, useEffect, useState } from "react";
+import {
+  getHeroTileSlots,
+  participants,
+  type HeroTileSlot,
+} from "./launchCampaignData";
 import { ParticipantAvatar } from "./ParticipantAvatar";
+import { readlinkAppUrls, readlinkLibraryUrl } from "@/lib/readlink-app-url";
 
 const rankBorderColors: Record<number, string> = {
   1: "#E8C96A",
@@ -39,43 +48,191 @@ const tiles: TileConfig[] = [
   { id: 20, left: "62%", width: 48, height: 48, animationDuration: "9s", animationDelay: "-14s" },
 ];
 
-export function HeroProfileTiles() {
+type EmptyTileDestination =
+  | { kind: "signup" }
+  | { kind: "profile"; href: string }
+  | { kind: "anchor"; href: string };
+
+type HeroProfileTilesProps = {
+  /** Matches EarnSpotQuickGuide "Create account" SignUpButton redirect. */
+  signUpRedirectUrl?: string;
+};
+
+function isProfileComplete(user: ReturnType<typeof useUser>["user"]) {
+  if (!user) return false;
+
+  const hasDisplayName = Boolean(user.firstName?.trim() || user.fullName?.trim());
+  const hasHandle = Boolean(user.username?.trim());
+  const hasPhoto = Boolean(user.hasImage);
+
+  return hasDisplayName && hasHandle && hasPhoto;
+}
+
+function useEmptyTileDestination(): EmptyTileDestination {
+  const { isLoaded, isSignedIn, user } = useUser();
+  const [apiProfileComplete, setApiProfileComplete] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (!isLoaded || !isSignedIn) return;
+
+    let cancelled = false;
+
+    fetch("/api/readlink/campaign/progress", { cache: "no-store" })
+      .then(async (response) => {
+        const payload = (await response.json().catch(() => ({}))) as {
+          profileComplete?: boolean | null;
+        };
+        if (cancelled) return;
+        setApiProfileComplete(
+          typeof payload.profileComplete === "boolean" ? payload.profileComplete : null,
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setApiProfileComplete(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoaded, isSignedIn]);
+
+  if (!isLoaded || !isSignedIn) return { kind: "signup" };
+
+  const profileComplete =
+    apiProfileComplete !== null ? apiProfileComplete : isProfileComplete(user);
+
+  if (!profileComplete) return { kind: "profile", href: readlinkAppUrls.profile };
+
+  return { kind: "anchor", href: "#earn-points-actions" };
+}
+
+function occupiedTileAriaLabel(handle: string) {
+  return `Visit @${handle.trim()}'s library`;
+}
+
+const emptyTileAriaLabel = "Create account to compete for this spot";
+
+type HeroTileProps = {
+  tile: TileConfig;
+  slot: HeroTileSlot;
+  emptyTileDestination: EmptyTileDestination;
+  signUpRedirectUrl: string;
+};
+
+function tileTrackStyle(tile: TileConfig) {
+  return {
+    left: tile.left,
+    top: "-120px",
+    width: `${tile.width}px`,
+    height: `${tile.height}px`,
+    animationName: "floatDown",
+    animationDuration: tile.animationDuration,
+    animationDelay: tile.animationDelay,
+    animationTimingFunction: "linear" as const,
+    animationIterationCount: "infinite" as const,
+  };
+}
+
+function tileInteractiveStyle(rank: number) {
+  const rankBorder = rankBorderColors[rank];
+
+  return {
+    borderRadius: "14px",
+    background: "#1A1A1A",
+    border: rankBorder
+      ? `1px solid ${rankBorder}`
+      : "1px solid rgba(255,255,255,0.06)",
+    boxShadow: rankBorder
+      ? `0 4px 16px rgba(0,0,0,0.08), 0 0 0 1px ${rankBorder}33`
+      : "0 4px 16px rgba(0,0,0,0.08)",
+    overflow: "hidden" as const,
+  };
+}
+
+function TileTrack({ tile, children }: { tile: TileConfig; children: ReactNode }) {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
-      {tiles.map((tile, index) => {
-        const participant = heroParticipants[index];
-        const rankBorder = rankBorderColors[participant.rank];
-        return (
-          <div
-            key={participant.rank}
-            className="profile-tile absolute flex items-center justify-center"
-            style={{
-              left: tile.left,
-              top: "-120px",
-              width: `${tile.width}px`,
-              height: `${tile.height}px`,
-              borderRadius: "14px",
-              background: "#1A1A1A",
-              border: rankBorder
-                ? `1px solid ${rankBorder}`
-                : "1px solid rgba(255,255,255,0.06)",
-              boxShadow: rankBorder
-                ? `0 4px 16px rgba(0,0,0,0.08), 0 0 0 1px ${rankBorder}33`
-                : "0 4px 16px rgba(0,0,0,0.08)",
-              overflow: "hidden",
-              animationName: "floatDown",
-              animationDuration: tile.animationDuration,
-              animationDelay: tile.animationDelay,
-              animationTimingFunction: "linear",
-              animationIterationCount: "infinite",
-            }}
+    <div className="profile-tile pointer-events-auto absolute" style={tileTrackStyle(tile)}>
+      {children}
+    </div>
+  );
+}
+
+function HeroTile({ tile, slot, emptyTileDestination, signUpRedirectUrl }: HeroTileProps) {
+  const interactiveStyle = tileInteractiveStyle(slot.rank);
+
+  const content = (
+    <ParticipantAvatar
+      name={slot.participant.name}
+      handle={slot.participant.handle}
+      size={Math.round(tile.width * 0.85)}
+    />
+  );
+
+  if (slot.occupied) {
+    const handle = slot.participant.handle.trim();
+    return (
+      <TileTrack tile={tile}>
+        <a
+          href={readlinkLibraryUrl(handle)}
+          className="profile-tile-interactive"
+          style={interactiveStyle}
+          aria-label={occupiedTileAriaLabel(handle)}
+        >
+          {content}
+        </a>
+      </TileTrack>
+    );
+  }
+
+  if (emptyTileDestination.kind === "signup") {
+    return (
+      <TileTrack tile={tile}>
+        <SignUpButton mode="modal" forceRedirectUrl={signUpRedirectUrl}>
+          <button
+            type="button"
+            className="profile-tile-interactive"
+            style={interactiveStyle}
+            aria-label={emptyTileAriaLabel}
           >
-            <ParticipantAvatar
-              name={participant.name}
-              handle={participant.handle}
-              size={Math.round(tile.width * 0.85)}
-            />
-          </div>
+            {content}
+          </button>
+        </SignUpButton>
+      </TileTrack>
+    );
+  }
+
+  return (
+    <TileTrack tile={tile}>
+      <a
+        href={emptyTileDestination.href}
+        className="profile-tile-interactive"
+        style={interactiveStyle}
+        aria-label={emptyTileAriaLabel}
+      >
+        {content}
+      </a>
+    </TileTrack>
+  );
+}
+
+export function HeroProfileTiles({ signUpRedirectUrl = "/launch" }: HeroProfileTilesProps) {
+  const heroSlots = getHeroTileSlots(participants);
+  const emptyTileDestination = useEmptyTileDestination();
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      {tiles.map((tile, index) => {
+        const slot = heroSlots[index];
+        if (!slot) return null;
+
+        return (
+          <HeroTile
+            key={slot.rank}
+            tile={tile}
+            slot={slot}
+            emptyTileDestination={emptyTileDestination}
+            signUpRedirectUrl={signUpRedirectUrl}
+          />
         );
       })}
     </div>

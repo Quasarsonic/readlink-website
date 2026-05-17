@@ -240,15 +240,9 @@ export function Header() {
                     Sign in
                   </button>
                 </SignInButton>
-                <Link
-                  href="/launch"
-                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
-                >
-                  Join Challenge
-                </Link>
                 <SignUpButton mode="modal" forceRedirectUrl="/premium">
-                  <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
-                    Get Premium
+                  <button className="inline-flex cursor-pointer items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 transition-colors duration-500 ease-out hover:text-background">
+                    Join Challenge
                   </button>
                 </SignUpButton>
               </>
@@ -348,16 +342,12 @@ export function Header() {
                         Sign in
                       </button>
                     </SignInButton>
-                    <Link
-                      href="/launch"
-                      className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Join Challenge
-                    </Link>
                     <SignUpButton mode="modal" forceRedirectUrl="/premium">
-                      <button className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors">
-                        Get Premium
+                      <button
+                        className="inline-flex w-full cursor-pointer items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 transition-colors duration-500 ease-out hover:text-background"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Join Challenge
                       </button>
                     </SignUpButton>
                   </>

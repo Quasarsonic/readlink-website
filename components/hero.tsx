@@ -60,8 +60,8 @@ export function Hero() {
       className="grain relative min-h-[88vh] flex flex-col items-center justify-center pb-10 overflow-hidden bg-white"
     >
       <HeroProfileTiles />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
-        <div className="flex flex-col items-center gap-4">
+      <div className="pointer-events-none relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
+        <div className="pointer-events-none flex flex-col items-center gap-4">
           {/* Main headline */}
           <h1
             style={headingStyle}
@@ -72,26 +72,26 @@ export function Hero() {
 
           <Link
             href="/launch"
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
+            className="pointer-events-auto inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background/85 hover:text-background transition-colors duration-500 ease-out"
           >
             Claim your spot
           </Link>
 
           {/* Phone mockup with logo */}
-          <div className="relative -mt-2 mb-1">
+          <div className="pointer-events-none relative -mt-2 mb-1">
             <div
-              className="relative mx-auto -translate-y-4 w-[min(88vw,430px)] sm:-translate-y-5"
+              className="pointer-events-none relative mx-auto -translate-y-4 w-[min(88vw,430px)] sm:-translate-y-5"
               style={{ aspectRatio: "1014 / 2048" }}
             >
               {/* Inner slab that sits behind the device frame */}
-              <div className="absolute left-[4.2%] right-[4.2%] top-[2.4%] bottom-[2.4%] rounded-[4rem] bg-black">
-                <div className="absolute inset-0 flex items-center justify-center">
+              <div className="pointer-events-none absolute left-[4.2%] right-[4.2%] top-[2.4%] bottom-[2.4%] rounded-[4rem] bg-black">
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <Image
                     src="/images/readlink-logo.png"
                     alt="Readlink"
                     width={170}
                     height={42}
-                    className="object-contain"
+                    className="pointer-events-none object-contain"
                   />
                 </div>
               </div>
@@ -118,7 +118,7 @@ export function Hero() {
           <div className="mt-1 flex items-center gap-4">
             <Link
               href="#"
-              className="rounded-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 hover:scale-[1.02]"
+              className="pointer-events-auto rounded-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 hover:scale-[1.02]"
               aria-label="Download on the App Store"
             >
               <Image
@@ -130,7 +130,7 @@ export function Hero() {
             </Link>
             <Link
               href="#"
-              className="rounded-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 hover:scale-[1.02]"
+              className="pointer-events-auto rounded-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 hover:scale-[1.02]"
               aria-label="Get it on Google Play"
             >
               <Image

@@ -28,7 +28,52 @@ export const participants: CampaignParticipant[] = Array.from({ length: 200 }, (
 /** Ranks 1–20 appear on the homepage hero and show the "On Hero" leaderboard badge. */
 export const HERO_PARTICIPANT_COUNT = 20;
 
-export const heroParticipants = participants.slice(0, HERO_PARTICIPANT_COUNT);
+export type HeroTileSlot = {
+  rank: number;
+  participant: CampaignParticipant;
+  occupied: boolean;
+};
+
+export function isParticipantOccupied(participant: CampaignParticipant) {
+  return Boolean(participant.handle?.trim() || participant.name?.trim());
+}
+
+export function participantAtRank(
+  leaderboard: CampaignParticipant[],
+  rank: number,
+): CampaignParticipant {
+  const byRank = leaderboard.find((entry) => entry.rank === rank);
+  if (byRank) return byRank;
+
+  const byIndex = leaderboard[rank - 1];
+  if (byIndex && byIndex.rank === rank) return byIndex;
+
+  return {
+    rank,
+    name: "",
+    handle: "",
+    referrals: 0,
+    books: 0,
+    points: 0,
+  };
+}
+
+/** Always returns ranks #1–#20, with empty slots when a position has no participant. */
+export function getHeroTileSlots(
+  leaderboard: CampaignParticipant[] = participants,
+): HeroTileSlot[] {
+  return Array.from({ length: HERO_PARTICIPANT_COUNT }, (_, index) => {
+    const rank = index + 1;
+    const participant = participantAtRank(leaderboard, rank);
+    return {
+      rank,
+      participant,
+      occupied: isParticipantOccupied(participant),
+    };
+  });
+}
+
+export const heroParticipants = getHeroTileSlots().map((slot) => slot.participant);
 
 export function isOnHero(rank: number) {
   return rank <= HERO_PARTICIPANT_COUNT;
@@ -39,8 +84,6 @@ export type EarnPointsCard = {
   suffix: string;
   title: string;
   description: string;
-  expandedDescription: string;
-  trackedVia: string;
   comingSoon?: boolean;
 };
 
@@ -50,26 +93,18 @@ export const earnPointsCards: EarnPointsCard[] = [
     suffix: "pts",
     title: "Create your library",
     description: "Install the app and add 5 or more books to your personal shelf.",
-    expandedDescription:
-      "Install the Readlink app and add at least 5 books to your shelf. Points are awarded automatically once your library reaches 5 books. This is a one-time action.",
-    trackedVia: "app install event + book count in your account",
   },
   {
     points: "50",
     suffix: "pts/click",
     title: "Drive traffic",
     description: "Every unique click on your referral link. Capped at 1,000 pts per day.",
-    expandedDescription:
-      "Every unique visitor who clicks your referral link earns you 50 pts. Unique means one point event per visitor per 24h window - repeat clicks from the same person don't stack. Daily cap: 1,000 pts (20 unique clicks).",
-    trackedVia: "UTM + ref= parameter on your referral link",
   },
   {
     points: "",
     suffix: "",
     title: "More ways to earn",
     description: "New ways to earn points are coming. Stay tuned.",
-    expandedDescription: "",
-    trackedVia: "",
     comingSoon: true,
   },
   {
@@ -77,8 +112,6 @@ export const earnPointsCards: EarnPointsCard[] = [
     suffix: "",
     title: "More ways to earn",
     description: "New ways to earn points are coming. Stay tuned.",
-    expandedDescription: "",
-    trackedVia: "",
     comingSoon: true,
   },
   {
@@ -86,8 +119,6 @@ export const earnPointsCards: EarnPointsCard[] = [
     suffix: "",
     title: "More ways to earn",
     description: "New ways to earn points are coming. Stay tuned.",
-    expandedDescription: "",
-    trackedVia: "",
     comingSoon: true,
   },
   {
@@ -95,8 +126,6 @@ export const earnPointsCards: EarnPointsCard[] = [
     suffix: "",
     title: "More ways to earn",
     description: "New ways to earn points are coming. Stay tuned.",
-    expandedDescription: "",
-    trackedVia: "",
     comingSoon: true,
   },
   {
@@ -104,9 +133,6 @@ export const earnPointsCards: EarnPointsCard[] = [
     suffix: "pts/visit",
     title: "Profile page visits",
     description: "Every unique visit to your readlink.app/@username page. Capped at 500 pts per day.",
-    expandedDescription:
-      "Every unique visitor to your readlink.app/@username page earns 10 pts. This rewards content creators who drive traffic to their profile via TikTok bios, YouTube descriptions, Instagram link-in-bio, and similar. Daily cap: 500 pts (50 unique visits).",
-    trackedVia: "page view server log, unique by IP hash per 24h",
   },
   {
     points: "2x",
@@ -114,9 +140,5 @@ export const earnPointsCards: EarnPointsCard[] = [
     title: "Go Premium",
     description:
       "Premium subscribers earn double points on every action, plus two Golden Tickets to gift.",
-    expandedDescription:
-      "Premium subscribers earn 2x points on every action - including points already in progress. You also receive two Golden Tickets to gift premium access to anyone you choose.",
-    trackedVia:
-      "subscription payment event - multiplier applies automatically from the moment your subscription activates",
   },
 ];
