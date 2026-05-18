@@ -33,3 +33,8 @@ export function getCountdownLabel(phase: CampaignPhase): string | null {
   if (phase === "active") return "Closes in";
   return null;
 }
+
+/** Mobile app (incl. library) ships with campaign open. */
+export function isReadlinkMobileAppLive(now = Date.now()) {
+  return getCampaignPhase(now) !== "upcoming";
+}

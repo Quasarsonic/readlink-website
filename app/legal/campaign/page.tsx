@@ -263,11 +263,10 @@ export default function CampaignRulesPage() {
             <div>
               <h3 className="font-semibold">2.2 Earning points</h3>
               <p className="mt-2 text-muted">
-                Once registered, you earn points through the following five
-                actions:
+                Once registered, you earn points through the following actions:
               </p>
               <div className="mt-4 overflow-x-auto">
-                <table className="w-full min-w-[32rem] border-collapse text-sm">
+                <table className="w-full min-w-[40rem] border-collapse text-sm">
                   <thead>
                     <tr className="border-b border-border text-left">
                       <th className="py-2 pr-4 font-semibold">Action</th>
@@ -277,32 +276,53 @@ export default function CampaignRulesPage() {
                   </thead>
                   <tbody className="text-muted">
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">[Coming soon]</td>
-                      <td className="py-2 pr-4">TBD</td>
-                      <td className="py-2">TBD</td>
+                      <td className="py-2 pr-4">Create your library</td>
+                      <td className="py-2 pr-4">500 pts</td>
+                      <td className="py-2">Library reaches 25 books</td>
                     </tr>
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">[Coming soon]</td>
-                      <td className="py-2 pr-4">TBD</td>
-                      <td className="py-2">TBD</td>
+                      <td className="py-2 pr-4">Bring a reader</td>
+                      <td className="py-2 pr-4">1,000 pts</td>
+                      <td className="py-2">
+                        Someone signs up via your unique referral link (or Golden
+                        Ticket / NPN trial code) and adds 5 or more books within 72
+                        hours
+                      </td>
                     </tr>
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">[Coming soon]</td>
-                      <td className="py-2 pr-4">TBD</td>
-                      <td className="py-2">TBD</td>
+                      <td className="py-2 pr-4">Your referral goes deep</td>
+                      <td className="py-2 pr-4">500 pts bonus</td>
+                      <td className="py-2">
+                        A user who signed up via your referral link, Golden Ticket,
+                        or trial code reaches 25 books in their library
+                      </td>
                     </tr>
                     <tr className="border-b border-border">
-                      <td className="py-2 pr-4">[Coming soon]</td>
-                      <td className="py-2 pr-4">TBD</td>
-                      <td className="py-2">TBD</td>
+                      <td className="py-2 pr-4">Referral converts to Premium</td>
+                      <td className="py-2 pr-4">1,500 pts bonus</td>
+                      <td className="py-2">
+                        A user who signed up via your referral link, Golden Ticket,
+                        or trial code subscribes to Premium. Points are credited at
+                        the time of subscription. If the subscription is refunded by
+                        Readlink or reversed via chargeback within 30 days, the 1,500
+                        points are reversed under §5.6.
+                      </td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="py-2 pr-4">Build your network</td>
+                      <td className="py-2 pr-4">500 pts bonus</td>
+                      <td className="py-2">
+                        You have successfully completed the &quot;Bring a reader&quot;
+                        action with 2 distinct referred readers
+                      </td>
                     </tr>
                     <tr>
                       <td className="py-2 pr-4">
                         Go Premium (campaign multiplier)
                       </td>
                       <td className="py-2 pr-4">
-                        2× all points earned through the actions in this Section
-                        2.2 once defined
+                        2× all points earned through Actions 1–5 (retroactive +
+                        going forward)
                       </td>
                       <td className="py-2">
                         You subscribe to Premium at any point in the campaign
@@ -313,37 +333,40 @@ export default function CampaignRulesPage() {
                   </tbody>
                 </table>
               </div>
-              <p className="mt-2 text-muted">
-                Actions 1–4 above are placeholders. The Promoter will define and
-                publish the four actions before the campaign window opens
-                (2026-06-01 00:00 UTC). Any such definitions will be published as
-                amendments to these Rules under Section 8.1, with at least seven
-                (7) days&apos; advance notice before they take effect. Until actions
-                1–4 are defined and published, points are not earned through them.
-              </p>
               <p className="mt-4 font-semibold text-muted">
-                Golden Tickets — Premium subscriber benefit (not a campaign
-                reward):
+                Golden Tickets — Premium subscriber benefit:
               </p>
               <p className="mt-2 text-muted">
-                Premium subscribers receive 2 Golden Tickets during the campaign
-                window. Golden Tickets are gift codes that grant the recipient
-                one calendar month of free Premium access.{" "}
-                <strong>
-                  Golden Tickets and their recipients do not contribute any
-                  points, multipliers, or competitive advantage in the campaign.
-                </strong>{" "}
-                A recipient of a Golden Ticket is not, by virtue of receiving
-                the ticket, counted as a referral for the gifter; if a future
-                campaign action defined under Section 2.2 involves referrals,
-                that action will apply only to users who sign up via the
-                gifter&apos;s unique referral link, separately from any gift activity.
-                Golden Tickets are
-                characterised as a Premium product benefit (a generosity feature
-                for Premium subscribers to share their subscription with
-                friends) and not as a contest mechanic, and are therefore not
-                subject to the Section 7 No-Purchase-Necessary equivalence (see
-                Section 7.3).
+                Yearly Premium subscribers receive 4 Golden Tickets during the
+                campaign window. Monthly Premium subscribers receive 2 Golden
+                Tickets during the campaign window. Premium subscribers active
+                at window-open (2026-06-01 00:00 UTC) receive their tickets at
+                that time; subscribers who subscribe to Premium during the
+                campaign window receive their tickets at the moment of
+                subscription. Tickets are distributed once per campaign and do
+                not accumulate with additional billing cycles.
+              </p>
+              <p className="mt-2 text-muted">
+                Each Golden Ticket is a gift code that grants the recipient one
+                calendar month of free Premium access. Premium subscribers may
+                not redeem their own tickets; the system blocks self-redemption
+                at the application layer.
+              </p>
+              <p className="mt-2 text-muted">
+                A Golden Ticket recipient who creates a Readlink account and
+                meets the &quot;Bring a reader&quot; threshold (5+ books in 72h) is counted
+                as a referral for the gifting Premium subscriber under Section
+                2.2 Action &apos;Bring a reader&apos; and its downstream actions (&apos;Your
+                referral goes deep&apos;, &apos;Referral converts to Premium&apos;). Where a
+                recipient is attributed via both a Golden Ticket and a unique
+                referral link, the gifter is credited only once. Anti-fraud rules
+                in Section 5.2 apply to ticket-driven referrals the same as to
+                URL-driven referrals.
+              </p>
+              <p className="mt-2 text-muted">
+                Equivalent acquisition tooling is available to non-purchasing
+                participants through the No-Purchase-Necessary trial code
+                mechanism in Section 7.3.
               </p>
             </div>
 
@@ -393,9 +416,8 @@ export default function CampaignRulesPage() {
                   does not exist before 2026-06-01 00:00 UTC. No books can be added
                   to any user&apos;s library before that moment. All books counting
                   toward the Section 3.2 qualification threshold are therefore added
-                  during the campaign window. Any future campaign action tied to the
-                  25-book threshold, once defined per Section 2.2, can only be earned
-                  during the campaign window.
+                  during the campaign window. The 500-point &quot;Create your library&quot;
+                  award (Section 2.2) can only be earned during the campaign window.
                 </li>
                 <li>
                   <strong>Premium subscriptions</strong>: pre-launch Premium
@@ -421,21 +443,24 @@ export default function CampaignRulesPage() {
                   because no campaign points are earned before 2026-06-01 00:00 UTC.
                 </li>
                 <li>
-                  <strong>Referrals</strong>: when one of the defined actions in
-                  Section 2.2 (once published) involves a referral, campaign points
-                  for that action are credited only for referee accounts created
-                  during the campaign window (2026-06-01 00:00 UTC through 2026-08-31
-                  23:59 UTC) via the referrer&apos;s unique referral link. Referral
-                  signups completed before 2026-06-01 do not contribute to leaderboard
-                  points.
+                  <strong>Referrals</strong>: campaign points for &apos;Bring a reader&apos;
+                  and its downstream actions (&apos;Your referral goes deep&apos;, &apos;Referral
+                  converts to Premium&apos;) are credited only for referee accounts
+                  created during the campaign window (2026-06-01 00:00 UTC through
+                  2026-08-31 23:59 UTC). Referral attribution at signup is via the
+                  referrer&apos;s unique referral link, via Golden Ticket redemption,
+                  via No-Purchase-Necessary trial code redemption, or via referral
+                  handle entered at signup. Referral signups completed before
+                  2026-06-01 do not contribute to leaderboard points.
                 </li>
                 <li>
-                  <strong>Golden Tickets</strong>: Premium subscribers whose
-                  subscription is active at the moment the window opens receive their
-                  2 Golden Tickets at 2026-06-01 00:00 UTC. Users who subscribe to
-                  Premium on or after 2026-06-01 receive their 2 Golden Tickets at the
-                  moment of subscription. Golden Tickets remain a Premium product
-                  benefit unrelated to campaign points (Section 2.2).
+                  <strong>Golden Tickets</strong>: Yearly Premium subscribers active at
+                  window-open receive 4 Golden Tickets at 2026-06-01 00:00 UTC. Monthly
+                  Premium subscribers active at window-open receive 2 Golden Tickets at
+                  2026-06-01 00:00 UTC. Premium subscribers who subscribe on or after
+                  2026-06-01 receive their tickets (4 for yearly, 2 for monthly) at the
+                  moment of subscription. Per Section 2.2, ticket recipients meeting the
+                  Action &apos;Bring a reader&apos; threshold count as referrals for the gifter.
                 </li>
               </ul>
               <p className="mt-4 text-muted">
@@ -535,19 +560,64 @@ export default function CampaignRulesPage() {
 
             <div>
               <h3 className="font-semibold">
-                3.3 Premium-time prize — what it covers
+                3.3 Premium-time prize — what it covers and how it scales
               </h3>
               <p className="mt-2 text-muted">
-                The Premium-time prize activates at the campaign close date. Top
-                Founders (ranks #1–#3) receive 3 years of free Readlink Premium.
-                First Edition (ranks #4–#20) receive 1 year of free Readlink
-                Premium. Collection (ranks #21–#200) receive up to 6 months of
-                free Readlink Premium, scaled by points earned at campaign close
-                according to a points-to-Premium-time schedule that will be
-                published at readlink.app/legal/campaign before the campaign
-                window opens.
+                The Premium-time prize activates at the campaign close date.
               </p>
               <p className="mt-2 text-muted">
+                Top Founders (ranks #1–#3) receive 3 years of free Readlink
+                Premium. First Edition (ranks #4–#20) receive 1 year of free
+                Readlink Premium. Collection (ranks #21–#200) receive free
+                Readlink Premium scaled by total campaign points earned, per
+                the following schedule:
+              </p>
+              <div className="mt-4 overflow-x-auto">
+                <table className="w-full min-w-[24rem] border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border text-left">
+                      <th className="py-2 pr-4 font-semibold">Points at close</th>
+                      <th className="py-2 font-semibold">Free Premium awarded</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted">
+                    <tr className="border-b border-border">
+                      <td className="py-2 pr-4">1,500 – 3,999 points</td>
+                      <td className="py-2">1 month</td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="py-2 pr-4">4,000 – 8,999 points</td>
+                      <td className="py-2">2 months</td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="py-2 pr-4">9,000 – 17,999 points</td>
+                      <td className="py-2">3 months</td>
+                    </tr>
+                    <tr className="border-b border-border">
+                      <td className="py-2 pr-4">18,000 – 29,999 points</td>
+                      <td className="py-2">4 months</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 pr-4">30,000+ points</td>
+                      <td className="py-2">6 months</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-4 text-muted">
+                To qualify for the Collection tier specifically (ranks #21–#200),
+                a participant must also meet the following additional thresholds
+                beyond the Section 3.2 requirements:
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+                <li>
+                  A minimum of 400 points earned during the campaign window
+                </li>
+                <li>
+                  At least 1 successful &apos;Bring a reader&apos; completion
+                </li>
+              </ul>
+              <p className="mt-4 text-muted">
                 Free Premium time grants the participant access to all Premium
                 product features for the duration awarded, beginning at campaign
                 close. Free Premium time is not transferable, not redeemable for
@@ -568,9 +638,13 @@ export default function CampaignRulesPage() {
                 participant who reached it earliest wins the higher rank.
               </p>
               <p className="mt-2 text-muted">
-                If the earliest-timestamp data is unavailable, the tie-breaker is
-                at the Promoter&apos;s sole discretion based on overall campaign
-                contribution.
+                If the earliest-timestamp data is unavailable or contested, the
+                secondary tie-breaker is the participant with the higher count
+                of completed &apos;Bring a reader&apos; actions (most referrals).
+              </p>
+              <p className="mt-2 text-muted">
+                If still tied, the final tie-breaker is at the Promoter&apos;s sole
+                discretion based on overall campaign contribution.
               </p>
             </div>
 
@@ -719,6 +793,21 @@ export default function CampaignRulesPage() {
                   Coordinating with other participants to refer each other in
                   cycles.
                 </li>
+                <li>
+                  Redeeming or attempting to redeem one&apos;s own Golden Ticket
+                  or NPN trial code (whether directly or via an associated
+                  account, household member, or coordinating party).
+                </li>
+                <li>
+                  Sharing tickets or trial codes solely with accounts that do
+                  not represent genuine new users (e.g., dormant accounts,
+                  automated accounts, accounts created solely to redeem the
+                  ticket).
+                </li>
+                <li>
+                  Using tickets or trial codes to inflate referral counts via
+                  any other prohibited conduct described in this Section 5.
+                </li>
               </ul>
             </div>
 
@@ -773,6 +862,14 @@ export default function CampaignRulesPage() {
                 leaderboard, disqualification from the campaign, revocation of
                 prize tier, and account suspension or termination.
               </p>
+              <p className="mt-2 text-muted">
+                Points credited under Action &apos;Referral converts to Premium&apos;
+                (§2.2) are subject to reversal if the referenced Premium
+                subscription is refunded by Readlink or reversed via chargeback
+                within 30 days of subscription, regardless of whether prohibited
+                conduct is alleged. This reversal is a structural element of
+                the points-credit mechanism, not a penalty under this Section.
+              </p>
             </div>
           </section>
 
@@ -794,7 +891,7 @@ export default function CampaignRulesPage() {
                 </li>
                 <li>
                   Campaign activity (points accrued, actions completed,
-                  leaderboard position over time).
+                  referrals made, leaderboard position over time).
                 </li>
                 <li>
                   Anti-fraud telemetry as needed for Section 5 enforcement.
@@ -873,116 +970,157 @@ export default function CampaignRulesPage() {
             </p>
 
             <div>
-              <h3 className="font-semibold">7.1 What the alternative is</h3>
+              <h3 className="font-semibold">7.1 What the alternative path covers</h3>
               <p className="mt-2 text-muted">
-                The &quot;Go Premium&quot; campaign action (Section 2.2) provides
-                Premium subscribers with a 2× points multiplier. The Premium
-                subscription requires payment, which could be interpreted as
-                consideration in some jurisdictions. The No-Purchase-Necessary
-                alternative allows any participant to receive an equivalent 2×
-                points multiplier without subscribing to Premium.
+                The campaign includes two mechanics that may be construed as
+                requiring consideration in some jurisdictions:
               </p>
               <p className="mt-2 text-muted">
-                The No-Purchase-Necessary alternative covers <strong>only</strong>{" "}
-                the 2× points multiplier — that being the sole element of the
-                &quot;Go Premium&quot; campaign action that affects competitive
-                position in the campaign (see Section 7.3 on what is and is not
-                covered).
+                (a) The &apos;Go Premium&apos; campaign action (Section 2.2) provides
+                Premium subscribers with a 2× points multiplier. The Premium
+                subscription requires payment.
+              </p>
+              <p className="mt-2 text-muted">
+                (b) Golden Tickets (Section 2.2) are distributed to Premium
+                subscribers as a Premium product benefit. Premium subscribers
+                may use their tickets to invite new users; ticket recipients
+                who meet the &apos;Bring a reader&apos; threshold count as referrals for
+                the gifter. The ticket distribution requires a Premium
+                subscription, which requires payment.
+              </p>
+              <p className="mt-2 text-muted">
+                The No-Purchase-Necessary alternative provides equivalent
+                mechanisms to participants who do not subscribe to Premium:
+              </p>
+              <p className="mt-2 text-muted">
+                (a) An equivalent 2× points multiplier (the NPN multiplier),
+                applicable to all campaign points credited to the participant&apos;s
+                account.
+              </p>
+              <p className="mt-2 text-muted">
+                (b) An equivalent allocation of trial codes (the NPN trial
+                codes), functionally equivalent to Golden Tickets — each grants
+                the recipient one calendar month of free Premium, and recipients
+                who meet the &apos;Bring a reader&apos; threshold count as referrals for
+                the trial code holder.
+              </p>
+              <p className="mt-2 text-muted">
+                The NPN alternative preserves equal-dignity competitive position
+                between paying and non-paying participants in every campaign
+                mechanic that affects ranking.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold">7.2 How to claim</h3>
               <p className="mt-2 text-muted">
-                To claim the No-Purchase-Necessary points multiplier, submit a
-                request through the Readlink contact form at readlink.app/contact:
+                To claim either or both of the NPN mechanisms, submit a request
+                through the Readlink contact form at readlink.app/contact:
+              </p>
+              <p className="mt-4 font-semibold text-muted">
+                (a) For the NPN 2× points multiplier:
               </p>
               <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
                 <li>
-                  Select the request type &quot;NPN Campaign Entry.&quot;
+                  Select the request type &apos;NPN Campaign Entry – Multiplier&apos;
                 </li>
-                <li>Provide your Readlink handle.</li>
+                <li>Provide your Readlink handle</li>
                 <li>
-                  Attach a handwritten declaration (scanned or photographed)
-                  stating: &quot;I request the No-Purchase-Necessary alternative
-                  entry to the Readlink 200 Founders Edition campaign,&quot;
-                  signed and dated.
+                  Attach a handwritten declaration stating: &apos;I request the
+                  No-Purchase-Necessary alternative entry to the Readlink 200
+                  Founders Edition campaign,&apos; signed and dated.
+                </li>
+              </ul>
+              <p className="mt-4 font-semibold text-muted">
+                (b) For NPN trial codes:
+              </p>
+              <ul className="mt-2 list-disc space-y-1 pl-6 text-muted">
+                <li>
+                  Select the request type &apos;NPN Campaign Entry – Trial Codes&apos;
+                </li>
+                <li>Provide your Readlink handle</li>
+                <li>
+                  Specify the number of trial codes requested (maximum 4 per
+                  campaign window, matching the maximum a yearly Premium subscriber
+                  receives)
+                </li>
+                <li>
+                  Attach a handwritten declaration stating: &apos;I request
+                  No-Purchase-Necessary trial codes for the Readlink 200 Founders
+                  Edition campaign,&apos; signed and dated.
                 </li>
               </ul>
               <p className="mt-2 text-muted">
-                Upon receipt and verification, the Promoter will apply the
-                equivalent of the Premium 2× multiplier to the participant&apos;s
-                account for the same duration the Premium multiplier would have
-                applied (one calendar month from grant date, renewable monthly by
-                submitting a new request through the same form).
+                A single request may include both (a) and (b). Trial codes may
+                be requested at any time during the campaign window, in any
+                combination, up to the 4-code maximum per participant.
+              </p>
+              <p className="mt-4 font-semibold text-muted">
+                Upon receipt and verification:
               </p>
               <p className="mt-2 text-muted">
-                The Promoter aims to verify and apply No-Purchase-Necessary
-                multipliers within five (5) business days of receipt. Once verified,
-                the 2× multiplier is applied to <strong>all</strong>{" "}
-                campaign points
+                <strong>For the multiplier (a):</strong> The Promoter aims to verify and apply
+                the NPN 2× multiplier within five (5) business days of receipt.
+                Once verified, the 2× multiplier is applied to all campaign points
                 credited to the participant&apos;s account — both points already earned
                 earlier in the campaign window (applied retroactively to 2026-06-01
-                00:00 UTC) and points earned subsequently (applied going forward through
-                campaign close). The NPN multiplier, once granted, remains in effect for
-                the remainder of the campaign and does not require renewal or re-request.
-                This matches the application of the Premium 2× multiplier described in
-                Section 2.2 and Section 2.4 and preserves equal-dignity between the two
-                entry paths.
+                00:00 UTC) and points earned subsequently. The NPN multiplier, once granted,
+                remains in effect for the remainder of the campaign and does not require
+                renewal.
+              </p>
+              <p className="mt-2 text-muted">
+                <strong>For trial codes (b):</strong> The Promoter aims to issue requested trial
+                codes within five (5) business days of receipt. Each code is
+                single-use, expires 30 days from issuance (or at campaign close,
+                whichever is earlier), and may not be redeemed by the requesting
+                participant. Self-redemption is blocked at the application
+                layer.
+              </p>
+              <p className="mt-2 text-muted">
+                A trial code recipient who creates a Readlink account and meets
+                the &apos;Bring a reader&apos; threshold (5+ books in 72h) is counted as
+                a referral for the NPN participant under Section 2.2 and its
+                downstream actions.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold">
-                7.3 Scope of equivalence — what the No-Purchase-Necessary path
-                does and does not cover
-              </h3>
+              <h3 className="font-semibold">7.3 Scope of equivalence</h3>
               <p className="mt-2 text-muted">
-                The No-Purchase-Necessary path provides{" "}
-                <strong>
-                  equivalence with respect to every campaign mechanic that
-                  affects competitive position in the contest
-                </strong>
-                . Currently, the only such mechanic introduced by the &quot;Go
-                Premium&quot; campaign action is the 2× points multiplier. The
-                No-Purchase-Necessary path equalises this mechanic in full.
-              </p>
-              <p className="mt-4 font-semibold text-muted">
-                Golden Tickets are not covered
+                The No-Purchase-Necessary path provides equivalence with respect
+                to every campaign mechanic that affects competitive position in
+                the contest. The relevant mechanics are:
               </p>
               <p className="mt-2 text-muted">
-                by the No-Purchase-Necessary path because Golden Tickets are
-                characterised as a Premium product benefit (a generosity feature
-                for Premium subscribers to share a free month of Premium with
-                friends), not as a campaign mechanic. Under the terms of Section
-                2.2, Golden Tickets and their recipients do not contribute any
-                points, multipliers, or competitive advantage in the campaign —
-                receiving or gifting a Golden Ticket has no effect on a
-                participant&apos;s leaderboard position or prize tier
-                qualification. Because Golden Tickets do not affect competitive
-                position, they fall outside the equal-dignity scope of the
-                No-Purchase-Necessary alternative.
-              </p>
-              <p className="mt-4 font-semibold text-muted">
-                Premium product features
+                (a) The 2× points multiplier (Go Premium action) — equalized by
+                the NPN multiplier.
               </p>
               <p className="mt-2 text-muted">
-                (the standalone benefits of a Premium subscription unrelated to
-                the campaign — full app features, knowledge-graph proposals,
-                advanced search, and similar) are likewise not covered. These are
-                product features purchased through the Premium subscription, not
-                campaign mechanics.
+                (b) Golden Tickets as referral-acquisition tools — equalized by
+                NPN trial codes (up to 4 per participant per campaign window).
               </p>
               <p className="mt-2 text-muted">
-                A participant entering via the No-Purchase-Necessary path has{" "}
-                <strong>
-                  equal eligibility for all campaign tiers and prizes
-                </strong>{" "}
-                (Top Founders, First Edition, Collection) as a
-                participant who subscribed to Premium, subject only to the same
-                prize-qualification threshold defined in Section 3.2 (complete
-                profile + 25 books). The No-Purchase-Necessary path is not
-                lesser, secondary, or limited in any campaign-mechanic respect.
+                A participant entering via the No-Purchase-Necessary path has
+                equal eligibility for all campaign tiers and prizes (Top
+                Founders, First Edition, Collection) as a participant who
+                subscribed to Premium, subject only to the same prize-
+                qualification thresholds defined in Section 3.2 and Section 3.3.
+              </p>
+              <p className="mt-2 text-muted">
+                The No-Purchase-Necessary path is not lesser, secondary, or
+                limited in any campaign-mechanic respect. Both Premium
+                subscribers and NPN participants have access to all five point-
+                earning actions and the 2× multiplier; only the means of access
+                to the multiplier and acquisition tooling differs.
+              </p>
+              <p className="mt-2 text-muted">
+                Premium product features unrelated to the campaign — the
+                standalone benefits of a Premium subscription such as full app
+                features, knowledge-graph proposals, advanced search, and
+                similar — are not covered by the No-Purchase-Necessary
+                equivalence. These are product features purchased through the
+                Premium subscription, not campaign mechanics that affect
+                competitive position.
               </p>
             </div>
           </section>

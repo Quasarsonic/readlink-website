@@ -26,14 +26,14 @@ export const earnSpotQuickGuideSteps: EarnSpotQuickGuideStep[] = [
   {
     id: "library",
     title: "Build your library",
-    body: "Add 25 books to qualify. This is the entry threshold for the founders cohort — once you cross it, you're in the running.",
+    body: "Add 25 books to qualify, in the Readlink mobile app (launches June 1). This is the entry threshold for the founders cohort — once you cross it, you're in the running.",
     ctaLabel: "Open library",
     ctaExternal: true,
   },
   {
     id: "leaderboard",
     title: "Climb the leaderboard",
-    body: "Earn points through six ways — building your library, bringing readers, growing the network. Premium subscribers earn 2× on every action.",
+    body: "Earn points through the below Actions — building your library, bringing readers, growing the network, and Premium-subscriber bonuses.",
     anchorTargetId: "earn-points-actions",
   },
 ];

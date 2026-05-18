@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { earnSpotQuickGuideSteps } from "./earnSpotQuickGuideSteps";
+import { isReadlinkMobileAppLive } from "@/lib/campaign-state";
 import { readlinkAppUrls } from "@/lib/readlink-app-url";
 
 const LIBRARY_QUALIFYING_BOOKS = 25;
@@ -76,6 +77,7 @@ export function EarnSpotQuickGuide({ actionsId }: EarnSpotQuickGuideProps) {
 
   const profileComplete =
     apiProfileComplete !== null ? apiProfileComplete : isProfileComplete(user);
+  const mobileAppLive = isReadlinkMobileAppLive();
 
   const stepComplete = {
     account: Boolean(isSignedIn),
@@ -125,6 +127,10 @@ export function EarnSpotQuickGuide({ actionsId }: EarnSpotQuickGuideProps) {
               const showCta = Boolean(step.ctaLabel) && !complete;
               const ctaHref = stepCtaHref(step.id, step.ctaHref);
               const anchorId = step.anchorTargetId ?? actionsId;
+              const isLibraryPreLaunch = step.id === "library" && !mobileAppLive;
+              const libraryCtaLabel = isLibraryPreLaunch
+                ? "Use the mobile app"
+                : step.ctaLabel;
 
               return (
                 <li key={step.id} className="relative flex gap-4 lg:flex-col lg:gap-0">
@@ -183,6 +189,10 @@ export function EarnSpotQuickGuide({ actionsId }: EarnSpotQuickGuideProps) {
                             {step.ctaLabel}
                           </button>
                         </SignUpButton>
+                      ) : showCta && isLibraryPreLaunch ? (
+                        <span className="inline-flex items-center justify-center rounded-full border border-[rgba(255,255,255,0.12)] px-4 py-2 text-[12px] font-medium text-[#999999]">
+                          {libraryCtaLabel}
+                        </span>
                       ) : showCta && step.ctaExternal ? (
                         <a
                           href={ctaHref}
@@ -190,7 +200,7 @@ export function EarnSpotQuickGuide({ actionsId }: EarnSpotQuickGuideProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {step.ctaLabel}
+                          {libraryCtaLabel ?? step.ctaLabel}
                         </a>
                       ) : showCta && step.ctaHref ? (
                         <Link

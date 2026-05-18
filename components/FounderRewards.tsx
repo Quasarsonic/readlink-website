@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CollectionPremiumLadderDrawer } from "./CollectionPremiumLadderDrawer";
 
 const bodyTextClass = "max-w-prose text-[14px] leading-[1.6] text-[#999999]";
 const premiumTextClass =
@@ -24,7 +25,8 @@ const founderTiers = [
     rankRange: "#21 – #200",
     tierName: "Collection",
     premium: "Up to 6 months Premium",
-    description: "A spot on the founders page. The full founder cohort.",
+    description:
+      "A spot on the founders page. Premium time scaled by points earned — from 1 to 6 months.",
     featured: false,
   },
 ] as const;
@@ -95,6 +97,7 @@ export function FounderRewards({
               </div>
 
               <p className="mt-4 text-[12px] leading-[1.6] text-[#666666]">{tier.description}</p>
+              {tier.tierName === "Collection" ? <CollectionPremiumLadderDrawer /> : null}
             </article>
           ))}
         </div>
@@ -104,9 +107,9 @@ export function FounderRewards({
             Qualifying
           </p>
           <p className={`max-w-prose ${bodyTextClass}`}>
-            To compete for a tier, build your library: 25 books and a complete profile. The Collection
-            tier (#21–#200) also requires a minimum points threshold and at least one successful
-            referral. Ties broken by who got there first.
+            To compete for a tier, complete your profile (handle, name, photo) and add 25 books to
+            your library. The Collection tier (#21–#200) also requires at least 400 points and one
+            successful referral. Ties broken by who got there first.
           </p>
           <p className="mt-4 max-w-prose text-[12px] leading-[1.6] text-[#666666]">
             No purchase necessary — see the{" "}

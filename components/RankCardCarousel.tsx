@@ -1,22 +1,18 @@
 "use client";
 
+import { Shuffle } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { readlinkLibraryUrl } from "@/lib/readlink-app-url";
 import { CampaignCountdown } from "./CampaignCountdown";
+import { EmptySlotClickTarget } from "./EmptySlotClickTarget";
+import { EARN_THIS_SPOT_LABEL } from "./launchCampaignUi";
 import {
-  isParticipantOccupied,
+  getCarouselVisibleParticipants,
+  getOccupiedParticipants,
+  hasParticipantHandle,
   participants,
   type CampaignParticipant,
 } from "./launchCampaignData";
-
-// TODO(dev): replace with live participant count from backend.
-// Determines how many ranked cards to display in the deck.
-// Cards become visible in order: 1 occupied → only #1 shows;
-// 2 occupied → #1 and #2 show; up to a maximum of 200.
-// Sign-ups beyond #200 do not appear as cards.
-const OCCUPIED_RANK_COUNT = 1;
-
-const shouldAnimate = OCCUPIED_RANK_COUNT >= 10;
-const visibleParticipants = participants.slice(0, OCCUPIED_RANK_COUNT);
 
 function makeSeededRandom(seed: number) {
   let value = seed >>> 0;
@@ -41,8 +37,17 @@ function shuffleParticipants(
 const pointsFormatter = new Intl.NumberFormat("en-US");
 
 export default function RankCardCarousel() {
+  const occupiedParticipants = useMemo(() => getOccupiedParticipants(participants), []);
+  const occupiedCount = occupiedParticipants.length;
+  const showShuffle = occupiedCount >= 1;
+  const visibleParticipants = useMemo(() => getCarouselVisibleParticipants(participants), []);
+  const shouldAnimate = visibleParticipants.length >= 10;
+
   const [shuffled, setShuffled] = useState(() =>
-    shuffleParticipants(visibleParticipants, makeSeededRandom(1337)),
+    shuffleParticipants(
+      occupiedCount > 0 ? occupiedParticipants : visibleParticipants,
+      makeSeededRandom(1337),
+    ),
   );
   const [isDragging, setIsDragging] = useState(false);
   const [isFading, setIsFading] = useState(false);
@@ -56,11 +61,21 @@ export default function RankCardCarousel() {
   const scrollStartLeftRef = useRef(0);
   const loopedParticipants = useMemo(
     () => (shouldAnimate ? [...shuffled, ...shuffled, ...shuffled] : shuffled),
-    [shuffled],
+    [shuffled, shouldAnimate],
   );
 
+  useEffect(() => {
+    const nextOccupied = getOccupiedParticipants(participants);
+    setShuffled(
+      shuffleParticipants(
+        nextOccupied.length > 0 ? nextOccupied : getCarouselVisibleParticipants(participants),
+        makeSeededRandom(1337),
+      ),
+    );
+  }, [occupiedCount]);
+
   const onShuffle = () => {
-    if (!shouldAnimate) return;
+    if (!showShuffle || occupiedParticipants.length === 0) return;
     if (shuffleSpinTimeoutRef.current !== null) {
       window.clearTimeout(shuffleSpinTimeoutRef.current);
     }
@@ -75,7 +90,7 @@ export default function RankCardCarousel() {
 
     setIsFading(true);
     shuffleFadeTimeoutRef.current = window.setTimeout(() => {
-      setShuffled(shuffleParticipants(visibleParticipants));
+      setShuffled(shuffleParticipants(occupiedParticipants));
       setIsFading(false);
     }, 200);
   };
@@ -161,7 +176,7 @@ export default function RankCardCarousel() {
         window.cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [shuffled]);
+  }, [shuffled, shouldAnimate]);
 
   useEffect(() => {
     if (!shouldAnimate) return;
@@ -173,7 +188,7 @@ export default function RankCardCarousel() {
 
     const offset = centeredCard.offsetLeft - container.offsetWidth / 2 + centeredCard.offsetWidth / 2;
     container.scrollLeft = offset;
-  }, [shuffled]);
+  }, [shuffled, shouldAnimate]);
 
   const onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!shouldAnimate) return;
@@ -218,20 +233,19 @@ export default function RankCardCarousel() {
           <p className="mt-4 max-w-[420px] text-[14px] leading-[1.6] text-[#999999]">
             Scroll through all 200 founder cards and click through to their libraries.
           </p>
-          {shouldAnimate ? (
+          {showShuffle ? (
             <div className="mb-5 mt-8 lg:mb-0">
               <button
                 type="button"
                 onClick={onShuffle}
                 className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(91,158,248,0.35)] bg-[rgba(91,158,248,0.06)] px-5 py-2.5 text-[14px] font-medium tracking-[-0.01em] text-[#5B9EF8] transition-all duration-150 ease-in-out hover:border-[rgba(91,158,248,0.6)] hover:bg-[rgba(91,158,248,0.12)] hover:text-white"
               >
-                <span
+                <Shuffle
                   aria-hidden="true"
-                  className={`shuffle-icon ${isShuffleSpinning ? "spinning" : ""}`}
-                >
-                  ↺
-                </span>
-                Shuffle cards
+                  className={`h-4 w-4 shrink-0 ${isShuffleSpinning ? "shuffle-icon spinning" : "shuffle-icon"}`}
+                  strokeWidth={2}
+                />
+                Shuffle
               </button>
             </div>
           ) : null}
@@ -268,88 +282,91 @@ export default function RankCardCarousel() {
           >
             {loopedParticipants.map((participant, index) => {
               const progress = Math.min(100, (participant.points / 5000) * 100);
-              const occupied = isParticipantOccupied(participant);
+              const hasHandle = hasParticipantHandle(participant);
               const handle = participant.handle.trim();
 
               const card = (
+                <div
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
+                  className="relative min-h-[380px] w-[300px] overflow-hidden rounded-[20px] border border-[rgba(91,158,248,0.2)] bg-[#0A0A0A] p-7 will-change-transform transition-transform duration-150 ease-linear"
+                  style={{ scrollSnapAlign: "center" }}
+                >
                   <div
-                    ref={(el) => {
-                      cardRefs.current[index] = el;
+                    className="pointer-events-none absolute rounded-full"
+                    style={{
+                      top: "-50px",
+                      right: "-50px",
+                      width: "180px",
+                      height: "180px",
+                      background:
+                        "radial-gradient(circle, rgba(91,158,248,0.12) 0%, rgba(91,158,248,0.04) 40%, transparent 70%)",
                     }}
-                    className="relative min-h-[380px] w-[300px] overflow-hidden rounded-[20px] border border-[rgba(91,158,248,0.2)] bg-[#0A0A0A] p-7 will-change-transform transition-transform duration-150 ease-linear"
-                    style={{ scrollSnapAlign: "center" }}
-                  >
-                    <div
-                      className="pointer-events-none absolute rounded-full"
-                      style={{
-                        top: "-50px",
-                        right: "-50px",
-                        width: "180px",
-                        height: "180px",
-                        background:
-                          "radial-gradient(circle, rgba(91,158,248,0.12) 0%, rgba(91,158,248,0.04) 40%, transparent 70%)",
-                      }}
-                    />
-                    <div
-                      className="pointer-events-none absolute rounded-full"
-                      style={{
-                        bottom: "-40px",
-                        left: "-40px",
-                        width: "140px",
-                        height: "140px",
-                        background: "radial-gradient(circle, rgba(91,158,248,0.05) 0%, transparent 60%)",
-                      }}
-                    />
+                  />
+                  <div
+                    className="pointer-events-none absolute rounded-full"
+                    style={{
+                      bottom: "-40px",
+                      left: "-40px",
+                      width: "140px",
+                      height: "140px",
+                      background: "radial-gradient(circle, rgba(91,158,248,0.05) 0%, transparent 60%)",
+                    }}
+                  />
 
-                    <div className="relative mb-4 flex items-center gap-3">
-                      <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]" />
-                      <div className="min-w-0">
-                        <p className="truncate text-[14px] font-medium text-white">{participant.name}</p>
-                        {occupied ? (
-                          <p className="mt-0.5 truncate text-[11px] text-[#666666]">@{handle}</p>
-                        ) : null}
-                      </div>
+                  <div className="relative mb-4 flex items-center gap-3">
+                    <div className="h-[44px] w-[44px] overflow-hidden rounded-[10px] border border-[rgba(255,255,255,0.06)]" />
+                    <div className="min-w-0">
+                      <p className="truncate text-[14px] font-medium text-white">{participant.name}</p>
+                      {hasHandle ? (
+                        <p className="mt-0.5 truncate text-[11px] text-[#666666]">@{handle}</p>
+                      ) : (
+                        <p className="mt-0.5 truncate text-[11px] text-[#555555]">{EARN_THIS_SPOT_LABEL}</p>
+                      )}
                     </div>
-
-                    <div className="relative mb-3 flex items-end gap-1">
-                      <p className="text-[40px] leading-none text-white">#{participant.rank}</p>
-                      <p className="pb-1 text-[12px] text-[#666666]">/ 200</p>
-                    </div>
-
-                    <p className="relative mb-4 font-mono text-[11px] text-[#999999]">
-                      {pointsFormatter.format(participant.points)} pts · {participant.books} books
-                    </p>
-
-                    <div className="relative mb-4 h-[2px] w-full overflow-hidden rounded-[2px] bg-[rgba(255,255,255,0.06)]">
-                      <div
-                        className="h-full max-w-full rounded-[2px]"
-                        style={{
-                          width: `${progress}%`,
-                          background: "linear-gradient(90deg, #5B9EF8, rgba(91,158,248,0.3))",
-                        }}
-                      />
-                    </div>
-
-                    {occupied ? (
-                      <p className="relative font-mono text-[10px] text-[#666666]">
-                        readlink.app/@{handle}
-                      </p>
-                    ) : null}
-
-                    <span className="absolute bottom-4 right-4 font-mono text-[9px] tracking-[0.04em] text-[rgba(255,255,255,0.12)]">
-                      readlink
-                    </span>
                   </div>
+
+                  <div className="relative mb-3 flex items-end gap-1">
+                    <p className="text-[40px] leading-none text-white">#{participant.rank}</p>
+                    <p className="pb-1 text-[12px] text-[#666666]">/ 200</p>
+                  </div>
+
+                  <p className="relative mb-4 text-left font-mono text-[11px] text-[#999999]">
+                    {pointsFormatter.format(participant.points)} pts · {participant.books} books
+                  </p>
+
+                  <div className="relative mb-4 h-[2px] w-full overflow-hidden rounded-[2px] bg-[rgba(255,255,255,0.06)]">
+                    <div
+                      className="h-full max-w-full rounded-[2px]"
+                      style={{
+                        width: `${progress}%`,
+                        background: "linear-gradient(90deg, #5B9EF8, rgba(91,158,248,0.3))",
+                      }}
+                    />
+                  </div>
+
+                  {hasHandle ? (
+                    <p className="relative font-mono text-[10px] text-[#666666]">
+                      readlink.app/@{handle}
+                    </p>
+                  ) : null}
+
+                  <span className="absolute bottom-4 right-4 font-mono text-[9px] tracking-[0.04em] text-[rgba(255,255,255,0.12)]">
+                    readlink
+                  </span>
+                </div>
               );
 
-              if (occupied) {
+              if (hasHandle) {
                 return (
                   <a
                     key={`${participant.rank}-${index}`}
-                    href={`https://readlink.app/@${handle}`}
+                    href={readlinkLibraryUrl(handle)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block shrink-0"
+                    aria-label={`Visit @${handle}'s library`}
                   >
                     {card}
                   </a>
@@ -357,9 +374,12 @@ export default function RankCardCarousel() {
               }
 
               return (
-                <div key={`${participant.rank}-${index}`} className="block shrink-0">
+                <EmptySlotClickTarget
+                  key={`${participant.rank}-${index}`}
+                  className="block shrink-0 text-left"
+                >
                   {card}
-                </div>
+                </EmptySlotClickTarget>
               );
             })}
           </div>

@@ -2,17 +2,62 @@
 
 import Link from "next/link";
 import { EarnSpotQuickGuide } from "./EarnSpotQuickGuide";
-import { earnPointsCards } from "./launchCampaignData";
+import { earnPointsCards, type EarnPointsCard } from "./launchCampaignData";
 
-const hiddenEarnPointCardTitles = new Set(["Drive traffic", "Profile page visits"]);
+const GOLD_HIGHLIGHT_CLASS = "text-[#C4A24A]";
+
+function renderCardDescription(card: EarnPointsCard) {
+  const { description, highlightPhrase, highlightPhrases } = card;
+  const phrases =
+    highlightPhrases ?? (highlightPhrase && description.includes(highlightPhrase) ? [highlightPhrase] : []);
+
+  if (phrases.length === 0) {
+    return description;
+  }
+
+  const pattern = new RegExp(
+    `(${phrases.map((phrase) => phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`,
+    "g",
+  );
+  const parts = description.split(pattern);
+
+  return parts.map((part, index) =>
+    phrases.includes(part) ? (
+      <span key={`${part}-${index}`} className={GOLD_HIGHLIGHT_CLASS}>
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
+function PremiumCardDescription() {
+  return (
+    <div className="flex flex-col gap-2.5 text-[12px] leading-[1.6] text-[#666666]">
+      <p>Premium subscribers earn double points on every action.</p>
+      <ul className="space-y-1.5" role="list">
+        <li>
+          Monthly subscribers receive{" "}
+          <span className={GOLD_HIGHLIGHT_CLASS}>2 Golden Tickets</span>
+        </li>
+        <li>
+          Yearly subscribers receive{" "}
+          <span className={GOLD_HIGHLIGHT_CLASS}>4 Golden Tickets</span>
+        </li>
+      </ul>
+      <p className="text-[11px] leading-[1.55] text-[#555555]">
+        Each ticket grants a friend a free month of Premium.
+      </p>
+    </div>
+  );
+}
 
 type EarnPointsProps = {
   extraBottomPadding?: boolean;
 };
 
 export function EarnPoints({ extraBottomPadding = false }: EarnPointsProps) {
-  const visibleCards = earnPointsCards.filter((card) => !hiddenEarnPointCardTitles.has(card.title));
-
   return (
     <section
       className={`bg-[#111111] px-[clamp(16px,5vw,80px)] pt-[80px] ${
@@ -39,41 +84,37 @@ export function EarnPoints({ extraBottomPadding = false }: EarnPointsProps) {
 
         <EarnSpotQuickGuide actionsId="earn-points-actions" />
 
-        <div id="earn-points-actions" className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {visibleCards.map((card, index) => {
+        <div
+          id="earn-points-actions"
+          className="grid scroll-mt-[120px] grid-cols-1 items-stretch gap-3 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {earnPointsCards.map((card, index) => {
             const isPremium = card.title === "Go Premium";
-            const isComingSoon = card.comingSoon === true;
 
             return (
               <article
                 key={`${card.title}-${index}`}
-                className={`rounded-[16px] border p-5 transition-[transform,box-shadow,border-color,opacity] duration-200 ease-in-out ${
-                  isComingSoon
-                    ? "opacity-45"
-                    : "hover:-translate-y-[2px] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
-                }`}
+                className="flex h-full min-h-[168px] flex-col rounded-[16px] border p-5 transition-[transform,box-shadow,border-color] duration-200 ease-in-out hover:-translate-y-[2px] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
                 style={{
                   background: "linear-gradient(145deg, #1A1A1A 0%, #111111 60%)",
                   borderColor: isPremium ? "rgba(91,158,248,0.2)" : "rgba(255,255,255,0.06)",
                   boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
                 }}
               >
-                {isComingSoon ? (
-                  <span className="inline-flex rounded-[4px] bg-[rgba(255,255,255,0.06)] px-[8px] py-[4px] text-[11px] font-medium uppercase tracking-[0.06em] text-[#666666]">
-                    Coming soon
-                  </span>
-                ) : (
-                  <p className="font-mono text-[22px] text-white">
-                    {card.points}{" "}
-                    <span className="text-[13px] text-[#666666]">{card.suffix}</span>
-                  </p>
-                )}
-                <h3
-                  className={`mt-2 text-[14px] font-medium ${isComingSoon ? "text-[#999999]" : "text-white"}`}
-                >
-                  {card.title}
-                </h3>
-                <p className="mt-2 text-[12px] leading-[1.6] text-[#666666]">{card.description}</p>
+                <p className="shrink-0 font-mono text-[22px] text-white">
+                  {card.points}{" "}
+                  <span className="text-[13px] text-[#666666]">{card.suffix}</span>
+                </p>
+                <h3 className="mt-2 shrink-0 text-[14px] font-medium text-white">{card.title}</h3>
+                <div className="mt-2 flex flex-1 flex-col">
+                  {isPremium ? (
+                    <PremiumCardDescription />
+                  ) : (
+                    <p className="text-[12px] leading-[1.6] text-[#666666]">
+                      {renderCardDescription(card)}
+                    </p>
+                  )}
+                </div>
               </article>
             );
           })}

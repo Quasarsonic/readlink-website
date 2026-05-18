@@ -1,14 +1,19 @@
 "use client";
 
-import { SignUpButton, useUser } from "@clerk/nextjs";
-import { type ReactNode, useEffect, useState } from "react";
+import { SignUpButton } from "@clerk/nextjs";
+import { type ReactNode } from "react";
 import {
   getHeroTileSlots,
   participants,
   type HeroTileSlot,
 } from "./launchCampaignData";
 import { ParticipantAvatar } from "./ParticipantAvatar";
-import { readlinkAppUrls, readlinkLibraryUrl } from "@/lib/readlink-app-url";
+import { readlinkLibraryUrl } from "@/lib/readlink-app-url";
+import {
+  emptySlotAriaLabel,
+  useEmptySlotDestination,
+  type EmptySlotDestination,
+} from "@/hooks/useEmptySlotDestination";
 
 const rankBorderColors: Record<number, string> = {
   1: "#E8C96A",
@@ -48,74 +53,19 @@ const tiles: TileConfig[] = [
   { id: 20, left: "62%", width: 48, height: 48, animationDuration: "9s", animationDelay: "-14s" },
 ];
 
-type EmptyTileDestination =
-  | { kind: "signup" }
-  | { kind: "profile"; href: string }
-  | { kind: "anchor"; href: string };
-
 type HeroProfileTilesProps = {
   /** Matches EarnSpotQuickGuide "Create account" SignUpButton redirect. */
   signUpRedirectUrl?: string;
 };
 
-function isProfileComplete(user: ReturnType<typeof useUser>["user"]) {
-  if (!user) return false;
-
-  const hasDisplayName = Boolean(user.firstName?.trim() || user.fullName?.trim());
-  const hasHandle = Boolean(user.username?.trim());
-  const hasPhoto = Boolean(user.hasImage);
-
-  return hasDisplayName && hasHandle && hasPhoto;
-}
-
-function useEmptyTileDestination(): EmptyTileDestination {
-  const { isLoaded, isSignedIn, user } = useUser();
-  const [apiProfileComplete, setApiProfileComplete] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    if (!isLoaded || !isSignedIn) return;
-
-    let cancelled = false;
-
-    fetch("/api/readlink/campaign/progress", { cache: "no-store" })
-      .then(async (response) => {
-        const payload = (await response.json().catch(() => ({}))) as {
-          profileComplete?: boolean | null;
-        };
-        if (cancelled) return;
-        setApiProfileComplete(
-          typeof payload.profileComplete === "boolean" ? payload.profileComplete : null,
-        );
-      })
-      .catch(() => {
-        if (!cancelled) setApiProfileComplete(null);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [isLoaded, isSignedIn]);
-
-  if (!isLoaded || !isSignedIn) return { kind: "signup" };
-
-  const profileComplete =
-    apiProfileComplete !== null ? apiProfileComplete : isProfileComplete(user);
-
-  if (!profileComplete) return { kind: "profile", href: readlinkAppUrls.profile };
-
-  return { kind: "anchor", href: "#earn-points-actions" };
-}
-
 function occupiedTileAriaLabel(handle: string) {
   return `Visit @${handle.trim()}'s library`;
 }
 
-const emptyTileAriaLabel = "Create account to compete for this spot";
-
 type HeroTileProps = {
   tile: TileConfig;
   slot: HeroTileSlot;
-  emptyTileDestination: EmptyTileDestination;
+  emptyTileDestination: EmptySlotDestination;
   signUpRedirectUrl: string;
 };
 
@@ -192,7 +142,7 @@ function HeroTile({ tile, slot, emptyTileDestination, signUpRedirectUrl }: HeroT
             type="button"
             className="profile-tile-interactive"
             style={interactiveStyle}
-            aria-label={emptyTileAriaLabel}
+            aria-label={emptySlotAriaLabel}
           >
             {content}
           </button>
@@ -207,7 +157,7 @@ function HeroTile({ tile, slot, emptyTileDestination, signUpRedirectUrl }: HeroT
         href={emptyTileDestination.href}
         className="profile-tile-interactive"
         style={interactiveStyle}
-        aria-label={emptyTileAriaLabel}
+        aria-label={emptySlotAriaLabel}
       >
         {content}
       </a>
@@ -217,7 +167,7 @@ function HeroTile({ tile, slot, emptyTileDestination, signUpRedirectUrl }: HeroT
 
 export function HeroProfileTiles({ signUpRedirectUrl = "/launch" }: HeroProfileTilesProps) {
   const heroSlots = getHeroTileSlots(participants);
-  const emptyTileDestination = useEmptyTileDestination();
+  const emptyTileDestination = useEmptySlotDestination();
 
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">

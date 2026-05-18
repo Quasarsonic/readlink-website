@@ -3,9 +3,12 @@
 import Link from "next/link";
 import { ParticipantAvatar } from "./ParticipantAvatar";
 import { useEffect, useRef, useState } from "react";
+import { readlinkLibraryUrl } from "@/lib/readlink-app-url";
 import { CampaignCountdown } from "./CampaignCountdown";
 import { CampaignStatusBadge } from "./CampaignStatusBadge";
-import { isOnHero, isParticipantOccupied, participants } from "./launchCampaignData";
+import { EmptySlotClickTarget } from "./EmptySlotClickTarget";
+import { EARN_THIS_SPOT_LABEL } from "./launchCampaignUi";
+import { hasParticipantHandle, isOnHero, participants } from "./launchCampaignData";
 
 const rankColors: Record<number, string> = {
   1: "#E8C96A",
@@ -55,6 +58,11 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
     >
       <div className="mx-auto w-full max-w-[820px]">
         <div className="mb-8">
+          {!expanded ? (
+            <div className="mb-12 flex justify-center">
+              <CampaignCountdown size="sm" showHeader={false} />
+            </div>
+          ) : null}
           <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#666666]">
             Launch Campaign
           </p>
@@ -67,13 +75,8 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
             </h2>
             <CampaignStatusBadge />
           </div>
-          {!expanded ? (
-            <CampaignCountdown size="sm" showHeader={false} className="mt-4" />
-          ) : null}
           <p className="mt-4 max-w-2xl text-[14px] leading-[1.6] text-[#999999]">
-            {expanded
-              ? "Rankings update in real time. Top 200 earn a permanent spot on the homepage."
-              : "The top 200 most influential Readlink readers."}
+            Rankings update in real time. Top 200 earn a permanent spot on the homepage.
           </p>
         </div>
 
@@ -81,25 +84,26 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
           {entries.map((entry, index) => {
             const isTopThree = entry.rank <= 3;
             const showOnHeroBadge = isOnHero(entry.rank);
-            const occupied = isParticipantOccupied(entry);
+            const hasHandle = hasParticipantHandle(entry);
+            const handle = entry.handle.trim();
             const progressWidth = `${Math.max(8, (entry.points / maxPoints) * 100)}%`;
             const rankColor = rankColors[entry.rank] ?? "#666666";
 
-            return (
-              <article
-                key={entry.rank}
-                className="grid grid-cols-[40px_52px_1fr_auto] items-center gap-4 rounded-[12px] border px-5 py-[14px] transition-colors duration-150 ease-in-out hover:bg-[rgba(255,255,255,0.04)]"
-                style={{
-                  background: isTopThree ? "rgba(91,158,248,0.03)" : "rgba(255,255,255,0.02)",
-                  borderColor: isTopThree ? "rgba(91,158,248,0.15)" : "rgba(255,255,255,0.04)",
-                  opacity: expanded && !rowsVisible ? 0 : 1,
-                  transform: expanded && !rowsVisible ? "translateY(12px)" : "translateY(0)",
-                  transition:
-                    expanded
-                      ? `opacity 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms, transform 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms`
-                      : undefined,
-                }}
-              >
+            const rowClassName =
+              "grid w-full grid-cols-[40px_52px_1fr_auto] items-center gap-4 rounded-[12px] border px-5 py-[14px] text-left no-underline transition-colors duration-150 ease-in-out hover:bg-[rgba(255,255,255,0.04)]";
+            const rowStyle = {
+              background: isTopThree ? "rgba(91,158,248,0.03)" : "rgba(255,255,255,0.02)",
+              borderColor: isTopThree ? "rgba(91,158,248,0.15)" : "rgba(255,255,255,0.04)",
+              opacity: expanded && !rowsVisible ? 0 : 1,
+              transform: expanded && !rowsVisible ? "translateY(12px)" : "translateY(0)",
+              transition:
+                expanded
+                  ? `opacity 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms, transform 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms`
+                  : undefined,
+            };
+
+            const rowContent = (
+              <>
                 <p
                   className="font-mono text-[13px]"
                   style={{ color: rankColor }}
@@ -120,12 +124,16 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                     ) : null}
                   </p>
                   <p className="mt-1 truncate text-[12px] text-[#666666]">
-                    {occupied ? (
+                    {hasHandle ? (
                       <>
-                        @{entry.handle.trim()} · {entry.books} books
+                        @{handle} · {entry.books} books
                       </>
                     ) : (
-                      <>{entry.books} books</>
+                      <>
+                        <span className="text-[#555555]">{EARN_THIS_SPOT_LABEL}</span>
+                        {" · "}
+                        {entry.books} books
+                      </>
                     )}
                   </p>
                   <div className="mt-2 h-[4px] w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
@@ -141,7 +149,27 @@ export function ShelfLeaderboard({ expanded = false }: ShelfLeaderboardProps) {
                   <p className="font-mono text-[16px] text-white">{formatPoints.format(entry.points)}</p>
                   <p className="mt-0.5 text-[10px] text-[#666666]">points</p>
                 </div>
-              </article>
+              </>
+            );
+
+            if (hasHandle) {
+              return (
+                <a
+                  key={entry.rank}
+                  href={readlinkLibraryUrl(handle)}
+                  className={rowClassName}
+                  style={rowStyle}
+                  aria-label={`Visit @${handle}'s library`}
+                >
+                  {rowContent}
+                </a>
+              );
+            }
+
+            return (
+              <EmptySlotClickTarget key={entry.rank} className={rowClassName} style={rowStyle}>
+                {rowContent}
+              </EmptySlotClickTarget>
             );
           })}
 

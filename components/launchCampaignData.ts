@@ -34,8 +34,28 @@ export type HeroTileSlot = {
   occupied: boolean;
 };
 
+/** True when the participant has a handle to show in @handle / profile URLs. */
+export function hasParticipantHandle(participant: CampaignParticipant) {
+  return Boolean(participant.handle?.trim());
+}
+
 export function isParticipantOccupied(participant: CampaignParticipant) {
-  return Boolean(participant.handle?.trim() || participant.name?.trim());
+  return hasParticipantHandle(participant) || Boolean(participant.name?.trim());
+}
+
+export function getOccupiedParticipants(
+  leaderboard: CampaignParticipant[] = participants,
+) {
+  return leaderboard.filter(isParticipantOccupied);
+}
+
+/** Rank slots #1…N shown in the launch carousel (N = occupied count, min 1 pre-launch). */
+export function getCarouselVisibleParticipants(
+  leaderboard: CampaignParticipant[] = participants,
+) {
+  const occupiedCount = getOccupiedParticipants(leaderboard).length;
+  const slotCount = occupiedCount > 0 ? occupiedCount : 1;
+  return leaderboard.slice(0, slotCount);
 }
 
 export function participantAtRank(
@@ -84,7 +104,9 @@ export type EarnPointsCard = {
   suffix: string;
   title: string;
   description: string;
-  comingSoon?: boolean;
+  /** Renders with a muted gold tint inside the description paragraph. */
+  highlightPhrase?: string;
+  highlightPhrases?: string[];
 };
 
 export const earnPointsCards: EarnPointsCard[] = [
@@ -95,50 +117,44 @@ export const earnPointsCards: EarnPointsCard[] = [
     description: "Install the app and add 5 or more books to your personal shelf.",
   },
   {
-    points: "50",
-    suffix: "pts/click",
-    title: "Drive traffic",
-    description: "Every unique click on your referral link. Capped at 1,000 pts per day.",
+    points: "1,000",
+    suffix: "pts",
+    title: "Bring a reader",
+    description:
+      "Someone signs up via your link and adds 5 or more books within 72 hours.",
   },
   {
-    points: "",
-    suffix: "",
-    title: "More ways to earn",
-    description: "New ways to earn points are coming. Stay tuned.",
-    comingSoon: true,
+    points: "500",
+    suffix: "pts bonus",
+    title: "Your referral goes deep",
+    description: "Someone you referred reaches 25 books in their library.",
   },
   {
-    points: "",
-    suffix: "",
-    title: "More ways to earn",
-    description: "New ways to earn points are coming. Stay tuned.",
-    comingSoon: true,
+    points: "1,500",
+    suffix: "pts bonus",
+    title: "Referral converts to Premium",
+    description: "Someone you referred subscribes to Premium.",
   },
   {
-    points: "",
-    suffix: "",
-    title: "More ways to earn",
-    description: "New ways to earn points are coming. Stay tuned.",
-    comingSoon: true,
+    points: "500",
+    suffix: "pts bonus",
+    title: "Build your network",
+    description: "Refer 2 readers who each meet the Bring a reader threshold.",
   },
   {
-    points: "",
-    suffix: "",
-    title: "More ways to earn",
-    description: "New ways to earn points are coming. Stay tuned.",
-    comingSoon: true,
-  },
-  {
-    points: "10",
-    suffix: "pts/visit",
-    title: "Profile page visits",
-    description: "Every unique visit to your readlink.app/@username page. Capped at 500 pts per day.",
-  },
-  {
-    points: "2x",
+    points: "2×",
     suffix: "all points",
     title: "Go Premium",
     description:
-      "Premium subscribers earn double points on every action, plus two Golden Tickets to gift.",
+      "Premium subscribers earn double points on every action. Monthly subscribers receive 2 Golden Tickets, Yearly subscribers receive 4 Golden Tickets — each ticket grants a friend a free month of Premium.",
+    highlightPhrases: ["2 Golden Tickets", "4 Golden Tickets"],
   },
 ];
+
+export const collectionPremiumTimeTiers = [
+  { pointsRange: "1,500 – 3,999 points", premiumTime: "1 month" },
+  { pointsRange: "4,000 – 8,999 points", premiumTime: "2 months" },
+  { pointsRange: "9,000 – 17,999 points", premiumTime: "3 months" },
+  { pointsRange: "18,000 – 29,999 points", premiumTime: "4 months" },
+  { pointsRange: "30,000+ points", premiumTime: "6 months" },
+] as const;
